@@ -1,6 +1,6 @@
 # notes
 
-A new Flutter project.
+A Notes App Written in Flutter
 
 ## Getting Started
 
