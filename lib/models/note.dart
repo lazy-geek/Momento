@@ -1,6 +1,6 @@
 
 class Note {
-  String id;
+  int id;
   String title;
   String content;
   int isPinned;
