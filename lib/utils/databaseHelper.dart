@@ -38,8 +38,8 @@ class DatabaseHelper {
         $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
         $columnTitle TEXT,
         $columnContent TEXT NOT NULL,
-        $columnIsPinned INTEGER NOT NULL
-        $columnDateCreated TEXT
+        $columnIsPinned INTEGER NOT NULL,
+        $columnDateCreated TEXT,
         $columnLastUpdated TEXT);
         ''');
   }
@@ -53,6 +53,7 @@ class DatabaseHelper {
   Future<List<Note>> getAllNotes() async {
      var db = await database;
      var result = await db.query("$tableName",);
+     if(result.isEmpty) return null;
      return result.map((row) =>
        Note.fromMap(row)
      ).toList();
