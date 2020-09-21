@@ -11,21 +11,17 @@ Future<int> addNote(Note note) async {
   }
 
 Future<List<Note>> getAllNotes() async {
-  if(notes_list.isEmpty)
-  {
-     notes_list = await DatabaseHelper.instance.getAllNotes();
-  }
-  return notes_list;
+  notes_list = await DatabaseHelper.instance.getAllNotes();
+  return notes_list ?? []; //  if(notes_list == null) return [];
   }
 
 Future<Note> getNote(int noteId) async {
     return notes_list.map((element) {
-      
-      if(int.parse(element.id) == noteId){
+      if(element.id == noteId){
         return element;
       }
       }).first;
-  }
+}
 
 Future<int> deleteNote(int noteid) async {
     var result = await DatabaseHelper.instance.deleteNote(noteid);
