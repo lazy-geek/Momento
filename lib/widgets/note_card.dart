@@ -44,7 +44,7 @@ class _NoteCardState extends State<NoteCard> {
                       padding: EdgeInsets.all(0.0),
                       child: Text(
                         "${widget.currentNote.title}",
-                        TextOverflow.ellipsis,
+                        overflow:TextOverflow.ellipsis,
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
