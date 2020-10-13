@@ -24,7 +24,7 @@ class _EditNotePageState extends State<EditNotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add note'),
+        title: Text('Edit note'),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -44,22 +44,23 @@ class _EditNotePageState extends State<EditNotePage> {
                   newNote
                 );
               }
-              
               Navigator.pop(context,isEdited);
             }),
       ),
       body: Container(
-        padding: EdgeInsets.all(5),
+       
+        padding: EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
+            SizedBox(height: 26.0,),
             TextField(onChanged: (_){
                 isEdited = true;
-              },
+              },showCursor: true,
                 autofocus: true,
-                style: TextStyle(fontSize: 25),
+                style: TextStyle(fontSize: 25,),
                 controller: t1,
                 maxLines: null,
-                decoration: InputDecoration(
+                decoration: InputDecoration(hintStyle: TextStyle(color: Colors.grey.shade400),
                     focusedBorder: InputBorder.none,
                     hintText: 'Title',
                     border: InputBorder.none),

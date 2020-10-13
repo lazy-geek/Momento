@@ -40,10 +40,10 @@ class _AddNotePageState extends State<AddNotePage> {
               Navigator.pop(context);
             }),
       ),
-      body: Container(
-        padding: EdgeInsets.all(5),
+      body: Container(padding: EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
+            SizedBox(height: 26.0,),
             TextField(
               autofocus: true,
               style: TextStyle(fontSize: 25),
