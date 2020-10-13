@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Notes'),
         centerTitle: true,
       ),
-      body: NotesList(s: s,),
+      body: NotesList(s: s),
       floatingActionButton: Fab(
         onPressed: () {
           Navigator.push(context,
