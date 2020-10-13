@@ -44,7 +44,8 @@ class _NoteCardState extends State<NoteCard> {
                       padding: EdgeInsets.all(0.0),
                       child: Text(
                         "${widget.currentNote.title}",
-                         TextOverflow.ellipsis,maxLines: 1,
+                        TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18.0,
@@ -62,7 +63,9 @@ class _NoteCardState extends State<NoteCard> {
                 // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
                 padding: EdgeInsets.all(0.0),
                 child: Text(
-                  "${widget.currentNote.content}",overflow: TextOverflow.ellipsis,maxLines: 10,
+                  "${widget.currentNote.content}",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 10,
                   style: TextStyle(
                       // height: 1.3,
                       fontSize: 16.0,
