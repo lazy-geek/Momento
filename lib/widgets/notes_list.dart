@@ -30,13 +30,29 @@ class _NotesListState extends State<NotesList> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
         }
-        return ListView.builder(physics: BouncingScrollPhysics(),
-          controller: widget.s,
-          itemCount: snapshot.data.length ?? 0,
-          itemBuilder: (context, index) {
-            return NoteCard(currentNote: snapshot.data[index]);
-          },
+        return CustomScrollView(
+          slivers: [
+            // This [Padding] affects the area between the edge of the screen and the [ListView]
+            SliverPadding(
+              padding: EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (contex, index) {
+                    return NoteCard(currentNote: snapshot.data[index]);
+                  },
+                  childCount: snapshot.data.length ?? 0,
+                ),
+              ),
+            ),
+          ],
         );
+        // return ListView.builder(physics: BouncingScrollPhysics(),
+        //   controller: widget.s,
+        //   itemCount: snapshot.data.length ?? 0,
+        //   itemBuilder: (context, index) {
+        //     return NoteCard(currentNote: snapshot.data[index]);
+        //   },
+        // );
       },
     );
   }
