@@ -5,8 +5,6 @@ import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/widgets/note_card.dart';
 
 class NotesGrid extends StatefulWidget {
-  ScrollController s;
-  NotesGrid({this.s});
   @override
   _NotesGridState createState() => _NotesGridState();
 }
