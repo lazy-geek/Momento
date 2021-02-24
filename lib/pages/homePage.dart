@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notes/pages/addNotePage.dart';
 import 'package:notes/widgets/fab.dart';
 import 'package:notes/widgets/notes_grid.dart';
-import 'package:notes/widgets/notes_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,8 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ScrollController s = ScrollController(keepScrollOffset: true);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +20,8 @@ class _HomePageState extends State<HomePage> {
       ),
       // Dark Mode color
       backgroundColor: Color(0xFF222733),
-      body: NotesList(s: s),
-      // body: NotesGrid(s: s),
+      // body: NotesList(),
+      body: NotesGrid(),
       floatingActionButton: Fab(
         onPressed: () {
           Navigator.push(context,
