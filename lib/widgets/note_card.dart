@@ -19,15 +19,13 @@ class _NoteCardState extends State<NoteCard> {
     return GestureDetector(
       onTap: () async {
         await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => EditNotePage(
-                      currentNote: widget.currentNote,
-                    ))).then((value) {
-          if (value == true) {
-            setState(() {});
-          }
-        });
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditNotePage(
+              currentNote: widget.currentNote,
+            ),
+          ),
+        );
       },
       child: Container(
         // use [margin] property only if using list layout , don't use it with grid layout
