@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes/pages/addNotePage.dart';
 import 'package:notes/widgets/fab.dart';
 import 'package:notes/widgets/notes_grid.dart';
+import 'package:notes/widgets/notes_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
