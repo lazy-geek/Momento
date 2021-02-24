@@ -51,7 +51,8 @@ class _EditNotePageState extends State<EditNotePage> {
               Navigator.pop(context, isEdited);
             }),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
