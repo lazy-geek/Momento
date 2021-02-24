@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => AddNotePage()))
               .then((value) => setState(() {}));
         },
-        s: s,
       ),
     );
   }
