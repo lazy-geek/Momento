@@ -10,7 +10,7 @@ class NoteListViewModel extends ChangeNotifier {
 
   Future<int> addNote(Note note) async {
     var result = await DatabaseHelper.instance.addNote(note);
-    // await getAllNotes();
+    await getAllNotes();
     notifyListeners();
     return result;
   }
