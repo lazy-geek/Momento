@@ -4,8 +4,8 @@ import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 
 class EditNotePage extends StatefulWidget {
-  Note currentNote;
-  EditNotePage({this.currentNote});
+  int index;
+  EditNotePage({this.index});
   @override
   _EditNotePageState createState() => _EditNotePageState();
 }
@@ -14,15 +14,21 @@ class _EditNotePageState extends State<EditNotePage> {
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
   bool isEdited = false;
+  Note currentNote;
   @override
   void initState() {
     super.initState();
-    t1.text = widget.currentNote.title;
-    t2.text = widget.currentNote.content;
+  }
+
+  void setupText(BuildContext context) {
+    currentNote = context.read(NoteProvider(widget.index));
+    t1.text = currentNote.title;
+    t2.text = currentNote.content;
   }
 
   @override
   Widget build(BuildContext context) {
+    setupText(context);
     return Scaffold(
       // Dark Mode color
       backgroundColor: Color(0xFF222733),
@@ -46,11 +52,11 @@ class _EditNotePageState extends State<EditNotePage> {
                         'last_updated': '$DateTime.now().day'
                       },
                     );
-                    newNote.id = widget.currentNote.id;
+                    newNote.id = currentNote.id;
                     // print(widget.currentNote.content);
                     await context
-                        .read(NoteListViewModelProvider)
-                        .updateNote(newNote);
+                        .read(NoteProvider(widget.index))
+                        .update(newNote);
                   }
                   Navigator.pop(context);
                 });
