@@ -47,32 +47,38 @@ class _AddNotePageState extends State<AddNotePage> {
                 });
           },
         ),
-      body: Container(padding: EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(
-          children: [
-            SizedBox(height: 26.0,),
-            TextField(
-              autofocus: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 26.0,
+              ),
+              TextField(
+                autofocus: true,
                 style: TextStyle(fontSize: 25, color: Colors.white),
-              controller: t1,
-              maxLines: null,
-              decoration: InputDecoration(
-                  focusedBorder: InputBorder.none,
-                  hintText: 'Title',
+                controller: t1,
+                maxLines: null,
+                decoration: InputDecoration(
+                    focusedBorder: InputBorder.none,
+                    hintText: 'Title',
                     hintStyle: TextStyle(color: Colors.grey.shade400),
-                  border: InputBorder.none),
-            ),
-            TextField(
-              maxLines: null,
-              controller: t2,
+                    border: InputBorder.none),
+              ),
+              TextField(
+                maxLines: null,
+                controller: t2,
                 style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  focusedBorder: InputBorder.none,
-                  hintText: 'Type Something',
+                decoration: InputDecoration(
+                    focusedBorder: InputBorder.none,
+                    hintText: 'Type Something',
                     hintStyle: TextStyle(color: Colors.grey.shade400),
-                  border: InputBorder.none),
-            )
-          ],
+                    border: InputBorder.none),
+              )
+            ],
+          ),
         ),
       ),
     );
