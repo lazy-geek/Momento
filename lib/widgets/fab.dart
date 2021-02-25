@@ -18,7 +18,7 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin {
     super.initState();
     _hideFabAnimController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: Duration(milliseconds: 250),
       value: 1,
     );
   }
@@ -59,7 +59,7 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin {
       child: ScaleTransition(
         scale: _hideFabAnimController,
         child: IgnorePointer(
-          ignoring: _hideFabAnimController.value == 1 ? true : false,
+          ignoring: _hideFabAnimController.value== 0 ?true:false,
           child: FloatingActionButton(
             onPressed: widget.onPressed,
             tooltip: 'Add Note',
