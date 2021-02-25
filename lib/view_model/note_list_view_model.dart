@@ -19,7 +19,7 @@ class NoteListViewModel extends ChangeNotifier {
     notes_list = await DatabaseHelper.instance.getAllNotes();
     print(notes_list.last.content);
 
-    notifyListeners();//  if(notes_list == null) return [];
+    notifyListeners(); //  if(notes_list == null) return [];
   }
 
   Future<Note> getNote(int noteId) async {
@@ -37,10 +37,13 @@ class NoteListViewModel extends ChangeNotifier {
     return result;
   }
 
-  Future<int> updateNote(Note note) async {
-    var result = await DatabaseHelper.instance.updateNote(note);
-    notes_list = await DatabaseHelper.instance.getAllNotes();
-    notifyListeners();
-    return result;
-  }
+  // Future<int> updateNote(Note note) async {
+  //   var result = await DatabaseHelper.instance.updateNote(note);
+  //   // notes_list = await DatabaseHelper.instance.getAllNotes();
+
+  //  int index= notes_list.indexWhere((element) => element.id == note.id);
+  //  notes_list[index] = note;
+  //   notifyListeners();
+  //   return result;
+  // }
 }
