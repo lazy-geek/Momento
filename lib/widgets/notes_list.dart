@@ -17,6 +17,7 @@ class _NotesListState extends State<NotesList> {
         return asyncnotelist.when(
           data: (data) {
             return CustomScrollView(
+              controller: context.read(ScrollControllerProvider),
               slivers: [
                 // This [Padding] affects the area between the edge of the screen and the [ListView]
                 SliverPadding(

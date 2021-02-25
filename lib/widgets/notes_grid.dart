@@ -15,9 +15,11 @@ class _NotesGridState extends State<NotesGrid> {
     return Consumer(
       builder: (context, watch, child) {
         AsyncValue asyncnotelist = watch(AllNotesProvider);
+
         return asyncnotelist.when(
           data: (data) {
             return CustomScrollView(
+              controller: context.read(ScrollControllerProvider),
               semanticChildCount: data.length ?? 0,
               shrinkWrap: true,
               slivers: [
