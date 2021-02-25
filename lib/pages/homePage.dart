@@ -25,9 +25,12 @@ class _HomePageState extends State<HomePage> {
       body: NotesGrid(),
       floatingActionButton: Fab(
         onPressed: () {
-          Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddNotePage()))
-              .then((value) => setState(() {}));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddNotePage(),
+            ),
+          );
         },
       ),
     );
