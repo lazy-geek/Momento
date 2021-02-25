@@ -25,7 +25,7 @@ class _NotesListState extends State<NotesList> {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (contex, index) {
-                        return NoteCard(currentNote: data[index]);
+                        return NoteCard(index: index);
                       },
                       childCount: data.length ?? 0,
                     ),
