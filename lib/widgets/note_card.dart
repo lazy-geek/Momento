@@ -33,18 +33,28 @@ class _NoteCardState extends State<NoteCard> {
         LayoutType layout = viewModel.layout;
         return GestureDetector(
           onTap: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditNotePage(
-                  index: widget.index,
+            // check if current or any of the notes in the list is selected
+            if (note.isSelected || viewModel.notes_list.any((e) => e.isSelected == true)) {
+              note.toggleSelection();
+            } else {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditNotePage(
+                    index: widget.index,
+                  ),
                 ),
-              ),
-            );
+              );
+            }
+          },
+          onLongPress: () {
+            note.toggleSelection();
           },
           child: Container(
             // use [margin] property only if using list layout , don't use it with grid layout
-            margin: layout== LayoutType.List? EdgeInsets.symmetric(vertical: 5.0) : EdgeInsets.symmetric(vertical:0.0),
+            margin: layout == LayoutType.List
+                ? EdgeInsets.symmetric(vertical: 5.0)
+                : EdgeInsets.symmetric(vertical: 0.0),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               //   boxShadow: [
@@ -54,10 +64,12 @@ class _NoteCardState extends State<NoteCard> {
               // color: Colors.white,
               color: Color(0xFF354252),
               borderRadius: BorderRadius.circular(10.0),
-              // border: Border.all(
-              //   width: 1.0,
-              //   color: Colors.grey.withOpacity(0.2),
-              // ),
+              border: note.isSelected
+                  ? Border.all(
+                      width: 1.8,
+                      color: Colors.white,
+                    )
+                  : Border.all(width: 0.0),
             ),
 
             child: Column(
