@@ -2,8 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/utils/databaseHelper.dart';
 
+enum LayoutType{
+  List,
+  Grid
+}
 class NoteListViewModel extends ChangeNotifier {
   List<Note> notes_list;
+  LayoutType layout = LayoutType.Grid;
   NoteListViewModel() {
     this.notes_list = [];
   }
@@ -37,6 +42,15 @@ class NoteListViewModel extends ChangeNotifier {
     return result;
   }
 
+  void toggleView(){
+    if(layout == LayoutType.Grid){
+      layout = LayoutType.List;
+    }
+    else{
+      layout = LayoutType.Grid;
+    }
+    notifyListeners();
+  }
   // Future<int> updateNote(Note note) async {
   //   var result = await DatabaseHelper.instance.updateNote(note);
   //   // notes_list = await DatabaseHelper.instance.getAllNotes();
