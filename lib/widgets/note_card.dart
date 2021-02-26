@@ -30,7 +30,7 @@ class _NoteCardState extends State<NoteCard> {
         print('inside note card at index ${widget.index}');
         Note note = watch(NoteProvider(widget.index));
         final viewModel = watch(NoteListViewModelProvider);
-        ViewType v = viewModel.v;
+        LayoutType layout = viewModel.layout;
         return GestureDetector(
           onTap: () async {
             await Navigator.push(
@@ -44,7 +44,7 @@ class _NoteCardState extends State<NoteCard> {
           },
           child: Container(
             // use [margin] property only if using list layout , don't use it with grid layout
-            margin: v== ViewType.List? EdgeInsets.symmetric(vertical: 5.0) : EdgeInsets.symmetric(vertical:0.0),
+            margin: layout== LayoutType.List? EdgeInsets.symmetric(vertical: 5.0) : EdgeInsets.symmetric(vertical:0.0),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               //   boxShadow: [
