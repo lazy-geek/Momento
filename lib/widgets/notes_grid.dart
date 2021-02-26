@@ -27,8 +27,8 @@ class _NotesGridState extends State<NotesGrid> {
                   padding: EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
                   sliver: SliverStaggeredGrid.countBuilder(
                     // The [crossAxisSpacing] and [mainAxisSpacing] affects the area the between Grid Items
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 9.0,
+                    mainAxisSpacing: 9.0,
                     itemCount: data.length ?? 0,
                     staggeredTileBuilder: (index) {
                       return StaggeredTile.fit(1);
