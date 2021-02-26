@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Notes',
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
