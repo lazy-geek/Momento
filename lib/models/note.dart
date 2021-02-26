@@ -9,7 +9,6 @@ class Note extends ChangeNotifier {
   int isPinned;
   String date_created;
   String last_updated;
-  bool isSelected = false;
 
   Note({
     this.id,
@@ -53,10 +52,5 @@ class Note extends ChangeNotifier {
     this.title = note.title;
     notifyListeners();
     return result;
-  }
-
-  void toggleSelection(){
-    isSelected = !isSelected;
-    notifyListeners();
   }
 }
