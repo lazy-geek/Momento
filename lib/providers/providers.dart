@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
-
+import 'package:notes/models/selected_notes.dart';
 // The [NoteListViewModelProvider] provides an instance of [NoteListViewModel] class.
 final NoteListViewModelProvider =
     ChangeNotifierProvider<NoteListViewModel>((ref) => NoteListViewModel());
@@ -28,3 +28,7 @@ final ScrollControllerProvider =
 final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, index) {
   return ref.watch(AllNotesProvider).data.value[index];
 });
+
+// the [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
+// which we can listen to in order to get currently selected notes
+final SelectedNotesProvider = ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
