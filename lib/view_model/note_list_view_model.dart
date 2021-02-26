@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/utils/databaseHelper.dart';
 
@@ -22,8 +23,6 @@ class NoteListViewModel extends ChangeNotifier {
 
   Future<void> getAllNotes() async {
     notes_list = await DatabaseHelper.instance.getAllNotes();
-    print(notes_list.last.content);
-
     notifyListeners(); //  if(notes_list == null) return [];
   }
 
@@ -37,9 +36,18 @@ class NoteListViewModel extends ChangeNotifier {
 
   Future<int> deleteNote(int noteid) async {
     var result = await DatabaseHelper.instance.deleteNote(noteid);
-    // await getAllNotes();
-    notifyListeners();
+     //await getAllNotes();
+   // notifyListeners();
     return result;
+  }
+
+  Future<void> deleteMultipleNotes(List<int> noteids) async {
+    noteids.forEach((element) async{
+
+    await DatabaseHelper.instance.deleteNote(element);
+    });
+    await getAllNotes();
+    notifyListeners();
   }
 
   void toggleView(){
