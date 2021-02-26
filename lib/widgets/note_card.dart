@@ -31,11 +31,21 @@ class _NoteCardState extends State<NoteCard> {
         Note note = watch(NoteProvider(widget.index));
         final viewModel = watch(NoteListViewModelProvider);
         LayoutType layout = viewModel.layout;
+
+        final selectednotes = watch(SelectedNotesProvider);
+         // [isSelected] will be true if current note is selected
+        bool isSelected = selectednotes.notes_list.contains(note);
         return GestureDetector(
           onTap: () async {
             // check if current or any of the notes in the list is selected
-            if (note.isSelected || viewModel.notes_list.any((e) => e.isSelected == true)) {
-              note.toggleSelection();
+            // if current note is selected and user presses on it , then deselect it
+            // by removing it from the selectednotes list
+            if (isSelected) {
+              selectednotes.remove(note);
+            } else if (selectednotes.notes_list.isNotEmpty) {
+              // if current note is not selected but any of the other note is selected
+              // then select the current note when user presses on it by adding it to the selectednotes list
+              selectednotes.add(note);
             } else {
               await Navigator.push(
                 context,
@@ -48,7 +58,8 @@ class _NoteCardState extends State<NoteCard> {
             }
           },
           onLongPress: () {
-            note.toggleSelection();
+            // select the note on long press
+            selectednotes.add(note);
           },
           child: Container(
             // the reason i used [foregroundDecoration] instead of simple [Decoration] property is that
