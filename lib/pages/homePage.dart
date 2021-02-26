@@ -23,21 +23,39 @@ class _HomePageState extends State<HomePage> {
           Consumer(
             builder: (context, watch, child) {
               final viewModel = watch(NoteListViewModelProvider);
+              // layout variable is used to determine currently slected layout
               LayoutType layout = viewModel.layout;
-              if (layout == LayoutType.Grid) {
+
+              final selectednotes = watch(SelectedNotesProvider);
+              // [isSelected] will be true if any notes are selected
+              bool isSelected = selectednotes.notes_list.isNotEmpty;
+              // if any notes are selected show delete icon
+              if (isSelected) {
                 return IconButton(
-                  icon: Icon(Icons.list),
-                  onPressed: () {
-                    viewModel.toggleView();
-                  },
-                );
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      viewModel.deleteMultipleNotes(
+                          selectednotes.notes_list.map((e) => e.id).toList());
+                      selectednotes.clear();
+                    });
               } else {
-                return IconButton(
-                  icon: Icon(Icons.grid_view),
-                  onPressed: () {
-                    viewModel.toggleView();
-                  },
-                );
+                // if no notes are selected and the current layout is Grid then Show the List Icon.
+                if (layout == LayoutType.Grid) {
+                  return IconButton(
+                    icon: Icon(Icons.list),
+                    onPressed: () {
+                      viewModel.toggleView();
+                    },
+                  );
+                } else {
+                  // if current layout is List then Show the Grid Icon
+                  return IconButton(
+                    icon: Icon(Icons.grid_view),
+                    onPressed: () {
+                      viewModel.toggleView();
+                    },
+                  );
+                }
               }
             },
           ),
