@@ -51,6 +51,21 @@ class _NoteCardState extends State<NoteCard> {
             note.toggleSelection();
           },
           child: Container(
+            // the reason i used [foregroundDecoration] instead of simple [Decoration] property is that
+            // the [foregroundDecoration] property draws the decoration on top of the Container so
+            // it doesn't interfear with spacing and layout of the nearby [NoteCard] widgets in the grid or list
+            // if we used simple [Decoration] properrty then when ever we select the widget and the Container's
+            // border are drawn then the surrounding widgets get pushed by some pixels
+            foregroundDecoration: BoxDecoration(
+              color: isSelected ? Colors.white.withOpacity(0.08):null,
+              border: isSelected
+                  ? Border.all(
+                      width: 1.8,
+                      color: Colors.white,
+                    )
+                  : Border.all(width: 0.0),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             // use [margin] property only if using list layout , don't use it with grid layout
             margin: layout == LayoutType.List
                 ? EdgeInsets.symmetric(vertical: 5.0)
@@ -64,12 +79,6 @@ class _NoteCardState extends State<NoteCard> {
               // color: Colors.white,
               color: Color(0xFF354252),
               borderRadius: BorderRadius.circular(10.0),
-              border: note.isSelected
-                  ? Border.all(
-                      width: 1.8,
-                      color: Colors.white,
-                    )
-                  : Border.all(width: 0.0),
             ),
 
             child: Column(
