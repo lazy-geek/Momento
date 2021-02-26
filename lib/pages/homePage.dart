@@ -17,10 +17,10 @@ class _HomePageState extends State<HomePage> {
         title: Text('Notes'),
         centerTitle: true,
         // Dark Mode color
-        backgroundColor: Color(0xFF2c3342),
+        backgroundColor: Color(0xFF293440),
       ),
       // Dark Mode color
-      backgroundColor: Color(0xFF222733),
+      backgroundColor: Color(0xFF293440),
       // body: NotesList(),
       body: NotesGrid(),
       floatingActionButton: Fab(

@@ -35,8 +35,8 @@ class _NoteCardState extends State<NoteCard> {
         margin: EdgeInsets.symmetric(vertical: 5.0),
         padding: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
-          // color: Colors.white,
-          color: Color(0xFF2c3342),
+              // color: Colors.white,
+              color: Color(0xFF354252),
           borderRadius: BorderRadius.circular(10.0),
           border: Border.all(
             width: 1.0,
