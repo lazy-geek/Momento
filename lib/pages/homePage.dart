@@ -6,6 +6,7 @@ import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/widgets/fab.dart';
 import 'package:notes/widgets/notes_grid.dart';
 import 'package:notes/widgets/notes_list.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -76,9 +77,16 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => AddNotePage(),
+            PageTransition(
+              type: PageTransitionType.scale,
+              child: AddNotePage(),
+              duration: Duration(milliseconds: 200),alignment: Alignment.bottomRight,curve: Curves.easeOut
             ),
+            // PageTransition(
+            //   type: PageTransitionType.rightToLeft,
+            //   child: AddNotePage(),
+            //   duration: Duration(milliseconds: 400),curve: Curves.fastOutSlowIn
+            // ),
           );
         },
       ),
