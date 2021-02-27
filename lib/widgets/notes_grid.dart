@@ -19,7 +19,7 @@ class _NotesGridState extends State<NotesGrid> {
           data: (data) {
             return CustomScrollView(
               controller: context.read(ScrollControllerProvider),
-              semanticChildCount: data.length ?? 0,
+              semanticChildCount: data?.length ?? 0,
               shrinkWrap: true,
               slivers: [
                 SliverPadding(
@@ -29,7 +29,7 @@ class _NotesGridState extends State<NotesGrid> {
                     // The [crossAxisSpacing] and [mainAxisSpacing] affects the area the between Grid Items
                     crossAxisSpacing: 9.0,
                     mainAxisSpacing: 9.0,
-                    itemCount: data.length ?? 0,
+                    itemCount: data?.length ?? 0,
                     staggeredTileBuilder: (index) {
                       return StaggeredTile.fit(1);
                     },

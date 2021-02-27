@@ -27,7 +27,7 @@ class _NotesListState extends State<NotesList> {
                       (contex, index) {
                         return NoteCard(index: index);
                       },
-                      childCount: data.length ?? 0,
+                      childCount: data?.length ?? 0,
                     ),
                   ),
                 ),
