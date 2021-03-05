@@ -3,11 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/models/selected_notes.dart';
+
 // The [NoteListViewModelProvider] provides an instance of [NoteListViewModel] class.
 final NoteListViewModelProvider =
     ChangeNotifierProvider<NoteListViewModel>((ref) => NoteListViewModel());
 
-// The [AllNotesProvider] fetches Notes List from [NoteListViewModel] class 
+// The [AllNotesProvider] fetches Notes List from [NoteListViewModel] class
 // using the [NoteListViewModelProvider] and provides the Notes List.
 // note: we use [FutureProvider] becouse =>
 // 1. we need to await for getAllNotes() to be completed.
@@ -31,4 +32,12 @@ final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, index) {
 
 // the [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
 // which we can listen to in order to get currently selected notes
-final SelectedNotesProvider = ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
+final SelectedNotesProvider =
+    ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
+
+//final isNoteSelected = Provider.family<bool, int>((ref, noteId) {
+//  return ref
+//      .watch(SelectedNotesProvider)
+//      .notes_list
+//      .any((element) => element.id == noteId);
+//});
