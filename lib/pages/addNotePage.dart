@@ -33,41 +33,37 @@ class _AddNotePageState extends State<AddNotePage> {
       // Dark Mode color
       backgroundColor: Color(0xFF222733),
       appBar: AppBar(
-        title: Text('Add note'),
+        title: const Text('Add note'),
         centerTitle: true,
         // Dark Mode color
-        backgroundColor: Color(0xFF2c3342),
-        leading: Consumer(
-          builder: (context, watch, child) {
-            return IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () async {
-                  await context
-                      .read(NoteListViewModelProvider)
-                      .addNote(Note.fromMap({
-                        'title': '${t1.text}',
-                        'content': '${t2.text}',
-                        'isPinned': 0,
-                        'date_created': '$DateTime.now().day',
-                        'last_updated': '$DateTime.now().day'
-                      }));
+        backgroundColor: const Color(0xFF2c3342),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () async {
+            await context.read(NoteListViewModelProvider).addNote(Note.fromMap({
+                  'title': '${t1.text}',
+                  'content': '${t2.text}',
+                  'isPinned': 0,
+                  'date_created': '$DateTime.now().day',
+                  'last_updated': '$DateTime.now().day'
+                }));
 
-                  Navigator.pop(context);
-                });
+            Navigator.pop(context);
           },
         ),
       ),
+
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 26.0,
               ),
               TextField(
                 autofocus: true,
-                style: TextStyle(fontSize: 25, color: Colors.white),
+                style: const TextStyle(fontSize: 25, color: Colors.white),
                 controller: t1,
                 maxLines: null,
                 decoration: InputDecoration(
@@ -79,7 +75,7 @@ class _AddNotePageState extends State<AddNotePage> {
               TextField(
                 maxLines: null,
                 controller: t2,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     focusedBorder: InputBorder.none,
                     hintText: 'Type Something',

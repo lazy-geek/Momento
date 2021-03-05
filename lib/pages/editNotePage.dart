@@ -43,44 +43,38 @@ class _EditNotePageState extends State<EditNotePage> {
     setupText(context);
     return Scaffold(
       // Dark Mode color
-      backgroundColor: Color(0xFF222733),
+      backgroundColor: const Color(0xFF222733),
       appBar: AppBar(
-        title: Text('Edit note'),
+        title: const Text('Edit note'),
         centerTitle: true,
         // Dark Mode color
-        backgroundColor: Color(0xFF2c3342),
-        leading: Consumer(
-          builder: (context, watch, child) {
-            return IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () async {
-                  if (isEdited) {
-                    Note newNote = Note.fromMap(
-                      {
-                        'title': '${t1.text}',
-                        'content': '${t2.text}',
-                        'isPinned': 0,
-                        'date_created': '$DateTime.now().day',
-                        'last_updated': '$DateTime.now().day'
-                      },
-                    );
-                    newNote.id = currentNote.id;
-                    // print(widget.currentNote.content);
-                    await context
-                        .read(NoteProvider(widget.index))
-                        .update(newNote);
-                  }
-                  Navigator.pop(context);
-                });
-          },
-        ),
+        backgroundColor: const Color(0xFF2c3342),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () async {
+              if (isEdited) {
+                Note newNote = Note.fromMap(
+                  {
+                    'title': '${t1.text}',
+                    'content': '${t2.text}',
+                    'isPinned': 0,
+                    'date_created': '$DateTime.now().day',
+                    'last_updated': '$DateTime.now().day'
+                  },
+                );
+                newNote.id = currentNote.id;
+                // print(widget.currentNote.content);
+                await context.read(NoteProvider(widget.index)).update(newNote);
+              }
+              Navigator.pop(context);
+            }),
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 26.0,
               ),
               TextField(
@@ -89,7 +83,7 @@ class _EditNotePageState extends State<EditNotePage> {
                 },
                 showCursor: true,
                 autofocus: true,
-                style: TextStyle(fontSize: 25, color: Colors.white),
+                style: const TextStyle(fontSize: 25, color: Colors.white),
                 controller: t1,
                 maxLines: null,
                 decoration: InputDecoration(
@@ -102,7 +96,7 @@ class _EditNotePageState extends State<EditNotePage> {
                 onChanged: (_) {
                   isEdited = true;
                 },
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 maxLines: null,
                 controller: t2,
                 decoration: InputDecoration(
