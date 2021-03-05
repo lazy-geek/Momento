@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/providers/providers.dart';
 
 class Fab extends StatefulWidget {
-  VoidCallback onPressed;
+  final VoidCallback onPressed;
   Fab({this.onPressed});
   @override
   _FabState createState() => _FabState();
