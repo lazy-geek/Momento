@@ -73,10 +73,11 @@ class HomePage extends StatelessWidget {
           Navigator.push(
             context,
             PageTransition(
-              type: PageTransitionType.scale,
-              child: AddNotePage(),
-              duration: Duration(milliseconds: 200),alignment: Alignment.bottomRight,curve: Curves.easeOut
-            ),
+                type: PageTransitionType.scale,
+                child: AddNotePage(),
+                duration: Duration(milliseconds: 200),
+                alignment: Alignment.bottomRight,
+                curve: Curves.easeInOutCubic),
             // PageTransition(
             //   type: PageTransitionType.rightToLeft,
             //   child: AddNotePage(),
