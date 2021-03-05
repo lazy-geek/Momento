@@ -11,13 +11,24 @@ class EditNotePage extends StatefulWidget {
 }
 
 class _EditNotePageState extends State<EditNotePage> {
-  TextEditingController t1 = TextEditingController();
-  TextEditingController t2 = TextEditingController();
+  TextEditingController t1;
+  TextEditingController t2;
   bool isEdited = false;
   Note currentNote;
+
   @override
   void initState() {
     super.initState();
+
+    t1 = TextEditingController();
+    t2 = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    t1.dispose();
+    t2.dispose();
+    super.dispose();
   }
 
   void setupText(BuildContext context) {

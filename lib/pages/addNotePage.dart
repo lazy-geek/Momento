@@ -10,12 +10,21 @@ class AddNotePage extends StatefulWidget {
 }
 
 class _AddNotePageState extends State<AddNotePage> {
-  TextEditingController t1 = TextEditingController();
-  TextEditingController t2 = TextEditingController();
+  TextEditingController t1;
+  TextEditingController t2;
 
   @override
   void initState() {
     super.initState();
+    t1 = TextEditingController();
+    t2 = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    t1.dispose();
+    t2.dispose();
+    super.dispose();
   }
 
   @override
