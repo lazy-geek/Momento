@@ -8,17 +8,12 @@ import 'package:notes/widgets/notes_grid.dart';
 import 'package:notes/widgets/notes_list.dart';
 import 'package:page_transition/page_transition.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: const Text('Notes'),
         centerTitle: true,
         actions: [
           Consumer(
@@ -33,7 +28,7 @@ class _HomePageState extends State<HomePage> {
               // if any notes are selected show delete icon
               if (isSelected) {
                 return IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                     onPressed: () {
                       viewModel.deleteMultipleNotes(
                           selectednotes.notes_list.map((e) => e.id).toList());
@@ -43,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 // if no notes are selected and the current layout is Grid then Show the List Icon.
                 if (layout == LayoutType.Grid) {
                   return IconButton(
-                    icon: Icon(Icons.list),
+                    icon: const Icon(Icons.list),
                     onPressed: () {
                       viewModel.toggleView();
                     },
@@ -51,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 } else {
                   // if current layout is List then Show the Grid Icon
                   return IconButton(
-                    icon: Icon(Icons.grid_view),
+                    icon: const Icon(Icons.grid_view),
                     onPressed: () {
                       viewModel.toggleView();
                     },
@@ -62,10 +57,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         // Dark Mode color
-        backgroundColor: Color(0xFF293440),
+        backgroundColor: const Color(0xFF293440),
       ),
       // Dark Mode color
-      backgroundColor: Color(0xFF293440),
+      backgroundColor: const Color(0xFF293440),
       // body: NotesList(),
       body: Consumer(
         builder: (context, watch, child) {
