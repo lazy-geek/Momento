@@ -4,7 +4,7 @@ import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 
 class EditNotePage extends StatefulWidget {
-  int index;
+  final int index;
   EditNotePage({this.index});
   @override
   _EditNotePageState createState() => _EditNotePageState();
@@ -13,12 +13,13 @@ class EditNotePage extends StatefulWidget {
 class _EditNotePageState extends State<EditNotePage> {
   TextEditingController t1;
   TextEditingController t2;
-  bool isEdited = false;
+  bool isEdited;
   Note currentNote;
 
   @override
   void initState() {
     super.initState();
+    isEdited = false;
 
     t1 = TextEditingController();
     t2 = TextEditingController();
