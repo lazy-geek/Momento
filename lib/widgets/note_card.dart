@@ -6,14 +6,13 @@ import 'package:notes/providers/providers.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 
 class NoteCard extends StatefulWidget {
-  int index;
+  final int index;
+
   NoteCard({this.index});
+
   @override
   _NoteCardState createState() => _NoteCardState();
 }
-
-// padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 2.0),
-// padding: const EdgeInsets.fromLTRB(3.0, 3.0, 3.0, 3.0),
 
 class _NoteCardState extends State<NoteCard> {
   @override
