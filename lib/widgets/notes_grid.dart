@@ -1,15 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/widgets/note_card.dart';
 
-class NotesGrid extends StatefulWidget {
-  @override
-  _NotesGridState createState() => _NotesGridState();
-}
-
-class _NotesGridState extends State<NotesGrid> {
+class NotesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -20,18 +17,17 @@ class _NotesGridState extends State<NotesGrid> {
             return CustomScrollView(
               controller: context.read(ScrollControllerProvider),
               semanticChildCount: data?.length ?? 0,
-              shrinkWrap: true,
               slivers: [
                 SliverPadding(
                   // This [Padding] affects the area between the edge of the screen and the [StaggeredGridView]
-                  padding: EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+                  padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
                   sliver: SliverStaggeredGrid.countBuilder(
                     // The [crossAxisSpacing] and [mainAxisSpacing] affects the area the between Grid Items
                     crossAxisSpacing: 9.0,
                     mainAxisSpacing: 9.0,
                     itemCount: data?.length ?? 0,
                     staggeredTileBuilder: (index) {
-                      return StaggeredTile.fit(1);
+                      return const StaggeredTile.fit(1);
                     },
                     crossAxisCount: 2,
                     itemBuilder: (context, index) {
@@ -42,8 +38,8 @@ class _NotesGridState extends State<NotesGrid> {
               ],
             );
           },
-          loading: () => Center(child: CircularProgressIndicator()),
-          error: (errr, stack) => Text('error'),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (errr, stack) => const Text('error'),
         );
       },
     );

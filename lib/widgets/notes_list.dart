@@ -3,12 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/widgets/note_card.dart';
 import 'package:notes/providers/providers.dart';
 
-class NotesList extends StatefulWidget {
-  @override
-  _NotesListState createState() => _NotesListState();
-}
-
-class _NotesListState extends State<NotesList> {
+class NotesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -21,7 +16,7 @@ class _NotesListState extends State<NotesList> {
               slivers: [
                 // This [Padding] affects the area between the edge of the screen and the [ListView]
                 SliverPadding(
-                  padding: EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+                  padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (contex, index) {
@@ -34,8 +29,8 @@ class _NotesListState extends State<NotesList> {
               ],
             );
           },
-          loading: () => Center(child: CircularProgressIndicator()),
-          error: (errr, stack) => Text('error'),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (errr, stack) => const Text('error'),
         );
       },
     );
