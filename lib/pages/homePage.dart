@@ -73,16 +73,21 @@ class HomePage extends StatelessWidget {
           Navigator.push(
             context,
             PageTransition(
-                type: PageTransitionType.scale,
-                child: AddNotePage(),
-                duration: Duration(milliseconds: 200),
-                alignment: Alignment.bottomRight,
-                curve: Curves.easeInOutCubic),
-            // PageTransition(
+                // type: PageTransitionType.scale,
+                // child: AddNotePage(),
+                // duration: Duration(milliseconds: 200),
+                // alignment: Alignment.bottomRight,
+                // curve: Curves.easeInOutCubic),
+            
             //   type: PageTransitionType.rightToLeft,
             //   child: AddNotePage(),
-            //   duration: Duration(milliseconds: 400),curve: Curves.fastOutSlowIn
-            // ),
+            //   duration: Duration(milliseconds: 200),curve: Curves.easeInOutCubic
+            
+            type: PageTransitionType.rightToLeft,
+                child: AddNotePage(),
+                duration: Duration(milliseconds: 200),reverseDuration: Duration(milliseconds: 200),
+                // alignment: Alignment.bottomRight,
+                curve: Curves.easeInOutCubic),
           );
         },
       ),
