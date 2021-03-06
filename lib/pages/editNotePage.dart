@@ -69,43 +69,70 @@ class _EditNotePageState extends State<EditNotePage> {
               Navigator.pop(context);
             }),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 26.0,
-              ),
-              TextField(
-                onChanged: (_) {
-                  isEdited = true;
-                },
-                showCursor: true,
-                autofocus: true,
-                style: const TextStyle(fontSize: 25, color: Colors.white),
-                controller: t1,
-                maxLines: null,
-                decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.grey.shade400),
-                    focusedBorder: InputBorder.none,
-                    hintText: 'Title',
-                    border: InputBorder.none),
-              ),
-              TextField(
-                onChanged: (_) {
-                  isEdited = true;
-                },
-                style: const TextStyle(color: Colors.white),
-                maxLines: null,
-                controller: t2,
-                decoration: InputDecoration(
-                    focusedBorder: InputBorder.none,
-                    hintText: 'Type Something',
-                    hintStyle: TextStyle(color: Colors.grey.shade400),
-                    border: InputBorder.none),
-              )
-            ],
+      body: Hero(
+        tag: widget.index,
+        transitionOnUserGestures: true,
+        flightShuttleBuilder: (
+          BuildContext flightContext,
+          Animation<double> animation,
+          HeroFlightDirection flightDirection,
+          BuildContext fromHeroContext,
+          BuildContext toHeroContext,
+        ) {
+          // this fixes issue which causes yellow underline to apear when trasitioning back
+          return DefaultTextStyle(
+            style: DefaultTextStyle.of(fromHeroContext).style,
+            child: toHeroContext.widget,
+          );
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 26.0,
+                ),
+                Material(
+                  type: MaterialType.transparency,
+                  child: Column(
+                    children: [
+                      TextField(
+                        onChanged: (_) {
+                          isEdited = true;
+                        },
+                        showCursor: true,
+                        autofocus: true,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                        controller: t1,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Title',
+                            border: InputBorder.none),
+                      ),
+                      TextField(
+                        onChanged: (_) {
+                          isEdited = true;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        maxLines: null,
+                        controller: t2,
+                        decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Type Something',
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            border: InputBorder.none),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

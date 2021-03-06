@@ -101,52 +101,56 @@ class _NoteCardState extends State<NoteCard> {
                   isSelected = true;
                 });
               },
-              child: Container(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    note.title.isNotEmpty
-                        ? Padding(
-                            // padding:const EdgeInsets.fromLTRB(8.0, 2.0, 2.0, 7.0),
-                            padding: const EdgeInsets.all(0.0),
-                            child: Text(
-                              "${note.title}",
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18.0,
-                                  color: Colors.white),
+              child: Hero(
+                tag: widget.index,
+                transitionOnUserGestures: true,
+                child: Container(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      note.title.isNotEmpty
+                          ? Padding(
+                              // padding:const EdgeInsets.fromLTRB(8.0, 2.0, 2.0, 7.0),
+                              padding: const EdgeInsets.all(0.0),
+                              child: Text(
+                                "${note.title}",
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18.0,
+                                    color: Colors.white),
+                              ),
+                            )
+                          : Container(
+                              height: 0.0,
+                              width: 0.0,
                             ),
-                          )
-                        : Container(
-                            height: 0.0,
-                            width: 0.0,
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Padding(
+                        // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
+                        padding: const EdgeInsets.all(0.0),
+                        child: Text(
+                          "${note.content}",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 10,
+                          style: TextStyle(
+                            // height: 1.3,
+                            fontSize: 16.0,
+                            // light mode
+                            // color: Colors.grey.shade600
+                            //dark mode
+                            color: Colors.white.withOpacity(0.8),
+                            // color: Colors.black54,
                           ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    Padding(
-                      // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
-                      padding: const EdgeInsets.all(0.0),
-                      child: Text(
-                        "${note.content}",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 10,
-                        style: TextStyle(
-                          // height: 1.3,
-                          fontSize: 16.0,
-                          // light mode
-                          // color: Colors.grey.shade600
-                          //dark mode
-                          color: Colors.white.withOpacity(0.8),
-                          // color: Colors.black54,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
