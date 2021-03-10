@@ -99,43 +99,40 @@ class _EditNotePageState extends State<EditNotePage> {
                 const SizedBox(
                   height: 26.0,
                 ),
-                Material(
-                  type: MaterialType.transparency,
-                  child: Column(
-                    children: [
-                      TextField(
-                        onChanged: (_) {
-                          isEdited = true;
-                        },
-                        showCursor: true,
-                        autofocus: true,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                        ),
-                        controller: t1,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.grey.shade400),
-                            focusedBorder: InputBorder.none,
-                            hintText: 'Title',
-                            border: InputBorder.none),
+                Column(
+                  children: [
+                    TextField(
+                      onChanged: (_) {
+                        isEdited = true;
+                      },
+                      showCursor: true,
+                      autofocus: true,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
                       ),
-                      TextField(
-                        onChanged: (_) {
-                          isEdited = true;
-                        },
-                        style: const TextStyle(color: Colors.white),
-                        maxLines: null,
-                        controller: t2,
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            hintText: 'Type Something',
-                            hintStyle: TextStyle(color: Colors.grey.shade400),
-                            border: InputBorder.none),
-                      )
-                    ],
-                  ),
+                      controller: t1,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                          hintStyle: TextStyle(color: Colors.grey.shade400),
+                          focusedBorder: InputBorder.none,
+                          hintText: 'Title',
+                          border: InputBorder.none),
+                    ),
+                    TextField(
+                      onChanged: (_) {
+                        isEdited = true;
+                      },
+                      style: const TextStyle(color: Colors.white),
+                      maxLines: null,
+                      controller: t2,
+                      decoration: InputDecoration(
+                          focusedBorder: InputBorder.none,
+                          hintText: 'Type Something',
+                          hintStyle: TextStyle(color: Colors.grey.shade400),
+                          border: InputBorder.none),
+                    )
+                  ],
                 )
               ],
             ),
