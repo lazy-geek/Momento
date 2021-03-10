@@ -41,51 +41,57 @@ class _EditNotePageState extends State<EditNotePage> {
   @override
   Widget build(BuildContext context) {
     setupText(context);
-    return Scaffold(
-      // Dark Mode color
-      backgroundColor: const Color(0xFF222733),
-      appBar: AppBar(
-        title: const Text('Edit note'),
-        centerTitle: true,
+    return Hero(
+      tag: widget.index,
+      transitionOnUserGestures: true,
+      // flightShuttleBuilder: (
+      //   BuildContext flightContext,
+      //   Animation<double> animation,
+      //   HeroFlightDirection flightDirection,
+      //   BuildContext fromHeroContext,
+      //   BuildContext toHeroContext,
+      // ) {
+      //   // this fixes issue which causes yellow underline to apear when trasitioning back
+      //   return DefaultTextStyle(
+      //     style: DefaultTextStyle.of(fromHeroContext).style,
+      //     child: toHeroContext.widget,
+      //   );
+      // },
+      child: Scaffold(
         // Dark Mode color
-        backgroundColor: const Color(0xFF2c3342),
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () async {
-              if (isEdited) {
-                Note newNote = Note.fromMap(
-                  {
-                    'title': '${t1.text}',
-                    'content': '${t2.text}',
-                    'isPinned': 0,
-                    'date_created': '$DateTime.now().day',
-                    'last_updated': '$DateTime.now().day'
-                  },
-                );
-                newNote.id = currentNote.id;
-                // print(widget.currentNote.content);
-                await context.read(NoteProvider(widget.index)).update(newNote);
-              }
-              Navigator.pop(context);
-            }),
-      ),
-      body: Hero(
-        tag: widget.index,
-        transitionOnUserGestures: true,
-        flightShuttleBuilder: (
-          BuildContext flightContext,
-          Animation<double> animation,
-          HeroFlightDirection flightDirection,
-          BuildContext fromHeroContext,
-          BuildContext toHeroContext,
-        ) {
-          // this fixes issue which causes yellow underline to apear when trasitioning back
-          return DefaultTextStyle(
-            style: DefaultTextStyle.of(fromHeroContext).style,
-            child: toHeroContext.widget,
-          );
-        },
-        child: SingleChildScrollView(
+        // backgroundColor: const Color(0xFF222733),
+        // backgroundColor: const  Color(0xFF293440),
+        backgroundColor: const Color(0xFF354252),
+        appBar: AppBar(
+          title: const Text('Edit note'),
+          centerTitle: true,
+          // Dark Mode color
+          // backgroundColor: const Color(0xFF2c3342),
+          // backgroundColor: const Color(0xFF293440),
+          backgroundColor: const Color(0xFF354252),
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () async {
+                if (isEdited) {
+                  Note newNote = Note.fromMap(
+                    {
+                      'title': '${t1.text}',
+                      'content': '${t2.text}',
+                      'isPinned': 0,
+                      'date_created': '$DateTime.now().day',
+                      'last_updated': '$DateTime.now().day'
+                    },
+                  );
+                  newNote.id = currentNote.id;
+                  // print(widget.currentNote.content);
+                  await context
+                      .read(NoteProvider(widget.index))
+                      .update(newNote);
+                }
+                Navigator.pop(context);
+              }),
+        ),
+        body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Column(
