@@ -9,31 +9,31 @@ class NotesList extends StatelessWidget {
     return Consumer(
       builder: (context, watch, child) {
         AsyncValue asyncnotelist = watch(AllNotesProvider);
+
         return asyncnotelist.when(
           data: (data) {
-            return CustomScrollView(
-              controller: context.read(ScrollControllerProvider),
-              slivers: [
-                // This [Padding] affects the area between the edge of the screen and the [ListView]
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (contex, index) {
+            // This [Padding] affects the area between the edge of the screen and the [ListView]
+            return SliverPadding(
+              padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (contex, index) {
                     return NoteCard(
                       index: index,
                       page: 'home',
                     );
-                      },
-                      childCount: data?.length ?? 0,
-                    ),
-                  ),
+                  },
+                  childCount: data?.length ?? 0,
                 ),
-              ],
+              ),
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (errr, stack) => const Text('error'),
+          loading: () {
+            return SliverFillRemaining(
+                child: Center(child: CircularProgressIndicator()));
+          },
+          error: (errr, stack) =>
+              SliverFillRemaining(child: const Text('error')),
         );
       },
     );
