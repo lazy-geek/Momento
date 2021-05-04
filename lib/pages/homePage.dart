@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             Consumer(
               builder: (context, watch, child) {
                 LayoutType layout = watch(NoteListViewModelProvider).layout;
-                return layout == LayoutType.Grid ? NotesGrid() : NotesList();
+                return layout == LayoutType.Grid ? NotesGrid(page: 'home',) : NotesList(page:'home');
               },
             ),
             SliverToBoxAdapter(

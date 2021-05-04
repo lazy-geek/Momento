@@ -1,18 +1,20 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:notes/pages/searchPage.dart';
+import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/widgets/note_card.dart';
 
 class NotesGrid extends StatelessWidget {
+  String page;
+  NotesGrid({this.page});
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, watch, child) {
-        AsyncValue asyncnotelist = watch(AllNotesProvider);
+        AsyncValue<List<Note>> asyncnotelist = page == 'home'
+            ? watch(AllNotesProvider)
+            : watch(AllSearchResultProvider);
 
         return asyncnotelist.when(
           data: (data) {
@@ -30,8 +32,8 @@ class NotesGrid extends StatelessWidget {
                 crossAxisCount: 2,
                 itemBuilder: (context, index) {
                   return NoteCard(
-                    index: index,
-                    page: 'home',
+                    id: data[index].id,
+                    page: page,
                   );
                 },
               ),
