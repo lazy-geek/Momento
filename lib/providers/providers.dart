@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
+import 'package:notes/models/search_result.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/models/selected_notes.dart';
 
@@ -37,6 +38,19 @@ final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
 final SelectedNotesProvider =
     ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
 
+final SearchResultClassProvider = ChangeNotifierProvider<SearchResult>((ref) {
+  return SearchResult(ref);
+});
+
+final AllSearchResultProvider = FutureProvider<List<Note>>((ref) async {
+  return ref.watch(SearchResultClassProvider).notes_list;
+});
+
+final SingleSearchResultProvider = ChangeNotifierProvider.family<Note,int>((ref,id)  {
+   var notelist = ref.watch(AllSearchResultProvider).data.value;
+  var note = notelist.firstWhere((element) => element.id == id);
+  return note;
+});
 //final isNoteSelected = Provider.family<bool, int>((ref, noteId) {
 //  return ref
 //      .watch(SelectedNotesProvider)
