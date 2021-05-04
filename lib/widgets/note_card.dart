@@ -7,8 +7,8 @@ import 'package:notes/view_model/note_list_view_model.dart';
 
 class NoteCard extends StatefulWidget {
   final int index;
-
-  NoteCard({this.index});
+  final String page;
+  NoteCard({this.index, this.page});
 
   @override
   _NoteCardState createState() => _NoteCardState();
@@ -33,7 +33,7 @@ class _NoteCardState extends State<NoteCard> {
 
         final selectednotes = context.read(SelectedNotesProvider);
         return Hero(
-          tag: widget.index,
+          tag: widget.index.toString() + widget.page.toString(),
           transitionOnUserGestures: true,
           child: Material(
             type: MaterialType.transparency,
@@ -87,6 +87,7 @@ class _NoteCardState extends State<NoteCard> {
                         MaterialPageRoute(
                           builder: (context) => EditNotePage(
                             index: widget.index,
+                            page: widget.page,
                           ),
                         ),
                       );

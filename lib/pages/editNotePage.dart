@@ -5,7 +5,8 @@ import 'package:notes/providers/providers.dart';
 
 class EditNotePage extends StatefulWidget {
   final int index;
-  EditNotePage({this.index});
+  final String page;
+  EditNotePage({this.index, this.page});
   @override
   _EditNotePageState createState() => _EditNotePageState();
 }
@@ -42,7 +43,7 @@ class _EditNotePageState extends State<EditNotePage> {
   Widget build(BuildContext context) {
     setupText(context);
     return Hero(
-      tag: widget.index,
+      tag: widget.index.toString() + widget.page.toString(),
       transitionOnUserGestures: true,
       // flightShuttleBuilder: (
       //   BuildContext flightContext,

@@ -31,7 +31,10 @@ class NotesGrid extends StatelessWidget {
                     },
                     crossAxisCount: 2,
                     itemBuilder: (context, index) {
-                      return NoteCard(index: index);
+                  return NoteCard(
+                    index: index,
+                    page: 'home',
+                  );
                     },
                   ),
                 ),

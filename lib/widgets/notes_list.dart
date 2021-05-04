@@ -20,7 +20,10 @@ class NotesList extends StatelessWidget {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (contex, index) {
-                        return NoteCard(index: index);
+                    return NoteCard(
+                      index: index,
+                      page: 'home',
+                    );
                       },
                       childCount: data?.length ?? 0,
                     ),
