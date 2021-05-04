@@ -4,9 +4,9 @@ import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 
 class EditNotePage extends StatefulWidget {
-  final int index;
   final String page;
-  EditNotePage({this.index, this.page});
+  final int id;
+  EditNotePage({this.page,this.id});
   @override
   _EditNotePageState createState() => _EditNotePageState();
 }
@@ -34,7 +34,8 @@ class _EditNotePageState extends State<EditNotePage> {
   }
 
   void setupText(BuildContext context) {
-    currentNote = context.read(NoteProvider(widget.index));
+    // currentNote = widget.page=='home' ? context.read(NoteProvider(widget.id)): context.read(SingleSearchResultProvider(widget.id));
+    currentNote = context.read(NoteProvider(widget.id));
     t1.text = currentNote.title;
     t2.text = currentNote.content;
   }
@@ -43,7 +44,7 @@ class _EditNotePageState extends State<EditNotePage> {
   Widget build(BuildContext context) {
     setupText(context);
     return Hero(
-      tag: widget.index.toString() + widget.page.toString(),
+      tag: widget.id.toString() + widget.page.toString(),
       transitionOnUserGestures: true,
       // flightShuttleBuilder: (
       //   BuildContext flightContext,
@@ -86,7 +87,7 @@ class _EditNotePageState extends State<EditNotePage> {
                   newNote.id = currentNote.id;
                   // print(widget.currentNote.content);
                   await context
-                      .read(NoteProvider(widget.index))
+                      .read(NoteProvider(currentNote.id))
                       .update(newNote);
                 }
                 Navigator.pop(context);

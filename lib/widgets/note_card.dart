@@ -6,9 +6,9 @@ import 'package:notes/providers/providers.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 
 class NoteCard extends StatefulWidget {
-  final int index;
+  final int id;
   final String page;
-  NoteCard({this.index, this.page});
+  NoteCard({ this.page,this.id});
 
   @override
   _NoteCardState createState() => _NoteCardState();
@@ -26,14 +26,14 @@ class _NoteCardState extends State<NoteCard> {
     // whenever a single Note changes because [AllNotesProvider] provies the note list, not a single note.
     return Consumer(
       builder: (context, watch, child) {
-        print('inside note card at index ${widget.index}');
-        Note note = watch(NoteProvider(widget.index));
+        // print('inside note card at index ${widget.index}');
+        Note note = watch(NoteProvider(widget.id));
         final viewModel = watch(NoteListViewModelProvider);
         LayoutType layout = viewModel.layout;
 
         final selectednotes = context.read(SelectedNotesProvider);
         return Hero(
-          tag: widget.index.toString() + widget.page.toString(),
+          tag: widget.id.toString() + widget.page.toString(),
           transitionOnUserGestures: true,
           child: Material(
             type: MaterialType.transparency,
@@ -86,7 +86,7 @@ class _NoteCardState extends State<NoteCard> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => EditNotePage(
-                            index: widget.index,
+                            id: widget.id,
                             page: widget.page,
                           ),
                         ),

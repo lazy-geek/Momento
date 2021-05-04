@@ -26,8 +26,10 @@ final ScrollControllerProvider =
 
 // The [NoteProvider] takes an index of the Note and fetches the Note
 // from Note List Provided by [AllNotesProvider] class.
-final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, index) {
-  return ref.watch(AllNotesProvider).data.value[index];
+final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
+   
+  var notelist = ref.watch(AllNotesProvider).data.value;
+  return notelist.firstWhere((element) => element.id == id);
 });
 
 // the [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
