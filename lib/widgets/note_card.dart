@@ -54,7 +54,15 @@ class _NoteCardState extends State<NoteCard> {
                         width: 1.8,
                         color: Colors.white,
                       )
-                    : null,
+                    : Border.all(
+                        width: 1.2,
+                        // color: Colors.grey.withAlpha(80),
+                        // color: Color(0xFF323d4e),
+
+                        // color: Color(0xFF343b4b),
+                        color: Color(0xFF3f475a),
+                        
+                      ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Ink(
