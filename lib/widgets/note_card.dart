@@ -60,7 +60,12 @@ class _NoteCardState extends State<NoteCard> {
               child: Ink(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: const Color(0xFF354252),
+                  // color: const Color(0xFF354252),
+                  // color: Color(0xFF212936),
+                  // color: Color(0xFF242833)
+                  
+                  color: Color(0xFF212736),
+                  
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10.0),

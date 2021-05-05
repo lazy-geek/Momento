@@ -31,12 +31,14 @@ class _AddNotePageState extends State<AddNotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Dark Mode color
-      backgroundColor: Color(0xFF222733),
+      // backgroundColor: Color(0xFF222733),
+      backgroundColor: Color(0xFF212736),
       appBar: AppBar(
         title: const Text('Add note'),
         centerTitle: true,
         // Dark Mode color
-        backgroundColor: const Color(0xFF2c3342),
+        // backgroundColor: const Color(0xFF2c3342),
+        backgroundColor:Color(0xFF212736),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {

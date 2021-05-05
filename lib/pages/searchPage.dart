@@ -19,7 +19,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF293440),
+      // backgroundColor: Color(0xFF293440),
+      backgroundColor: Color(0xFF212736),
       // appBar: AppBar(
       //   title: const Text('Notes'),
       //   centerTitle: true,
@@ -42,7 +43,8 @@ class _SearchPageState extends State<SearchPage> {
                       )
                     : Container()
               ],
-              backgroundColor: Color(0xFF293440),
+              // backgroundColor: Color(0xFF293440),
+              backgroundColor: Color(0xFF303645),
               forceElevated: true,
               title: Hero(
                 tag: 'searchbar',

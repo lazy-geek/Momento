@@ -38,11 +38,18 @@ class _SearchBarState extends State<SearchBar> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            color: Color(0xFF354252),
+            // color: Color(0xFF2a313c),
+            //  color: Color(0xFF303845),
+            color: Color(0xFF303645),
+            //  color: Color(0xFF2e3444),
             child: Ink(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFF354252),
+                // color: Color(0xFF2a313c),
+                // color: Color(0xFF303845),
+                color: Color(0xFF303645),
+                //  color: Color(0xFF2e3444),
+                
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10.0),

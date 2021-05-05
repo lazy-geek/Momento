@@ -13,7 +13,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF293440),
+      // backgroundColor: const Color(0xFF293440),
+      // backgroundColor: const Color(0xFF252B34),
+
+      // backgroundColor: const Color(0xFF232834),
+      // backgroundColor: Color(0xFF242833),
+      backgroundColor: Color(0xFF212736),
+      
+      
+      // backgroundColor: const Color(0xFF212936),
+      // backgroundColor: const Color(0xFF242c38),
+      
+      // backgroundColor: const Color(0xFF2a313c),
       body: SafeArea(
         child: CustomScrollView(
 //          physics: BouncingScrollPhysics(),
@@ -22,7 +33,11 @@ class HomePage extends StatelessWidget {
             Consumer(
               builder: (context, watch, child) {
                 LayoutType layout = watch(NoteListViewModelProvider).layout;
-                return layout == LayoutType.Grid ? NotesGrid(page: 'home',) : NotesList(page:'home');
+                return layout == LayoutType.Grid
+                    ? NotesGrid(
+                        page: 'home',
+                      )
+                    : NotesList(page: 'home');
               },
             ),
             SliverToBoxAdapter(

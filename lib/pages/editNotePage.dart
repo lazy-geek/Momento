@@ -63,14 +63,16 @@ class _EditNotePageState extends State<EditNotePage> {
         // Dark Mode color
         // backgroundColor: const Color(0xFF222733),
         // backgroundColor: const  Color(0xFF293440),
-        backgroundColor: const Color(0xFF354252),
+        // backgroundColor: const Color(0xFF354252),
+        backgroundColor: Color(0xFF212736),
         appBar: AppBar(
           title: const Text('Edit note'),
           centerTitle: true,
           // Dark Mode color
           // backgroundColor: const Color(0xFF2c3342),
           // backgroundColor: const Color(0xFF293440),
-          backgroundColor: const Color(0xFF354252),
+          // backgroundColor: const Color(0xFF354252),
+          backgroundColor: Color(0xFF212736),
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () async {
