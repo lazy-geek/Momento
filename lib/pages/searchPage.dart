@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/view_model/note_list_view_model.dart';
+import 'package:notes/widgets/contextual_appbar.dart';
 import 'package:notes/widgets/notes_grid.dart';
+import 'package:notes/widgets/notes_list.dart';
+import 'package:notes/widgets/searchBar.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -9,11 +14,11 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  TextEditingController t1;
+  String txt;
   @override
   void initState() {
     super.initState();
-    t1 = TextEditingController();
+    txt = "";
   }
 
   @override
@@ -29,54 +34,54 @@ class _SearchPageState extends State<SearchPage> {
         top: true,
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              actions: [
-                t1.text.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
+            // there is a bug in flutter which causes app to crash if the first widget
+            // in [CustomScrollView] is not a sliver i.e. [Consumer] thats why here first
+            // widget is [SliverToBoxAdapter].
+            SliverToBoxAdapter(),
+
+            Consumer(
+              builder: (context, watch, child) {
+                final selectednotes = watch(SelectedNotesProvider);
+                // [isSelected] will be true if any notes are selected
+                bool isSelected = selectednotes.notes_list.isNotEmpty;
+//                return SliverAnimatedSwitcher(
+//                  child: isSelected
+//                      ? ContextualAppBar()
+//                      : SearchBar(
+//                          onTextChanged: (val) {
+//                            setState(() {
+//                              txt = val;
+//                            });
+//                          },
+//                        ),
+//                  duration: Duration(milliseconds: 200),
+//                );
+                return SliverStack(
+                  children: [
+                    SliverOffstage(
+                      offstage: isSelected,
+                      sliver: SearchBar(
+                        onTextChanged: (val) {
                           setState(() {
-                            t1.text = "";
-                            context.read(SearchResultClassProvider).get("");
+                            txt = val;
                           });
                         },
-                      )
-                    : Container()
-              ],
-              // backgroundColor: Color(0xFF293440),
-              backgroundColor: Color(0xFF303645),
-              forceElevated: true,
-              title: Hero(
-                tag: 'searchbar',
-                transitionOnUserGestures: true,
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: TextField(
-                    autofocus: true,
-                    controller: t1,
-                    toolbarOptions: ToolbarOptions(
-                        copy: true, cut: true, paste: true, selectAll: true),
-                    onChanged: (val) {
-                      setState(() {
-                        context
-                            .read(SearchResultClassProvider)
-                            .get(val.toLowerCase());
-                      });
-                    },
-                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
-                    decoration: InputDecoration(
-                        focusedBorder: InputBorder.none,
-                        hintText: 'Search your notes',
-                        hintStyle: TextStyle(color: Colors.grey.shade400),
-                        border: InputBorder.none),
-                  ),
-                ),
-              ),
+                      ),
+                    ),
+                    if (isSelected) ContextualAppBar()
+                  ],
+                );
+              },
             ),
-            t1.text.isNotEmpty
-                ? NotesGrid(
-                    page: 'search',
-                  )
+            txt.isNotEmpty
+                ? (context.read(NoteListViewModelProvider).layout ==
+                        LayoutType.Grid
+                    ? NotesGrid(
+                        page: 'search',
+                      )
+                    : NotesList(
+                        page: 'search',
+                      ))
                 : SliverToBoxAdapter(
                     child: Container(),
                   ),
