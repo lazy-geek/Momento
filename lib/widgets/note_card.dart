@@ -8,15 +8,13 @@ import 'package:notes/view_model/note_list_view_model.dart';
 class NoteCard extends StatefulWidget {
   final int id;
   final String page;
-  NoteCard({ this.page,this.id});
+  NoteCard({this.page, this.id});
 
   @override
   _NoteCardState createState() => _NoteCardState();
 }
 
 class _NoteCardState extends State<NoteCard> {
-  // [isSelected] will be true if current note is selected
-  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     // we use [Consumer] here in order to minimize the rebuild by only rebuilding this
@@ -31,7 +29,10 @@ class _NoteCardState extends State<NoteCard> {
         final viewModel = watch(NoteListViewModelProvider);
         LayoutType layout = viewModel.layout;
 
-        final selectednotes = context.read(SelectedNotesProvider);
+        final selectednotes = watch(SelectedNotesProvider);
+
+        // [isSelected] will be true if current note is selected
+        bool isSelected = selectednotes.notes_list.contains(note);
         return Hero(
           tag: widget.id.toString() + widget.page.toString(),
           transitionOnUserGestures: true,
@@ -61,7 +62,6 @@ class _NoteCardState extends State<NoteCard> {
 
                         // color: Color(0xFF343b4b),
                         color: Color(0xFF3f475a),
-                        
                       ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -71,9 +71,8 @@ class _NoteCardState extends State<NoteCard> {
                   // color: const Color(0xFF354252),
                   // color: Color(0xFF212936),
                   // color: Color(0xFF242833)
-                  
+
                   color: Color(0xFF212736),
-                  
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10.0),
@@ -84,16 +83,10 @@ class _NoteCardState extends State<NoteCard> {
                     // by removing it from the selectednotes list
                     if (isSelected) {
                       selectednotes.remove(note);
-                      setState(() {
-                        isSelected = false;
-                      });
                     } else if (selectednotes.notes_list.isNotEmpty) {
                       // if current note is not selected but any of the other note is selected
                       // then select the current note when user presses on it by adding it to the selectednotes list
                       selectednotes.add(note);
-                      setState(() {
-                        isSelected = true;
-                      });
                     } else {
                       await Navigator.push(
                         context,
@@ -110,15 +103,9 @@ class _NoteCardState extends State<NoteCard> {
                     // select the note on long press
                     if (isSelected) {
                       selectednotes.remove(note);
-                      setState(() {
-                        isSelected = false;
-                      });
                       return;
                     }
                     selectednotes.add(note);
-                    setState(() {
-                      isSelected = true;
-                    });
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15.0),
