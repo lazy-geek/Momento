@@ -108,7 +108,7 @@ class _NoteCardState extends State<NoteCard> {
                     selectednotes.add(note);
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.only(top: 15.0,right: 15.0,bottom: 0.0,left: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +137,7 @@ class _NoteCardState extends State<NoteCard> {
                           ),
                         Padding(
                           // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
-                          padding: const EdgeInsets.all(0.0),
+                          padding: note.content.isNotEmpty ? const EdgeInsets.only(bottom: 15.0) : EdgeInsets.all(0.0),
                           child: Text(
                             "${note.content}",
                             overflow: TextOverflow.ellipsis,
