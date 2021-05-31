@@ -73,14 +73,17 @@ class _SearchPageState extends State<SearchPage> {
                 );
               },
             ),
+            SliverToBoxAdapter(child: SizedBox(height: 30.0,),),
             txt.isNotEmpty
                 ? (context.read(NoteListViewModelProvider).layout ==
                         LayoutType.Grid
                     ? NotesGrid(
                         page: 'search',
+                        type: 'all',
                       )
                     : NotesList(
                         page: 'search',
+                        type: 'all',
                       ))
                 : SliverToBoxAdapter(
                     child: Container(),
