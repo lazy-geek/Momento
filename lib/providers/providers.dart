@@ -16,7 +16,27 @@ final NoteListViewModelProvider =
 // 2. we get benifit of using .when() with [AsyncValue] , so we don't need [FutureBuilder]
 final AllNotesProvider = FutureProvider<List<Note>>((ref) async {
   await ref.watch(NoteListViewModelProvider).getAllNotes();
-  return ref.watch(NoteListViewModelProvider).notes_list;
+  return ref.watch(NoteListViewModelProvider).notes_list ?? [];
+});
+
+final PinnedNotesProvider = FutureProvider<List<Note>>((ref) async {
+
+  var notes = ref.watch(AllNotesProvider)?.data?.value;
+  List<Note> pinnednotes = [];
+  notes?.forEach((e) {
+    if (e.isPinned == 1) pinnednotes.add(e);
+  });
+  return pinnednotes;
+});
+
+
+final UnPinnedNotesProvider = FutureProvider<List<Note>>((ref) async {
+  var notes = ref.watch(AllNotesProvider)?.data?.value;
+  List<Note> unpinnednotes = [];
+  notes?.forEach((e) {
+    if (e.isPinned == 0) unpinnednotes.add(e);
+  });
+  return unpinnednotes;
 });
 
 // The [ScrollControllerProvider] provides an instance of [ScrollController] class.
@@ -28,8 +48,7 @@ final ScrollControllerProvider =
 // The [NoteProvider] takes an index of the Note and fetches the Note
 // from Note List Provided by [AllNotesProvider] class.
 final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
-   
-  var notelist = ref.watch(AllNotesProvider).data.value;
+  var notelist = ref.watch(AllNotesProvider)?.data?.value;
   return notelist.firstWhere((element) => element.id == id);
 });
 
@@ -46,8 +65,9 @@ final AllSearchResultProvider = FutureProvider<List<Note>>((ref) async {
   return ref.watch(SearchResultClassProvider).notes_list;
 });
 
-final SingleSearchResultProvider = ChangeNotifierProvider.family<Note,int>((ref,id)  {
-   var notelist = ref.watch(AllSearchResultProvider).data.value;
+final SingleSearchResultProvider =
+    ChangeNotifierProvider.family<Note, int>((ref, id) {
+  var notelist = ref.watch(AllSearchResultProvider).data.value;
   var note = notelist.firstWhere((element) => element.id == id);
   return note;
 });
