@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notes/models/note.dart';
 import 'package:notes/pages/addNotePage.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
@@ -63,17 +64,10 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-
-            Consumer(
-              builder: (context, watch, child) {
-                LayoutType layout = watch(NoteListViewModelProvider).layout;
-                return layout == LayoutType.Grid
-                    ? NotesGrid(
-                        page: 'home',
-                      )
-                    : NotesList(page: 'home');
-              },
-            ),
+            buildPinnedLable(context),
+            buildPinnedNotes(context),
+            buildUnPinnedLable(context),
+            buildUnPinnedNotes(context),
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 70.0,
@@ -108,4 +102,131 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget buildPinnedNotes(BuildContext context) {
+  return Consumer(
+    builder: (context, watch, child) {
+      LayoutType layout = watch(NoteListViewModelProvider).layout;
+      return layout == LayoutType.Grid
+          ? NotesGrid(
+              page: 'home',
+              type: 'pinned',
+            )
+          : NotesList(
+              page: 'home',
+              type: 'pinned',
+            );
+    },
+  );
+}
+
+
+Widget buildUnPinnedNotes(BuildContext context) {
+  return Consumer(
+    builder: (context, watch, child) {
+      LayoutType layout = watch(NoteListViewModelProvider).layout;
+      return layout == LayoutType.Grid
+          ? NotesGrid(
+              page: 'home',
+              type: 'unpinned',
+            )
+          : NotesList(
+              page: 'home',
+              type: 'unpinned',
+            );
+    },
+  );
+}
+Widget buildPinnedLable(BuildContext context) {
+  return Consumer(
+    builder: (context, watch, child) {
+      AsyncValue<List<Note>> asyncnotelist = watch(AllNotesProvider);
+      return asyncnotelist.when(
+        data: (allnotes) {
+          var pinnedcount = 0,unpinnedcount = 0;
+          allnotes.forEach((element) {
+            if(element.isPinned == 1) {
+              pinnedcount++;
+            }
+            else{
+              unpinnedcount++;
+            }
+          });
+          if (pinnedcount > 0) {
+            return SliverPadding(
+              padding: EdgeInsets.only(top: 25.0, left: 20.0, bottom: 25),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  'PINNED',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ),
+            );
+          } else {
+            return SliverToBoxAdapter(
+            );
+          }
+        },
+        error: (Object error, StackTrace stackTrace) {
+          return SliverToBoxAdapter();
+        },
+        loading: () {
+          return SliverToBoxAdapter();
+        },
+      );
+    },
+  );
+}
+
+
+Widget buildUnPinnedLable(BuildContext context) {
+  return Consumer(
+    builder: (context, watch, child) {
+      AsyncValue<List<Note>> asyncnotelist = watch(AllNotesProvider);
+
+      return asyncnotelist.when(
+        data: (allnotes) {
+          var pinnedcount = 0,unpinnedcount = 0;
+          allnotes.forEach((element) {
+            if(element.isPinned == 1) {
+              pinnedcount++;
+            }
+            else{
+              unpinnedcount++;
+            }
+          });
+          if ( unpinnedcount > 0 && pinnedcount >0) {
+            return SliverPadding(
+              padding: EdgeInsets.only(top: 25.0, left: 20.0, bottom: 25),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  'OTHERS',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ),
+            );
+          } else {
+            return SliverToBoxAdapter(
+              child: SizedBox(
+                height: 30,
+              ),
+            );
+          }
+        },
+        error: (Object error, StackTrace stackTrace) {
+          return SliverToBoxAdapter();
+        },
+        loading: () {
+          return SliverToBoxAdapter();
+        },
+      );
+    },
+  );
 }
