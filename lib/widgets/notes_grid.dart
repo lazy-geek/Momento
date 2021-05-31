@@ -6,21 +6,30 @@ import 'package:notes/providers/providers.dart';
 import 'package:notes/widgets/note_card.dart';
 
 class NotesGrid extends StatelessWidget {
-  String page;
-  NotesGrid({this.page});
+  final String page;
+  final String type;
+  NotesGrid({this.page,this.type});
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, watch, child) {
-        AsyncValue<List<Note>> asyncnotelist = page == 'home'
-            ? watch(AllNotesProvider)
-            : watch(AllSearchResultProvider);
-
+         AsyncValue<List<Note>> asyncnotelist;
+        if(page == 'home' && type=="pinned"){
+          asyncnotelist = watch(PinnedNotesProvider);
+        }
+        else if(page == 'home' && type=="unpinned"){
+          asyncnotelist = watch(UnPinnedNotesProvider);
+        }
+        else if(page == 'search'){
+         asyncnotelist = watch(AllSearchResultProvider);
+        }
         return asyncnotelist.when(
           data: (data) {
+            print(asyncnotelist);
+            print(data?.length);
             return SliverPadding(
               // This [Padding] affects the area between the edge of the screen and the [StaggeredGridView]
-              padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
               sliver: SliverStaggeredGrid.countBuilder(
                 // The [crossAxisSpacing] and [mainAxisSpacing] affects the area the between Grid Items
                 crossAxisSpacing: 9.0,
@@ -43,8 +52,8 @@ class NotesGrid extends StatelessWidget {
             return SliverFillRemaining(
                 child: Center(child: CircularProgressIndicator()));
           },
-          error: (errr, stack) =>
-              SliverFillRemaining(child: const Text('error')),
+          error: (error, stack) =>
+              SliverFillRemaining(child:  Text('$error')),
         );
       },
     );

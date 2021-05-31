@@ -5,21 +5,28 @@ import 'package:notes/widgets/note_card.dart';
 import 'package:notes/providers/providers.dart';
 
 class NotesList extends StatelessWidget {
-  String page;
-  NotesList({this.page});
+  final String page;
+  final String type;
+  NotesList({this.page,this.type});
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, watch, child) {
-        AsyncValue<List<Note>> asyncnotelist = page == 'home'
-            ? watch(AllNotesProvider)
-            : watch(AllSearchResultProvider);
-
+       AsyncValue<List<Note>> asyncnotelist;
+        if(page == 'home' && type=="pinned"){
+          asyncnotelist = watch(PinnedNotesProvider);
+        }
+        else if(page == 'home' && type=="unpinned"){
+          asyncnotelist = watch(UnPinnedNotesProvider);
+        }
+        else if(page == 'search'){
+         asyncnotelist = watch(AllSearchResultProvider);
+        }
         return asyncnotelist.when(
           data: (data) {
             // This [Padding] affects the area between the edge of the screen and the [ListView]
             return SliverPadding(
-              padding: const EdgeInsets.fromLTRB(8.0, 30.0, 8.0, 8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (contex, index) {
