@@ -3,10 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/utils/databaseHelper.dart';
 
-enum LayoutType{
-  List,
-  Grid
-}
+enum LayoutType { List, Grid }
+
 class NoteListViewModel extends ChangeNotifier {
   List<Note> notes_list;
   LayoutType layout = LayoutType.Grid;
@@ -36,25 +34,48 @@ class NoteListViewModel extends ChangeNotifier {
 
   Future<int> deleteNote(int noteid) async {
     var result = await DatabaseHelper.instance.deleteNote(noteid);
-     //await getAllNotes();
-   // notifyListeners();
+    //await getAllNotes();
+    // notifyListeners();
     return result;
   }
 
   Future<void> deleteMultipleNotes(List<int> noteids) async {
-    noteids.forEach((element) async{
-
-    await DatabaseHelper.instance.deleteNote(element);
+    noteids.forEach((element) async {
+      await DatabaseHelper.instance.deleteNote(element);
     });
     await getAllNotes();
     notifyListeners();
   }
 
-  void toggleView(){
-    if(layout == LayoutType.Grid){
+  setPin(List<Note> notelist) {
+    notelist.forEach((element) {
+      Note temp = element;
+      temp.isPinned = 1;
+      element.update(temp);
+    });
+    notifyListeners();
+  }
+
+   unsetPin(List<Note> notelist) {
+    notelist.forEach((element) {
+      Note temp = element;
+      temp.isPinned = 0;
+      element.update(temp);
+    });
+    notifyListeners();
+  }
+  // Future<void> updateNote(Note note) async {
+
+  //   await DatabaseHelper.instance.updateNote(note);
+
+  //   // await getAllNotes();
+  //   notifyListeners();
+  // }
+
+  void toggleView() {
+    if (layout == LayoutType.Grid) {
       layout = LayoutType.List;
-    }
-    else{
+    } else {
       layout = LayoutType.Grid;
     }
     notifyListeners();
