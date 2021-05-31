@@ -6,7 +6,7 @@ import 'package:notes/providers/providers.dart';
 class EditNotePage extends StatefulWidget {
   final String page;
   final int id;
-  EditNotePage({this.page,this.id});
+  EditNotePage({this.page, this.id});
   @override
   _EditNotePageState createState() => _EditNotePageState();
 }
@@ -66,8 +66,6 @@ class _EditNotePageState extends State<EditNotePage> {
         // backgroundColor: const Color(0xFF354252),
         backgroundColor: Color(0xFF212736),
         appBar: AppBar(
-          title: const Text('Edit note'),
-          centerTitle: true,
           // Dark Mode color
           // backgroundColor: const Color(0xFF2c3342),
           // backgroundColor: const Color(0xFF293440),
@@ -94,6 +92,28 @@ class _EditNotePageState extends State<EditNotePage> {
                 }
                 Navigator.pop(context);
               }),
+          actions: [
+            Consumer(
+              builder: (context, watch, child) {
+                Note note = watch(NoteProvider(currentNote.id));
+                if (note.isPinned == 1) {
+                  return IconButton(
+                  icon: Icon(Icons.push_pin),
+                  onPressed: () {
+                    context.read(NoteListViewModelProvider).unsetPin([note]);
+                  },
+                );
+                } else {
+                  return IconButton(
+                  icon: Icon(Icons.push_pin_outlined),
+                  onPressed: () {
+                    context.read(NoteListViewModelProvider).setPin([note]);
+                  },
+                );
+                }
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Container(
