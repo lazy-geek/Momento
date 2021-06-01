@@ -86,6 +86,9 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
               },
             );
           }
+          else{
+            return Container();
+          }
           },
         ),
         IconButton(
