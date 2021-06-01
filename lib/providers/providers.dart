@@ -39,12 +39,6 @@ final UnPinnedNotesProvider = FutureProvider<List<Note>>((ref) async {
   return unpinnednotes;
 });
 
-// The [ScrollControllerProvider] provides an instance of [ScrollController] class.
-// here we used simple Provider becouse we only need to provide and read the class and
-// don't need to listen to it.
-final ScrollControllerProvider =
-    Provider<ScrollController>((ref) => ScrollController());
-
 // The [NoteProvider] takes an index of the Note and fetches the Note
 // from Note List Provided by [AllNotesProvider] class.
 final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
