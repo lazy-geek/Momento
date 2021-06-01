@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/pages/searchPage.dart';
 import 'package:notes/providers/providers.dart';
@@ -31,10 +30,10 @@ class _MainAppBarState extends State<MainAppBar> {
       title: Column(
         children: [
           SizedBox(
-            height: 15.0,
+            height: 5.0,
           ),
           Card(
-            elevation: 5.0,
+            // elevation: 5.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
@@ -61,7 +60,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   );
                 },
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -99,7 +98,7 @@ class _MainAppBarState extends State<MainAppBar> {
                           } else {
                             // if current layout is List then Show the Grid Icon
                             return IconButton(
-                              iconSize: 30.0,
+                              // iconSize: 30.0,
                               icon: const Icon(
                                 Icons.grid_view,
                               ),
