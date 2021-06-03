@@ -52,11 +52,11 @@ class _SearchBarState extends State<SearchBar> {
                 context.read(SearchResultClassProvider).get(val.toLowerCase());
               });
             },
-            style: const TextStyle(color: Colors.white, fontSize: 18.0),
+            style: const TextStyle(color: Colors.white, fontSize: 18.0,),
             decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 hintText: 'Search your notes',
-                hintStyle: TextStyle(color: Colors.grey.shade400),
+                hintStyle: TextStyle(color: Colors.grey.shade400,fontFamily: 'Open Sans',),
                 border: InputBorder.none),
           ),
         ),

@@ -42,7 +42,7 @@ class _NoteCardState extends State<NoteCard> {
             child: Container(
               // use [margin] property only if using list layout , don't use it with grid layout
               margin: layout == LayoutType.List
-                  ? const EdgeInsets.symmetric(vertical: 5.0)
+                  ? const EdgeInsets.only(bottom: 9.0)
                   : null,
               // the reason i used [foregroundDecoration] instead of simple [Decoration] property is that
               // the [foregroundDecoration] property draws the decoration on top of the Container so
@@ -69,8 +69,6 @@ class _NoteCardState extends State<NoteCard> {
               child: Ink(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                 
-             
                   color: kCardColor,
                 ),
                 child: InkWell(
@@ -124,7 +122,12 @@ class _NoteCardState extends State<NoteCard> {
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        // fontFamily: 'Open Sans',
+                                        // fontFamily: 'Roboto Mono',
+                                        // fontWeight: FontWeight.w500,
+                                        // wordSpacing: -5,
+                                         fontFamily: 'Roboto',
+                                        // fontFamily: 'Noto Sans',
                                         fontSize: 18.0,
                                         color: Colors.white),
                                   ),
@@ -147,13 +150,12 @@ class _NoteCardState extends State<NoteCard> {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 10,
                               style: TextStyle(
-                                // height: 1.3,
                                 fontSize: 16.0,
-                                // light mode
-                                // color: Colors.grey.shade600
-                                //dark mode
-                                color: Colors.white.withOpacity(0.8),
-                                // color: Colors.black54,
+                                // fontFamily: 'Open Sans',
+                                fontFamily: 'Roboto'
+                                // fontFamily: 'Roboto Mono',
+                                // wordSpacing: -5,
+                                // fontFamily: 'Nato Sans'
                               ),
                             ),
                           ),

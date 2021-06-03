@@ -27,12 +27,12 @@ class UnPinnedLable extends StatelessWidget {
             });
             if ( unpinnedcount > 0 && pinnedcount >0) {
               return SliverPadding(
-                padding: EdgeInsets.only(top: 25.0, left: 20.0, bottom: 25),
+                padding: EdgeInsets.only(top: 12.0, left: 20.0, bottom: 12.0),
                 sliver: SliverToBoxAdapter(
                   child: Text(
                     'OTHERS',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.grey.shade400,
                     ),
                   ),

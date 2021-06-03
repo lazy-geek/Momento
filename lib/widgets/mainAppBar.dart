@@ -70,7 +70,10 @@ class _MainAppBarState extends State<MainAppBar> {
                             child: Text(
                               'Search your notes',
                               style: TextStyle(
+                                fontFamily: 'Open Sans',
                                   fontSize: 18.0, color: Colors.grey.shade400),
+                              
+                                  
                             ),
                           ),
                         ),

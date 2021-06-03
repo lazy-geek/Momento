@@ -26,7 +26,7 @@ class NotesList extends StatelessWidget {
           data: (data) {
             // This [Padding] affects the area between the edge of the screen and the [ListView]
             return SliverPadding(
-              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (contex, index) {

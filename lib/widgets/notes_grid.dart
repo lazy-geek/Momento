@@ -29,7 +29,7 @@ class NotesGrid extends StatelessWidget {
             print(data?.length);
             return SliverPadding(
               // This [Padding] affects the area between the edge of the screen and the [StaggeredGridView]
-              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               sliver: SliverStaggeredGrid.countBuilder(
                 // The [crossAxisSpacing] and [mainAxisSpacing] affects the area the between Grid Items
                 crossAxisSpacing: 9.0,
