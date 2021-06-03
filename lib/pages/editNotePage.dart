@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/utils/constants.dart';
 
 class EditNotePage extends StatefulWidget {
   final String page;
@@ -60,17 +61,9 @@ class _EditNotePageState extends State<EditNotePage> {
       //   );
       // },
       child: Scaffold(
-        // Dark Mode color
-        // backgroundColor: const Color(0xFF222733),
-        // backgroundColor: const  Color(0xFF293440),
-        // backgroundColor: const Color(0xFF354252),
-        backgroundColor: Color(0xFF212736),
+        backgroundColor: kBackgroundColor,
         appBar: AppBar(
-          // Dark Mode color
-          // backgroundColor: const Color(0xFF2c3342),
-          // backgroundColor: const Color(0xFF293440),
-          // backgroundColor: const Color(0xFF354252),
-          backgroundColor: Color(0xFF212736),
+          backgroundColor: kBackgroundColor,
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () async {

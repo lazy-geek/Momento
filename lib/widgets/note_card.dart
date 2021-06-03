@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/pages/editNotePage.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/utils/constants.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 
 class NoteCard extends StatefulWidget {
@@ -68,11 +69,9 @@ class _NoteCardState extends State<NoteCard> {
               child: Ink(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  // color: const Color(0xFF354252),
-                  // color: Color(0xFF212936),
-                  // color: Color(0xFF242833)
-
-                  color: Color(0xFF212736),
+                 
+             
+                  color: kCardColor,
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10.0),

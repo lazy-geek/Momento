@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/pages/addNotePage.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/utils/constants.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/widgets/contextual_appbar.dart';
 import 'package:notes/widgets/fab.dart';
@@ -17,17 +18,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFF293440),
-      // backgroundColor: const Color(0xFF252B34),
-
-      // backgroundColor: const Color(0xFF232834),
-      // backgroundColor: Color(0xFF242833),
-      backgroundColor: Color(0xFF212736),
-
-      // backgroundColor: const Color(0xFF212936),
-      // backgroundColor: const Color(0xFF242c38),
-
-      // backgroundColor: const Color(0xFF2a313c),
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: CustomScrollView(
 //          physics: BouncingScrollPhysics(),

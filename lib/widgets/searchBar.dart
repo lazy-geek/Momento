@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notes/utils/constants.dart';
 
 class SearchBar extends StatefulWidget {
   final Function onTextChanged;
@@ -33,8 +34,7 @@ class _SearchBarState extends State<SearchBar> {
               )
             : Container()
       ],
-      // backgroundColor: Color(0xFF293440),
-      backgroundColor: Color(0xFF303645),
+      backgroundColor: kAppBarColor,
       forceElevated: true,
       title: Hero(
         tag: 'searchbar',

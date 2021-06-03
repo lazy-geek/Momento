@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/utils/constants.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 
 class AddNotePage extends StatefulWidget {
@@ -30,15 +31,11 @@ class _AddNotePageState extends State<AddNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Dark Mode color
-      // backgroundColor: Color(0xFF222733),
-      backgroundColor: Color(0xFF212736),
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         title: const Text('Add note'),
         centerTitle: true,
-        // Dark Mode color
-        // backgroundColor: const Color(0xFF2c3342),
-        backgroundColor:Color(0xFF212736),
+        backgroundColor:kBackgroundColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {

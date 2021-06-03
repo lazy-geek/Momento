@@ -37,17 +37,10 @@ class _MainAppBarState extends State<MainAppBar> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            // color: Color(0xFF2a313c),
-            //  color: Color(0xFF303845),
-            color: Color(0xFF303645),
-            //  color: Color(0xFF2e3444),
             child: Ink(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                // color: Color(0xFF2a313c),
-                // color: Color(0xFF303845),
-                color: Color(0xFF303645),
-                //  color: Color(0xFF2e3444),
+                color:  Color(0xFF303440),
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10.0),

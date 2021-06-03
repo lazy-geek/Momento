@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/providers/providers.dart';
+import 'package:notes/utils/constants.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/widgets/contextual_appbar.dart';
 import 'package:notes/widgets/notes_grid.dart';
@@ -24,8 +25,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xFF293440),
-      backgroundColor: Color(0xFF212736),
+      backgroundColor: kBackgroundColor,
       // appBar: AppBar(
       //   title: const Text('Notes'),
       //   centerTitle: true,
