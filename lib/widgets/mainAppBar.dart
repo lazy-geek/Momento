@@ -82,8 +82,8 @@ class _MainAppBarState extends State<MainAppBar> {
                           LayoutType layout = viewModel.layout;
                           if (layout == LayoutType.Grid) {
                             return IconButton(
-                              iconSize: 30.0,
-                              icon: const Icon(Icons.list),
+                              icon: Icon(Icons.view_agenda_outlined,color: Colors.grey.shade400,),
+
                               onPressed: () {
                                 viewModel.toggleView();
                               },
@@ -92,8 +92,9 @@ class _MainAppBarState extends State<MainAppBar> {
                             // if current layout is List then Show the Grid Icon
                             return IconButton(
                               // iconSize: 30.0,
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.grid_view,
+                                color: Colors.grey.shade400,
                               ),
                               onPressed: () {
                                 viewModel.toggleView();
