@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/utils/constants.dart';
 
 class SearchBar extends StatefulWidget {
-  final Function onTextChanged;
-  SearchBar({this.onTextChanged});
   @override
   _SearchBarState createState() => _SearchBarState();
 }
@@ -16,23 +14,36 @@ class _SearchBarState extends State<SearchBar> {
   void initState() {
     super.initState();
     t1 = TextEditingController();
+    // update the state of [SearchTextProvider] every time text of
+    // [TextField] changes
+    t1.addListener(() {
+      context.read(SearchTextProvider).state = t1.text.toLowerCase();
+    });
   }
-
+@override
+  void dispose() {
+    t1.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       actions: [
-        t1.text.isNotEmpty
-            ? IconButton(
+        Consumer(
+          builder: (context, watch, child) {
+            String txt = watch(SearchTextProvider).state;
+            if (txt.isNotEmpty) {
+              return IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  setState(() {
-                    t1.text = "";
-                    context.read(SearchResultClassProvider).get("");
-                  });
+                  t1.clear();
                 },
-              )
-            : Container()
+              );
+            } else {
+              return Container();
+            }
+          },
+        )
       ],
       backgroundColor: kAppBarColor,
       forceElevated: true,
@@ -46,17 +57,17 @@ class _SearchBarState extends State<SearchBar> {
             controller: t1,
             toolbarOptions: ToolbarOptions(
                 copy: true, cut: true, paste: true, selectAll: true),
-            onChanged: (val) {
-              setState(() {
-                widget.onTextChanged(val);
-                context.read(SearchResultClassProvider).get(val.toLowerCase());
-              });
-            },
-            style: const TextStyle(color: Colors.white, fontSize: 18.0,),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18.0,
+            ),
             decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 hintText: 'Search your notes',
-                hintStyle: TextStyle(color: Colors.grey.shade400,fontFamily: 'Open Sans',),
+                hintStyle: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontFamily: 'Open Sans',
+                ),
                 border: InputBorder.none),
           ),
         ),

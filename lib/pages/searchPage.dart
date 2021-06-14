@@ -15,12 +15,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String txt;
-  @override
-  void initState() {
-    super.initState();
-    txt = "";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +54,7 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     SliverOffstage(
                       offstage: isSelected,
-                      sliver: SearchBar(
-                        onTextChanged: (val) {
-                          setState(() {
-                            txt = val;
-                          });
-                        },
-                      ),
+                      sliver: SearchBar(),
                     ),
                     if (isSelected) ContextualAppBar()
                   ],
@@ -78,20 +66,28 @@ class _SearchPageState extends State<SearchPage> {
                 height: 15,
               ),
             ),
-            txt.isNotEmpty
-                ? (context.read(NoteListViewModelProvider).layout ==
-                        LayoutType.Grid
-                    ? NotesGrid(
-                        page: 'search',
-                        type: 'all',
-                      )
-                    : NotesList(
-                        page: 'search',
-                        type: 'all',
-                      ))
-                : SliverToBoxAdapter(
+
+            Consumer(
+              builder: (context, watch, child) {
+                String txt = watch(SearchTextProvider).state;
+                if (txt.isNotEmpty) {
+                  return context.read(NoteListViewModelProvider).layout ==
+                          LayoutType.Grid
+                      ? NotesGrid(
+                          page: 'search',
+                          type: 'all',
+                        )
+                      : NotesList(
+                          page: 'search',
+                          type: 'all',
+                        );
+                } else {
+                  return SliverToBoxAdapter(
                     child: Container(),
-                  ),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

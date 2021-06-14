@@ -51,12 +51,19 @@ final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
 final SelectedNotesProvider =
     ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
 
+final SearchTextProvider = StateProvider<String>((ref) {
+  return "";
+});
+
+
 final SearchResultClassProvider = ChangeNotifierProvider<SearchResult>((ref) {
-  return SearchResult(ref);
+  var notelist = ref.watch(AllNotesProvider)?.data?.value;
+  String str = ref.watch(SearchTextProvider).state;
+  return SearchResult(notes: notelist,str: str);
 });
 
 final AllSearchResultProvider = FutureProvider<List<Note>>((ref) async {
-  return ref.watch(SearchResultClassProvider).notes_list;
+  return ref.watch(SearchResultClassProvider).result_notes_list;
 });
 
 final SingleSearchResultProvider =

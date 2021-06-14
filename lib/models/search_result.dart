@@ -1,20 +1,25 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
-import 'package:notes/providers/providers.dart';
 
 class SearchResult extends ChangeNotifier {
-  ProviderReference ref;
-  SearchResult(this.ref);
-  List<Note> notes_list = [];
+  // ProviderReference ref;
+  // SearchResult(this.ref);
+  List<Note> notes;
+  String str;
+  SearchResult({this.notes,this.str}){
+    // get search results every time this constructor is called
+    // in order to fetch search results every time the value of
+    // [notes] or [str] changes.
+    _get();
+  }
 
-  void get(String str) {
-    List<Note> notes = ref.watch(NoteListViewModelProvider).notes_list;
+  List<Note> result_notes_list = [];
 
+  void _get() {
     List<Note> notes_filtered = [];
     str = str.trim();
     if (str.isEmpty || notes == null) {
-      notes_list = [];
+      result_notes_list = [];
       notifyListeners();
       return;
     }
@@ -29,10 +34,10 @@ class SearchResult extends ChangeNotifier {
         notes_filtered.add(element);
     });
 
-    notes_filtered.forEach((element) {
-      print('filtered note' + element.id.toString() + ' ' + element.title);
-    });
-    notes_list = notes_filtered;
+    // notes_filtered.forEach((element) {
+    //   print('filtered note' + element.id.toString() + ' ' + element.title);
+    // });
+    result_notes_list = notes_filtered;
 
     notifyListeners();
   }
