@@ -91,67 +91,88 @@ class _EditNotePageState extends State<EditNotePage> {
                 Note note = watch(NoteProvider(currentNote.id));
                 if (note.isPinned == 1) {
                   return IconButton(
-                  icon: Icon(Icons.push_pin),
-                  onPressed: () {
-                    context.read(NoteListViewModelProvider).unsetPin([note]);
-                  },
-                );
+                    icon: Icon(Icons.push_pin),
+                    onPressed: () {
+                      context.read(NoteListViewModelProvider).unsetPin([note]);
+                    },
+                  );
                 } else {
                   return IconButton(
-                  icon: Icon(Icons.push_pin_outlined),
-                  onPressed: () {
-                    context.read(NoteListViewModelProvider).setPin([note]);
-                  },
-                );
+                    icon: Icon(Icons.push_pin_outlined),
+                    onPressed: () {
+                      context.read(NoteListViewModelProvider).setPin([note]);
+                    },
+                  );
                 }
               },
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 26.0,
-                ),
-                Column(
-                  children: [
-                    TextField(
-                      onChanged: (_) {
-                        isEdited = true;
-                      },
-                      showCursor: true,
-                      autofocus: true,
-                      style: const TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
+        body: WillPopScope(
+          onWillPop: () async {
+            if (isEdited) {
+                  Note newNote = Note.fromMap(
+                    {
+                      'title': '${t1.text}',
+                      'content': '${t2.text}',
+                      'isPinned': 0,
+                      'date_created': '$DateTime.now().day',
+                      'last_updated': '$DateTime.now().day'
+                    },
+                  );
+                  newNote.id = currentNote.id;
+                  // print(widget.currentNote.content);
+                  await context
+                      .read(NoteProvider(currentNote.id))
+                      .update(newNote);
+                }
+            return true;
+          },
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 26.0,
+                  ),
+                  Column(
+                    children: [
+                      TextField(
+                        onChanged: (_) {
+                          isEdited = true;
+                        },
+                        showCursor: true,
+                        autofocus: true,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                        controller: t1,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Title',
+                            border: InputBorder.none),
                       ),
-                      controller: t1,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
-                          focusedBorder: InputBorder.none,
-                          hintText: 'Title',
-                          border: InputBorder.none),
-                    ),
-                    TextField(
-                      onChanged: (_) {
-                        isEdited = true;
-                      },
-                      style: const TextStyle(color: Colors.white),
-                      maxLines: null,
-                      controller: t2,
-                      decoration: InputDecoration(
-                          focusedBorder: InputBorder.none,
-                          hintText: 'Type Something',
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
-                          border: InputBorder.none),
-                    )
-                  ],
-                )
-              ],
+                      TextField(
+                        onChanged: (_) {
+                          isEdited = true;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        maxLines: null,
+                        controller: t2,
+                        decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Type Something',
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            border: InputBorder.none),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
