@@ -15,7 +15,7 @@ class NoteListViewModel extends ChangeNotifier {
   Future<int> addNote(Note note) async {
     var result = await DatabaseHelper.instance.addNote(note);
     await getAllNotes();
-    notifyListeners();
+    // notifyListeners();
     return result;
   }
 
@@ -44,7 +44,7 @@ class NoteListViewModel extends ChangeNotifier {
       await DatabaseHelper.instance.deleteNote(element);
     });
     await getAllNotes();
-    notifyListeners();
+    // notifyListeners();
   }
 
   setPin(List<Note> notelist) {
