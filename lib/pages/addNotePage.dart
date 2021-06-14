@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
-import 'package:notes/view_model/note_list_view_model.dart';
 
 class AddNotePage extends StatefulWidget {
   @override
