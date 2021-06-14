@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/models/search_result.dart';
@@ -46,22 +45,28 @@ final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
   return notelist.firstWhere((element) => element.id == id);
 });
 
-// the [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
+// The [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
 // which we can listen to in order to get currently selected notes
 final SelectedNotesProvider =
     ChangeNotifierProvider<SelectedNotes>((ref) => new SelectedNotes());
 
+// The [SearchTextProvider] provides Search Text typed in the [SearchBar]
+// which we can listen to in order to get current SearchText
 final SearchTextProvider = StateProvider<String>((ref) {
   return "";
 });
 
 
+// The [SearchResultClassProvider] provides [SearchResult] instance.
+// It Takes List of Notes from [AllNotesProvider] and
+// The Search Text From [SearchTextProvider]
 final SearchResultClassProvider = ChangeNotifierProvider<SearchResult>((ref) {
   var notelist = ref.watch(AllNotesProvider)?.data?.value;
   String str = ref.watch(SearchTextProvider).state;
   return SearchResult(notes: notelist,str: str);
 });
 
+// The [AllSearchResultProvider] provides List of Notes From [SearchResult]
 final AllSearchResultProvider = FutureProvider<List<Note>>((ref) async {
   return ref.watch(SearchResultClassProvider).result_notes_list;
 });
