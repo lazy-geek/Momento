@@ -98,6 +98,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: Fab(
         onPressed: () {
+          context.read(SelectedNotesProvider).clear();
           Navigator.push(
             context,
             PageTransition(
