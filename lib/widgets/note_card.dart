@@ -126,7 +126,7 @@ class _NoteCardState extends State<NoteCard> {
                                         // fontFamily: 'Roboto Mono',
                                         // fontWeight: FontWeight.w500,
                                         // wordSpacing: -5,
-                                         fontFamily: 'Roboto',
+                                        fontFamily: 'Roboto',
                                         // fontFamily: 'Noto Sans',
                                         fontSize: 18.0,
                                         color: Colors.white),
@@ -136,29 +136,26 @@ class _NoteCardState extends State<NoteCard> {
                                   height: 0.0,
                                   width: 0.0,
                                 ),
-                          if (note.content.isNotEmpty)
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                          Padding(
-                            // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
-                            padding: note.content.isNotEmpty
-                                ? const EdgeInsets.only(bottom: 15.0)
-                                : EdgeInsets.all(0.0),
-                            child: Text(
-                              "${note.content}",
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 10,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                // fontFamily: 'Open Sans',
-                                fontFamily: 'Roboto'
-                                // fontFamily: 'Roboto Mono',
-                                // wordSpacing: -5,
-                                // fontFamily: 'Nato Sans'
-                              ),
-                            ),
-                          ),
+                          _applySpacing(note.title, note.content),
+                          note.content.isNotEmpty
+                              ? Padding(
+                                  // padding: const EdgeInsets.fromLTRB(8.0, 0.0, 2.0, 8.0),
+                                  padding: const EdgeInsets.only(bottom: 15.0),
+                                  child: Text(
+                                    "${note.content}",
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 10,
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        // fontFamily: 'Open Sans',
+                                        fontFamily: 'Roboto'
+                                        // fontFamily: 'Roboto Mono',
+                                        // wordSpacing: -5,
+                                        // fontFamily: 'Nato Sans'
+                                        ),
+                                  ),
+                                )
+                              : Container(),
                         ],
                       ),
                     ),
@@ -169,6 +166,24 @@ class _NoteCardState extends State<NoteCard> {
           ),
         );
       },
+    );
+  }
+}
+
+Widget _applySpacing(String title, String content) {
+  if (title.isNotEmpty && content.isNotEmpty) {
+    return SizedBox(
+      height: 10.0,
+    );
+  }
+  else if( title.isNotEmpty && content.isEmpty){
+    return SizedBox(
+      height: 15.0,
+    );
+  }
+  else{
+    return SizedBox(
+      height: 0.0,
     );
   }
 }
