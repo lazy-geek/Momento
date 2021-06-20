@@ -4,6 +4,7 @@ import 'package:notes/models/note.dart';
 import 'package:notes/pages/editNotePage.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
+import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 
 class NoteCard extends StatefulWidget {
@@ -85,7 +86,7 @@ class _NoteCardState extends State<NoteCard> {
                       // then select the current note when user presses on it by adding it to the selectednotes list
                       selectednotes.add(note);
                     } else {
-                      await Navigator.push(
+                      bool shouldShowSnackBar = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => EditNotePage(
@@ -94,6 +95,9 @@ class _NoteCardState extends State<NoteCard> {
                           ),
                         ),
                       );
+                      if (shouldShowSnackBar == true) {
+                        emptyNoteDiscardedFlushbar..show(context);
+                      }
                     }
                   },
                   onLongPress: () {
@@ -175,13 +179,11 @@ Widget _applySpacing(String title, String content) {
     return SizedBox(
       height: 10.0,
     );
-  }
-  else if( title.isNotEmpty && content.isEmpty){
+  } else if (title.isNotEmpty && content.isEmpty) {
     return SizedBox(
       height: 15.0,
     );
-  }
-  else{
+  } else {
     return SizedBox(
       height: 0.0,
     );

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/pages/addNotePage.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
+import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
 import 'package:notes/widgets/contextual_appbar.dart';
 import 'package:notes/widgets/fab.dart';
@@ -97,9 +98,10 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: Fab(
-        onPressed: () {
+        onPressed: () async {
           context.read(SelectedNotesProvider).clear();
-          Navigator.push(
+
+          bool shouldShowSnackBar = await Navigator.push(
             context,
             PageTransition(
                 // type: PageTransitionType.scale,
@@ -119,6 +121,10 @@ class HomePage extends StatelessWidget {
                 // alignment: Alignment.bottomRight,
                 curve: Curves.easeInOutCubic),
           );
+
+          if (shouldShowSnackBar == true) {
+            emptyNoteDiscardedFlushbar..show(context);
+          }
         },
       ),
     );
