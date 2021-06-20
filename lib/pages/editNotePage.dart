@@ -78,6 +78,7 @@ class _EditNotePageState extends State<EditNotePage> {
             Consumer(
               builder: (context, watch, child) {
                 Note note = watch(NoteProvider(currentNote.id));
+                if (note == null) return Container();
                 if (note.isPinned == 1) {
                   return IconButton(
                     icon: Icon(Icons.push_pin),
