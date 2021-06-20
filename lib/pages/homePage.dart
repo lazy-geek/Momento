@@ -15,10 +15,13 @@ import 'package:notes/widgets/unPinnned_lable.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+final GlobalKey<ScaffoldState> homePageScaffoldkey = GlobalKey<ScaffoldState>();
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: homePageScaffoldkey,
       backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: CustomScrollView(

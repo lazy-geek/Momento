@@ -9,16 +9,20 @@ import 'package:notes/widgets/notes_list.dart';
 import 'package:notes/widgets/searchBar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+
+
+final GlobalKey<ScaffoldState> searchPageScaffoldkey = GlobalKey<ScaffoldState>();  
+
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: searchPageScaffoldkey,
       backgroundColor: kBackgroundColor,
       // appBar: AppBar(
       //   title: const Text('Notes'),

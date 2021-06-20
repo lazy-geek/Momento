@@ -6,6 +6,8 @@ import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/view_model/note_list_view_model.dart';
+import 'package:notes/pages/searchPage.dart';
+import 'package:notes/pages/homePage.dart';
 
 class NoteCard extends StatefulWidget {
   final int id;
@@ -96,7 +98,13 @@ class _NoteCardState extends State<NoteCard> {
                         ),
                       );
                       if (shouldShowSnackBar == true) {
-                        emptyNoteDiscardedFlushbar..show(context);
+                        if(widget.page == "search"){
+                          emptyNoteDiscardedFlushbar..show(searchPageScaffoldkey.currentContext);
+                        }
+                        else{
+
+                        emptyNoteDiscardedFlushbar..show(homePageScaffoldkey.currentContext);
+                        }
                       }
                     }
                   },
