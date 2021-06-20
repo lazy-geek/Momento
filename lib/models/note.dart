@@ -9,6 +9,7 @@ class Note extends ChangeNotifier {
   String date_created;
   String last_updated;
 
+  bool _disposed = false;
   Note({
     this.id,
     this.title,
@@ -51,5 +52,18 @@ class Note extends ChangeNotifier {
     this.title = note.title;
     notifyListeners();
     return result;
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_disposed) {
+      super.notifyListeners();
+    }
   }
 }
