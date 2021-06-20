@@ -23,3 +23,6 @@ const Color kBackgroundColor = Color(0xFF282c36);
 const Color kAppBarColor = Color(0xFF303440);
 
 const Color kSnackBarColor = Color(0xFF363c49);
+
+// const Color kFabColor = Color(0xFF8aacc8);
+const Color kFabColor = Color(0xFF363c49);

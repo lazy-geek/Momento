@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:notes/utils/constants.dart';
 
 class Fab extends StatelessWidget {
   final VoidCallback onPressed;
@@ -9,7 +10,9 @@ class Fab extends StatelessWidget {
     return FloatingActionButton(
       onPressed:onPressed,
       tooltip: 'Add Note',
-      child: Icon(Icons.add),
+      child: Icon(Icons.add,color: Colors.white,),
+      backgroundColor: kFabColor,
+      elevation: 0.0,
     );
   }
 }
