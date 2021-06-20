@@ -42,7 +42,10 @@ final UnPinnedNotesProvider = FutureProvider<List<Note>>((ref) async {
 // from Note List Provided by [AllNotesProvider] class.
 final NoteProvider = ChangeNotifierProvider.family<Note, int>((ref, id) {
   var notelist = ref.watch(AllNotesProvider)?.data?.value;
-  return notelist.firstWhere((element) => element.id == id);
+  ref.onDispose(() {
+    print('note with id: '+id.toString()+' disposed');
+  });
+  return notelist?.firstWhere((element) => element.id == id);
 });
 
 // The [SelectedNotesProvider] provides SelectedNotes ChangeNotifier
