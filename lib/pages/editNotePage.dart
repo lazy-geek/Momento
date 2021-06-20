@@ -25,6 +25,9 @@ class _EditNotePageState extends State<EditNotePage> {
 
     t1 = TextEditingController();
     t2 = TextEditingController();
+    currentNote = context.read(NoteProvider(widget.id));
+    t1.text = currentNote.title;
+    t2.text = currentNote.content;
   }
 
   @override
@@ -34,16 +37,8 @@ class _EditNotePageState extends State<EditNotePage> {
     super.dispose();
   }
 
-  void setupText(BuildContext context) {
-    // currentNote = widget.page=='home' ? context.read(NoteProvider(widget.id)): context.read(SingleSearchResultProvider(widget.id));
-    currentNote = context.read(NoteProvider(widget.id));
-    t1.text = currentNote.title;
-    t2.text = currentNote.content;
-  }
-
   @override
   Widget build(BuildContext context) {
-    setupText(context);
     return Hero(
       tag: widget.id.toString() + widget.page.toString(),
       transitionOnUserGestures: true,
