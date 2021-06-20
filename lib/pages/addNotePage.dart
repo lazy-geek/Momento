@@ -38,28 +38,18 @@ class _AddNotePageState extends State<AddNotePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {
-            await context.read(NoteListViewModelProvider).addNote(Note.fromMap({
-                  'title': '${t1.text}',
-                  'content': '${t2.text}',
-                  'isPinned': 0,
-                  'date_created': '$DateTime.now().day',
-                  'last_updated': '$DateTime.now().day'
-                }));
-
-            Navigator.pop(context);
+            bool isDiscarded = false;
+            isDiscarded = await _addOrDiscard(context, t1.text, t2.text);
+            Navigator.pop(context, isDiscarded);
           },
         ),
       ),
       body: WillPopScope(
         onWillPop: () async {
-          await context.read(NoteListViewModelProvider).addNote(Note.fromMap({
-                'title': '${t1.text}',
-                'content': '${t2.text}',
-                'isPinned': 0,
-                'date_created': '$DateTime.now().day',
-                'last_updated': '$DateTime.now().day'
-              }));
-          return true;
+          bool isDiscarded = false;
+          isDiscarded = await _addOrDiscard(context, t1.text, t2.text);
+          Navigator.pop(context, isDiscarded);
+          return false;
         },
         child: SingleChildScrollView(
           child: Container(
@@ -97,4 +87,28 @@ class _AddNotePageState extends State<AddNotePage> {
       ),
     );
   }
+}
+
+Future<bool> _addOrDiscard(
+  BuildContext context,
+  String title,
+  String content,
+) async {
+  bool isDiscarded = false;
+  // if only title or content is note empty then update the note
+  if (title.trim() != "" || content.trim() != "") {
+    await context.read(NoteListViewModelProvider).addNote(Note.fromMap({
+          'title': '$title',
+          'content': '$content',
+          'isPinned': 0,
+          'date_created': '${DateTime.now()}',
+          'last_updated': '${DateTime.now()}'
+        }));
+  }
+  // if both title and content are note empty then discard the note
+  else if (title.trim() == "" && content.trim() == "") {
+    isDiscarded = true;
+  }
+
+  return isDiscarded;
 }

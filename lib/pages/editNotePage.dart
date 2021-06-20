@@ -67,23 +67,12 @@ class _EditNotePageState extends State<EditNotePage> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () async {
+                bool isDiscarded = false;
                 if (isEdited) {
-                  Note newNote = Note.fromMap(
-                    {
-                      'title': '${t1.text}',
-                      'content': '${t2.text}',
-                      'isPinned': 0,
-                      'date_created': '$DateTime.now().day',
-                      'last_updated': '$DateTime.now().day'
-                    },
-                  );
-                  newNote.id = currentNote.id;
-                  // print(widget.currentNote.content);
-                  await context
-                      .read(NoteProvider(currentNote.id))
-                      .update(newNote);
+                  isDiscarded = await _updateOrDiscard(
+                      context, t1.text, t2.text, currentNote);
                 }
-                Navigator.pop(context);
+                Navigator.pop(context, isDiscarded);
               }),
           actions: [
             Consumer(
@@ -110,23 +99,13 @@ class _EditNotePageState extends State<EditNotePage> {
         ),
         body: WillPopScope(
           onWillPop: () async {
+            bool isDiscarded = false;
             if (isEdited) {
-                  Note newNote = Note.fromMap(
-                    {
-                      'title': '${t1.text}',
-                      'content': '${t2.text}',
-                      'isPinned': 0,
-                      'date_created': '$DateTime.now().day',
-                      'last_updated': '$DateTime.now().day'
-                    },
-                  );
-                  newNote.id = currentNote.id;
-                  // print(widget.currentNote.content);
-                  await context
-                      .read(NoteProvider(currentNote.id))
-                      .update(newNote);
-                }
-            return true;
+              isDiscarded = await _updateOrDiscard(
+                  context, t1.text, t2.text, currentNote);
+            }
+            Navigator.pop(context, isDiscarded);
+            return false;
           },
           child: SingleChildScrollView(
             child: Container(
@@ -179,4 +158,36 @@ class _EditNotePageState extends State<EditNotePage> {
       ),
     );
   }
+}
+
+Future<bool> _updateOrDiscard(
+  BuildContext context,
+  String title,
+  String content,
+  Note currentNote,
+) async {
+  bool isDiscarded = false;
+  // if only title or content is note empty then update the note
+  if (title.trim() != "" || content.trim() != "") {
+    Note newNote = Note.fromMap(
+      {
+        'title': '$title',
+        'content': '$content',
+        'isPinned': 0,
+        'date_created': '${DateTime.now()}',
+        'last_updated': '${DateTime.now()}'
+      },
+    );
+    newNote.id = currentNote.id;
+    await context.read(NoteProvider(currentNote.id)).update(newNote);
+  }
+  // if both title and content are note empty then discard the note
+  else if (title.trim() == "" && content.trim() == "") {
+    await context
+        .read(NoteListViewModelProvider)
+        .deleteMultipleNotes([currentNote.id]);
+    isDiscarded = true;
+  }
+
+  return isDiscarded;
 }
