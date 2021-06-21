@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
+import 'package:notes/widgets/note_pin.dart';
 import 'package:share_plus/share_plus.dart';
 
 class EditNotePage extends StatefulWidget {
@@ -18,6 +19,7 @@ class _EditNotePageState extends State<EditNotePage> {
   TextEditingController t2;
   bool isEdited;
   Note currentNote;
+  int isPinned;
 
   @override
   void initState() {
@@ -27,8 +29,10 @@ class _EditNotePageState extends State<EditNotePage> {
     t1 = TextEditingController();
     t2 = TextEditingController();
     currentNote = context.read(NoteProvider(widget.id));
+    isPinned = currentNote.isPinned;
     t1.text = currentNote.title;
     t2.text = currentNote.content;
+    
   }
 
   @override
@@ -66,32 +70,36 @@ class _EditNotePageState extends State<EditNotePage> {
                 bool isDiscarded = false;
                 if (isEdited) {
                   isDiscarded = await _updateOrDiscard(
-                      context, t1.text, t2.text, currentNote);
+                      context, t1.text, t2.text, currentNote,isPinned);
                 }
                 Navigator.pop(context, isDiscarded);
               }),
           actions: [
-            Consumer(
-              builder: (context, watch, child) {
-                Note note = watch(NoteProvider(currentNote.id));
-                if (note == null) return Container();
-                if (note.isPinned == 1) {
-                  return IconButton(
-                    icon: Icon(Icons.push_pin),
-                    onPressed: () {
-                      context.read(NoteListViewModelProvider).unsetPin([note]);
-                    },
-                  );
-                } else {
-                  return IconButton(
-                    icon: Icon(Icons.push_pin_outlined),
-                    onPressed: () {
-                      context.read(NoteListViewModelProvider).setPin([note]);
-                    },
-                  );
-                }
-              },
-            ),
+            // Consumer(
+            //   builder: (context, watch, child) {
+            //     Note note = watch(NoteProvider(currentNote.id));
+            //     if (note == null) return Container();
+            //     if (note.isPinned == 1) {
+            //       return IconButton(
+            //         icon: Icon(Icons.push_pin),
+            //         onPressed: () {
+            //           context.read(NoteListViewModelProvider).unsetPin([note]);
+            //         },
+            //       );
+            //     } else {
+            //       return IconButton(
+            //         icon: Icon(Icons.push_pin_outlined),
+            //         onPressed: () {
+            //           context.read(NoteListViewModelProvider).setPin([note]);
+            //         },
+            //       );
+            //     }
+            //   },
+            // ),
+            NotePin(isPinned: isPinned,onChanged: (val){
+              isPinned = val;
+              isEdited = true;
+            },),
             IconButton(icon: Icon(Icons.share), onPressed: (){
               Share.share(t1.text + '\n' + t2.text,subject: t1.text);
             })
@@ -102,7 +110,7 @@ class _EditNotePageState extends State<EditNotePage> {
             bool isDiscarded = false;
             if (isEdited) {
               isDiscarded = await _updateOrDiscard(
-                  context, t1.text, t2.text, currentNote);
+                  context, t1.text, t2.text, currentNote,isPinned);
             }
             Navigator.pop(context, isDiscarded);
             return false;
@@ -165,6 +173,7 @@ Future<bool> _updateOrDiscard(
   String title,
   String content,
   Note currentNote,
+  int isPinned,
 ) async {
   bool isDiscarded = false;
   // if only title or content is note empty then update the note
@@ -173,12 +182,27 @@ Future<bool> _updateOrDiscard(
       {
         'title': '$title',
         'content': '$content',
-        'isPinned': 0,
+        'isPinned': isPinned,
         'last_updated': '${DateTime.now()}'
       },
     );
     newNote.id = currentNote.id;
+    // if isPinned is changed update the note and also update HomePage
+    bool _shouldUpdateHomePage = false;
+    if(currentNote.isPinned != isPinned){
+      _shouldUpdateHomePage = true;
+    }
+    // update note
     await context.read(NoteProvider(currentNote.id)).update(newNote);
+    
+    // setPin() and unsetPin methods will update the homepage if it should be updated
+    if(_shouldUpdateHomePage && isPinned == 1){
+      context.read(NoteListViewModelProvider).setPin([newNote]);
+    }
+    else if(_shouldUpdateHomePage && isPinned == 0){
+      context.read(NoteListViewModelProvider).unsetPin([newNote]);
+    }
+    
   }
   // if both title and content are note empty then discard the note
   else if (title.trim() == "" && content.trim() == "") {
