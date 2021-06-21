@@ -52,7 +52,7 @@ class DatabaseHelper {
 
   Future<List<Note>> getAllNotes() async {
      var db = await database;
-     var result = await db.query("$tableName",);
+     var result = await db.query("$tableName",orderBy: columnDateCreated+ ' DESC',);
      if(result.isEmpty) return null;
      return result.map((row) =>
        Note.fromMap(row)
