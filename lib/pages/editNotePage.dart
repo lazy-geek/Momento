@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
+import 'package:share_plus/share_plus.dart';
 
 class EditNotePage extends StatefulWidget {
   final String page;
@@ -91,6 +92,9 @@ class _EditNotePageState extends State<EditNotePage> {
                 }
               },
             ),
+            IconButton(icon: Icon(Icons.share), onPressed: (){
+              Share.share(t1.text + '\n' + t2.text,subject: t1.text);
+            })
           ],
         ),
         body: WillPopScope(
