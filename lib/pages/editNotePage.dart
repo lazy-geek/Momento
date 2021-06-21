@@ -174,7 +174,6 @@ Future<bool> _updateOrDiscard(
         'title': '$title',
         'content': '$content',
         'isPinned': 0,
-        'date_created': '${DateTime.now()}',
         'last_updated': '${DateTime.now()}'
       },
     );
