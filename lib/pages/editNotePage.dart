@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/providers/providers.dart';
 import 'package:notes/utils/constants.dart';
+import 'package:notes/widgets/last_edited_label.dart';
 import 'package:notes/widgets/note_pin.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -17,28 +20,42 @@ class EditNotePage extends StatefulWidget {
 class _EditNotePageState extends State<EditNotePage> {
   TextEditingController t1;
   TextEditingController t2;
-  bool isEdited;
   Note currentNote;
   int isPinned;
-
+  bool isEdited;
   @override
   void initState() {
     super.initState();
-    isEdited = false;
+
+    currentNote = context.read(NoteProvider(widget.id));
+    isPinned = currentNote.isPinned;
 
     t1 = TextEditingController();
     t2 = TextEditingController();
-    currentNote = context.read(NoteProvider(widget.id));
-    isPinned = currentNote.isPinned;
-    t1.text = currentNote.title;
-    t2.text = currentNote.content;
+
+    // make sure to add listeners after the intial value has been set
+    // because we don't to notify listeners when the initial value is set
     
+    t1.text = currentNote.title;
+    t1.addListener(() {
+      // this fixes the issue where all listeners were notified When TextField was focused
+      t1.value = TextEditingValue(text: t1.text,selection: TextSelection.collapsed(offset: t1.text.length));
+    });
+    
+    t2.text = currentNote.content;
+     t2.addListener(() {
+       // this fixes the issue where all listeners were notified When TextField was focused
+      t2.value = TextEditingValue(text: t2.text,selection: TextSelection.collapsed(offset: t2.text.length));
+    });
+    
+    isEdited = a.value;
   }
 
   @override
   void dispose() {
     t1.dispose();
     t2.dispose();
+    a.value = false;
     super.dispose();
   }
 
@@ -70,9 +87,10 @@ class _EditNotePageState extends State<EditNotePage> {
                 bool isDiscarded = false;
                 if (isEdited) {
                   isDiscarded = await _updateOrDiscard(
-                      context, t1.text, t2.text, currentNote,isPinned);
+                      context, t1.text, t2.text, currentNote, isPinned);
                 }
                 Navigator.pop(context, isDiscarded);
+                
               }),
           actions: [
             // Consumer(
@@ -96,12 +114,18 @@ class _EditNotePageState extends State<EditNotePage> {
             //     }
             //   },
             // ),
-            NotePin(isPinned: isPinned,onChanged: (val){
+            NotePin(
+              isPinned: isPinned,
+              onChanged: (val) {
               isPinned = val;
               isEdited = true;
-            },),
-            IconButton(icon: Icon(Icons.share), onPressed: (){
-              Share.share(t1.text + '\n' + t2.text,subject: t1.text);
+                a.value = true;
+              },
+            ),
+            IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () {
+                  Share.share(t1.text + '\n' + t2.text, subject: t1.text);
             })
           ],
         ),
@@ -110,9 +134,10 @@ class _EditNotePageState extends State<EditNotePage> {
             bool isDiscarded = false;
             if (isEdited) {
               isDiscarded = await _updateOrDiscard(
-                  context, t1.text, t2.text, currentNote,isPinned);
+                  context, t1.text, t2.text, currentNote, isPinned);
             }
             Navigator.pop(context, isDiscarded);
+            
             return false;
           },
           child: SingleChildScrollView(
@@ -126,10 +151,11 @@ class _EditNotePageState extends State<EditNotePage> {
                   Column(
                     children: [
                       TextField(
-                        onChanged: (_) {
+                        onChanged: (val) {
                           isEdited = true;
+                          a.value = true;
                         },
-                        showCursor: true,
+                        // showCursor: true,
                         autofocus: true,
                         style: const TextStyle(
                           fontSize: 25,
@@ -144,8 +170,9 @@ class _EditNotePageState extends State<EditNotePage> {
                             border: InputBorder.none),
                       ),
                       TextField(
-                        onChanged: (_) {
+                        onChanged: (val) {
                           isEdited = true;
+                          a.value = true;
                         },
                         style: const TextStyle(color: Colors.white),
                         maxLines: null,
@@ -161,6 +188,20 @@ class _EditNotePageState extends State<EditNotePage> {
                 ],
               ),
             ),
+          ),
+        ),
+        bottomSheet: Container(
+          height: 50.0,
+          // padding: EdgeInsets.only(bottom: 8.0),
+          color: kBackgroundColor,
+          child: Column(
+            children: [
+              Center(
+                child: LastEditedLabel(
+                  last_updated: currentNote.last_updated,
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -189,20 +230,18 @@ Future<bool> _updateOrDiscard(
     newNote.id = currentNote.id;
     // if isPinned is changed update the note and also update HomePage
     bool _shouldUpdateHomePage = false;
-    if(currentNote.isPinned != isPinned){
+    if (currentNote.isPinned != isPinned) {
       _shouldUpdateHomePage = true;
     }
     // update note
     await context.read(NoteProvider(currentNote.id)).update(newNote);
     
     // setPin() and unsetPin methods will update the homepage if it should be updated
-    if(_shouldUpdateHomePage && isPinned == 1){
+    if (_shouldUpdateHomePage && isPinned == 1) {
       context.read(NoteListViewModelProvider).setPin([newNote]);
-    }
-    else if(_shouldUpdateHomePage && isPinned == 0){
+    } else if (_shouldUpdateHomePage && isPinned == 0) {
       context.read(NoteListViewModelProvider).unsetPin([newNote]);
     }
-    
   }
   // if both title and content are note empty then discard the note
   else if (title.trim() == "" && content.trim() == "") {
