@@ -163,6 +163,20 @@ class _EditNotePageState extends State<EditNotePage> {
             ),
           ),
         ),
+        bottomSheet: Container(
+          height: 50.0,
+          // padding: EdgeInsets.only(bottom: 8.0),
+          color: kBackgroundColor,
+          child: Column(
+            children: [
+              Center(
+                child: LastEditedLabel(
+                  last_updated: currentNote.last_updated,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
