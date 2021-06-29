@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes/providers/providers.dart';
+import 'package:notes/business_logic/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/utils/constants.dart';
+import 'package:notes/utils/app_colors.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -20,11 +20,13 @@ class _SearchBarState extends State<SearchBar> {
       context.read(SearchTextProvider).state = t1.text.toLowerCase();
     });
   }
-@override
+
+  @override
   void dispose() {
     t1.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(

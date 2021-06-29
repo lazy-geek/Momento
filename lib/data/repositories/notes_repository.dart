@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/utils/databaseHelper.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/data/data_providers/databaseHelper.dart';
 
 enum LayoutType { List, Grid }
 
@@ -55,7 +55,7 @@ class NoteListViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-   unsetPin(List<Note> notelist) {
+  unsetPin(List<Note> notelist) {
     notelist.forEach((element) {
       Note temp = element;
       temp.isPinned = 0;

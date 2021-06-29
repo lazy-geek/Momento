@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:notes/utils/constants.dart';
+import 'package:notes/utils/app_colors.dart';
 
 Flushbar emptyNoteDiscardedFlushbar = Flushbar(
   messageText: Text('Empty note discarded'),
@@ -17,25 +17,20 @@ Flushbar emptyNoteDiscardedFlushbar = Flushbar(
   reverseAnimationCurve: Curves.easeInOut,
 );
 
-
-String getLastEdited(String lastEdited){
+String getLastEdited(String lastEdited) {
   DateTime ledited = DateTime.parse(lastEdited);
   String result = "";
   DateTime now = DateTime.now();
-  if(ledited.year < now.year){
+  if (ledited.year < now.year) {
     result = "Edited ${DateFormat().add_d().add_MMM().add_y().format(ledited)}";
-  }
-  else if(ledited.month < now.month){
+  } else if (ledited.month < now.month) {
     result = "Edited ${DateFormat().add_d().add_MMM().format(ledited)}";
-  }
-  else if((now.day - ledited.day) == 1){
+  } else if ((now.day - ledited.day) == 1) {
     result = "Edited Yesterday, ${DateFormat().add_jm().format(ledited)}";
-  }
-  else if(ledited.day < now.day){
-     result = "Edited ${DateFormat().add_d().add_MMM().format(ledited)}";
-  }
-  else if(ledited.hour < now.hour || ledited.second < now.second){
-     result = "Edited ${DateFormat().add_jm().format(ledited)}";
+  } else if (ledited.day < now.day) {
+    result = "Edited ${DateFormat().add_d().add_MMM().format(ledited)}";
+  } else if (ledited.hour < now.hour || ledited.second < now.second) {
+    result = "Edited ${DateFormat().add_jm().format(ledited)}";
   }
   return result;
 }

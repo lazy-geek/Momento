@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/utils/constants.dart';
-import 'package:notes/view_model/note_list_view_model.dart';
-import 'package:notes/widgets/contextual_appbar.dart';
-import 'package:notes/widgets/notes_grid.dart';
-import 'package:notes/widgets/notes_list.dart';
-import 'package:notes/widgets/searchBar.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/utils/app_colors.dart';
+import 'package:notes/data/repositories/notes_repository.dart';
+import 'package:notes/presentation/widgets/contextual_appbar.dart';
+import 'package:notes/presentation/widgets/notes_grid.dart';
+import 'package:notes/presentation/widgets/notes_list.dart';
+import 'package:notes/presentation/widgets/searchBar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-
-
-final GlobalKey<ScaffoldState> searchPageScaffoldkey = GlobalKey<ScaffoldState>();  
+final GlobalKey<ScaffoldState> searchPageScaffoldkey =
+    GlobalKey<ScaffoldState>();
 
 class SearchPage extends StatefulWidget {
   @override

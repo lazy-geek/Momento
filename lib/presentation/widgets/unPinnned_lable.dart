@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/providers/providers.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/business_logic/providers/providers.dart';
 
-class PinnedLable extends StatelessWidget {
-  const PinnedLable({
+class UnPinnedLable extends StatelessWidget {
+  const UnPinnedLable({
     Key key,
   }) : super(key: key);
 
@@ -13,6 +13,7 @@ class PinnedLable extends StatelessWidget {
     return Consumer(
       builder: (context, watch, child) {
         AsyncValue<List<Note>> asyncnotelist = watch(AllNotesProvider);
+
         return asyncnotelist.when(
           data: (allnotes) {
             var pinnedcount = 0,unpinnedcount = 0;
@@ -24,12 +25,12 @@ class PinnedLable extends StatelessWidget {
                 unpinnedcount++;
               }
             });
-            if (pinnedcount > 0) {
+            if ( unpinnedcount > 0 && pinnedcount >0) {
               return SliverPadding(
                 padding: EdgeInsets.only(top: 12.0, left: 20.0, bottom: 12.0),
                 sliver: SliverToBoxAdapter(
                   child: Text(
-                    'PINNED',
+                    'OTHERS',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey.shade400,
@@ -39,6 +40,9 @@ class PinnedLable extends StatelessWidget {
               );
             } else {
               return SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 5,
+                ),
               );
             }
           },

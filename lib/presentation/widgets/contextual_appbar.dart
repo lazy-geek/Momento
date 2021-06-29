@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/utils/constants.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/utils/app_colors.dart';
 
 class ContextualAppBar extends StatefulWidget {
   @override
@@ -47,48 +47,46 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
         Consumer(
           builder: (context, watch, child) {
             List<Note> selectednotes = watch(SelectedNotesProvider).notes_list;
-             var pinnedcount = 0,unpinnedcount = 0;
-          selectednotes.forEach((element) {
-            if(element.isPinned == 1) {
-              pinnedcount++;
+            var pinnedcount = 0, unpinnedcount = 0;
+            selectednotes.forEach((element) {
+              if (element.isPinned == 1) {
+                pinnedcount++;
+              } else {
+                unpinnedcount++;
+              }
+            });
+            if (pinnedcount > 0 && unpinnedcount > 0) {
+              // show a way to pin notes
+              return IconButton(
+                icon: Icon(Icons.push_pin_outlined),
+                onPressed: () {
+                  context.read(NoteListViewModelProvider).setPin(selectednotes);
+                  context.read(SelectedNotesProvider).clear();
+                },
+              );
+            } else if (pinnedcount > 0 && unpinnedcount == 0) {
+              // show a way to unpin notes
+              return IconButton(
+                icon: Icon(Icons.push_pin),
+                onPressed: () {
+                  context
+                      .read(NoteListViewModelProvider)
+                      .unsetPin(selectednotes);
+                  context.read(SelectedNotesProvider).clear();
+                },
+              );
+            } else if (pinnedcount == 0 && unpinnedcount > 0) {
+              // show a way to pin notes
+              return IconButton(
+                icon: Icon(Icons.push_pin_outlined),
+                onPressed: () {
+                  context.read(NoteListViewModelProvider).setPin(selectednotes);
+                  context.read(SelectedNotesProvider).clear();
+                },
+              );
+            } else {
+              return Container();
             }
-            else{
-              unpinnedcount++;
-            }
-          });
-          if(pinnedcount > 0 && unpinnedcount > 0){
-            // show a way to pin notes
-            return IconButton(
-              icon: Icon(Icons.push_pin_outlined),
-              onPressed: () {
-                context.read(NoteListViewModelProvider).setPin(selectednotes);
-                context.read(SelectedNotesProvider).clear();
-              },
-            );
-          }
-          else if(pinnedcount > 0 && unpinnedcount == 0){
-            // show a way to unpin notes
-            return IconButton(
-              icon: Icon(Icons.push_pin),
-              onPressed: () {
-                context.read(NoteListViewModelProvider).unsetPin(selectednotes);
-                context.read(SelectedNotesProvider).clear();
-              },
-            );
-          }
-          else if(pinnedcount == 0 && unpinnedcount > 0){
-            // show a way to pin notes
-            return IconButton(
-              icon: Icon(Icons.push_pin_outlined),
-              onPressed: () {
-                context.read(NoteListViewModelProvider).setPin(selectednotes);
-                context.read(SelectedNotesProvider).clear();
-              },
-            );
-          }
-          else{
-            return Container();
-          }
           },
         ),
         IconButton(

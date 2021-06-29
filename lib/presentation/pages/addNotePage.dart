@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/utils/constants.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/utils/app_colors.dart';
 
 class AddNotePage extends StatefulWidget {
   @override

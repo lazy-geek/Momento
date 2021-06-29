@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:notes/models/note.dart';
+import 'package:notes/data/models/note.dart';
 
 
 // stores notes which are currrently selected and notifies it's listners when ever selection changes

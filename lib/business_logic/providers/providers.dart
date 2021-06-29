@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/models/search_result.dart';
-import 'package:notes/view_model/note_list_view_model.dart';
-import 'package:notes/models/selected_notes.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/data/models/search_result.dart';
+import 'package:notes/data/repositories/notes_repository.dart';
+import 'package:notes/data/models/selected_notes.dart';
 
 // The [NoteListViewModelProvider] provides an instance of [NoteListViewModel] class.
 final NoteListViewModelProvider =

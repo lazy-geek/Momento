@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/widgets/note_card.dart';
-import 'package:notes/providers/providers.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/presentation/widgets/note_card.dart';
+import 'package:notes/business_logic/providers/providers.dart';
 
 class NotesList extends StatelessWidget {
   final String page;

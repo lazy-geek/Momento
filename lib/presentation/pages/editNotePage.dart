@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/utils/constants.dart';
-import 'package:notes/widgets/last_edited_label.dart';
-import 'package:notes/widgets/note_pin.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/utils/app_colors.dart';
+import 'package:notes/presentation/widgets/last_edited_label.dart';
+import 'package:notes/presentation/widgets/note_pin.dart';
 import 'package:share_plus/share_plus.dart';
 
 class EditNotePage extends StatefulWidget {
@@ -35,19 +35,23 @@ class _EditNotePageState extends State<EditNotePage> {
 
     // make sure to add listeners after the intial value has been set
     // because we don't to notify listeners when the initial value is set
-    
+
     t1.text = currentNote.title;
     t1.addListener(() {
       // this fixes the issue where all listeners were notified When TextField was focused
-      t1.value = TextEditingValue(text: t1.text,selection: TextSelection.collapsed(offset: t1.text.length));
+      t1.value = TextEditingValue(
+          text: t1.text,
+          selection: TextSelection.collapsed(offset: t1.text.length));
     });
-    
+
     t2.text = currentNote.content;
-     t2.addListener(() {
-       // this fixes the issue where all listeners were notified When TextField was focused
-      t2.value = TextEditingValue(text: t2.text,selection: TextSelection.collapsed(offset: t2.text.length));
+    t2.addListener(() {
+      // this fixes the issue where all listeners were notified When TextField was focused
+      t2.value = TextEditingValue(
+          text: t2.text,
+          selection: TextSelection.collapsed(offset: t2.text.length));
     });
-    
+
     isEdited = a.value;
   }
 
@@ -90,7 +94,6 @@ class _EditNotePageState extends State<EditNotePage> {
                       context, t1.text, t2.text, currentNote, isPinned);
                 }
                 Navigator.pop(context, isDiscarded);
-                
               }),
           actions: [
             // Consumer(
@@ -117,8 +120,8 @@ class _EditNotePageState extends State<EditNotePage> {
             NotePin(
               isPinned: isPinned,
               onChanged: (val) {
-              isPinned = val;
-              isEdited = true;
+                isPinned = val;
+                isEdited = true;
                 a.value = true;
               },
             ),
@@ -126,7 +129,7 @@ class _EditNotePageState extends State<EditNotePage> {
                 icon: Icon(Icons.share),
                 onPressed: () {
                   Share.share(t1.text + '\n' + t2.text, subject: t1.text);
-            })
+                })
           ],
         ),
         body: WillPopScope(
@@ -137,7 +140,7 @@ class _EditNotePageState extends State<EditNotePage> {
                   context, t1.text, t2.text, currentNote, isPinned);
             }
             Navigator.pop(context, isDiscarded);
-            
+
             return false;
           },
           child: SingleChildScrollView(
@@ -235,7 +238,7 @@ Future<bool> _updateOrDiscard(
     }
     // update note
     await context.read(NoteProvider(currentNote.id)).update(newNote);
-    
+
     // setPin() and unsetPin methods will update the homepage if it should be updated
     if (_shouldUpdateHomePage && isPinned == 1) {
       context.read(NoteListViewModelProvider).setPin([newNote]);

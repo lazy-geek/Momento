@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/models/note.dart';
-import 'package:notes/pages/editNotePage.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/utils/constants.dart';
+import 'package:notes/data/models/note.dart';
+import 'package:notes/presentation/pages/editNotePage.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/presentation/pages/searchPage.dart';
+import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
-import 'package:notes/view_model/note_list_view_model.dart';
-import 'package:notes/pages/searchPage.dart';
-import 'package:notes/pages/homePage.dart';
+import 'package:notes/data/repositories/notes_repository.dart';
+import 'package:notes/presentation/pages/homePage.dart';
 
 class NoteCard extends StatefulWidget {
   final int id;
@@ -98,12 +98,12 @@ class _NoteCardState extends State<NoteCard> {
                         ),
                       );
                       if (shouldShowSnackBar == true) {
-                        if(widget.page == "search"){
-                          emptyNoteDiscardedFlushbar..show(searchPageScaffoldkey.currentContext);
-                        }
-                        else{
-
-                        emptyNoteDiscardedFlushbar..show(homePageScaffoldkey.currentContext);
+                        if (widget.page == "search") {
+                          emptyNoteDiscardedFlushbar
+                            ..show(searchPageScaffoldkey.currentContext);
+                        } else {
+                          emptyNoteDiscardedFlushbar
+                            ..show(homePageScaffoldkey.currentContext);
                         }
                       }
                     }

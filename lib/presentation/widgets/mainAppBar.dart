@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/pages/searchPage.dart';
-import 'package:notes/providers/providers.dart';
-import 'package:notes/view_model/note_list_view_model.dart';
+import 'package:notes/presentation/pages/searchPage.dart';
+import 'package:notes/business_logic/providers/providers.dart';
+import 'package:notes/data/repositories/notes_repository.dart';
 
 class MainAppBar extends StatefulWidget {
   @override
@@ -40,7 +40,7 @@ class _MainAppBarState extends State<MainAppBar> {
             child: Ink(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color:  Color(0xFF303440),
+                color: Color(0xFF303440),
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10.0),
@@ -70,10 +70,9 @@ class _MainAppBarState extends State<MainAppBar> {
                             child: Text(
                               'Search your notes',
                               style: TextStyle(
-                                fontFamily: 'Open Sans',
-                                  fontSize: 18.0, color: Colors.grey.shade400),
-                              
-                                  
+                                  fontFamily: 'Open Sans',
+                                  fontSize: 18.0,
+                                  color: Colors.grey.shade400),
                             ),
                           ),
                         ),
@@ -85,8 +84,10 @@ class _MainAppBarState extends State<MainAppBar> {
                           LayoutType layout = viewModel.layout;
                           if (layout == LayoutType.Grid) {
                             return IconButton(
-                              icon: Icon(Icons.view_agenda_outlined,color: Colors.grey.shade400,),
-
+                              icon: Icon(
+                                Icons.view_agenda_outlined,
+                                color: Colors.grey.shade400,
+                              ),
                               onPressed: () {
                                 viewModel.toggleView();
                               },

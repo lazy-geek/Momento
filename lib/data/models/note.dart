@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:notes/utils/databaseHelper.dart';
+import 'package:notes/data/data_providers/databaseHelper.dart';
 
 class Note extends ChangeNotifier {
   int id;
