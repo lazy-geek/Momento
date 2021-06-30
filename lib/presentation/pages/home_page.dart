@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/presentation/pages/add_note_page.dart';
+import 'package:notes/presentation/widgets/custom_drawer.dart';
 import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       key: homePageScaffoldkey,
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -48,7 +50,11 @@ class HomePage extends StatelessWidget {
 //                    duration: Duration(milliseconds: 200));
                 return SliverStack(
                   children: [
-                    SliverOffstage(offstage: isSelected, sliver: MainAppBar()),
+                    SliverOffstage(
+                        offstage: isSelected,
+                        sliver: MainAppBar(onClick: () {
+                          homePageScaffoldkey.currentState.openDrawer();
+                        })),
                     if (isSelected)
                       MultiSliver(children: [
                         ContextualAppBar(),
@@ -133,3 +139,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
