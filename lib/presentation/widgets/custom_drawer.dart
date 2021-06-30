@@ -29,7 +29,7 @@ class CustomDrawer extends StatelessWidget {
                   fontFamily: 'Open Sans',
                   letterSpacing: 0.8,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFe57373),
+                  color: kAccentColor,
                 ),
               ),
             ),
@@ -69,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
               trailing: CupertinoSwitch(
                 value: true,
                 onChanged: (val) {},
-                activeColor: Color(0xFFe57373),
+                activeColor: kAccentColor,
               ),
             ),
             // SizedBox(
@@ -146,7 +146,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               trailing: CircleAvatar(
-                backgroundColor: Color(0xFFe57373),
+                backgroundColor: kAccentColor,
               ),
             ),
           ],

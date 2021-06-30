@@ -26,3 +26,5 @@ const Color kSnackBarColor = Color(0xFF363c49);
 
 // const Color kFabColor = Color(0xFF8aacc8);
 const Color kFabColor = Color(0xFF363c49);
+
+const Color kAccentColor =  Color(0xFFe57373);
