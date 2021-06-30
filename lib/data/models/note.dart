@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:notes/data/data_providers/databaseHelper.dart';
+import 'package:notes/data/services/database_service.dart';
 
 class Note extends ChangeNotifier {
   int id;
@@ -42,7 +42,7 @@ class Note extends ChangeNotifier {
   }
 
   Future<int> update(Note note) async {
-    var result = await DatabaseHelper.instance.updateNote(note);
+    var result = await DatabaseService.instance.updateNote(note);
     this.content = note.content;
     this.date_created = note.date_created;
     this.id = note.id;

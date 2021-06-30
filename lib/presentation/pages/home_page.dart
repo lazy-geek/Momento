@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/presentation/pages/addNotePage.dart';
+import 'package:notes/presentation/pages/add_note_page.dart';
 import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
             // pinned notes
             Consumer(
               builder: (context, watch, child) {
-                LayoutType layout = watch(NoteListViewModelProvider).layout;
+                LayoutType layout = watch(NotesRepositoryProvider).layout;
                 return layout == LayoutType.Grid
                     ? NotesGrid(
                         page: 'home',
@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
             // unpinned notes
             Consumer(
               builder: (context, watch, child) {
-                LayoutType layout = watch(NoteListViewModelProvider).layout;
+                LayoutType layout = watch(NotesRepositoryProvider).layout;
                 return layout == LayoutType.Grid
                     ? NotesGrid(
                         page: 'home',

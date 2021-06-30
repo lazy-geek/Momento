@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/presentation/pages/searchPage.dart';
+import 'package:notes/presentation/pages/search_page.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 
@@ -79,7 +79,7 @@ class _MainAppBarState extends State<MainAppBar> {
                       ),
                       Consumer(
                         builder: (context, watch, child) {
-                          final viewModel = watch(NoteListViewModelProvider);
+                          final viewModel = watch(NotesRepositoryProvider);
                           // layout variable is used to determine currently slected layout
                           LayoutType layout = viewModel.layout;
                           if (layout == LayoutType.Grid) {

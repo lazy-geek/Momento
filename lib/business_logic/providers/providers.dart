@@ -1,22 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/data/models/search_result.dart';
+import 'package:notes/business_logic/providers/search_result.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
-import 'package:notes/data/models/selected_notes.dart';
+import 'package:notes/business_logic/providers/selected_notes.dart';
 
-// The [NoteListViewModelProvider] provides an instance of [NoteListViewModel] class.
-final NoteListViewModelProvider =
-    ChangeNotifierProvider<NoteListViewModel>((ref) => NoteListViewModel());
+// The [NotesRepositoryProvider] provides an instance of [NoteListViewModel] class.
+final NotesRepositoryProvider =
+    ChangeNotifierProvider<NotesRepository>((ref) => NotesRepository());
 
 // The [AllNotesProvider] fetches Notes List from [NoteListViewModel] class
-// using the [NoteListViewModelProvider] and provides the Notes List.
+// using the [NotesRepositoryProvider] and provides the Notes List.
 // note: we use [FutureProvider] becouse =>
 // 1. we need to await for getAllNotes() to be completed.
 // 2. we get benifit of using .when() with [AsyncValue] , so we don't need [FutureBuilder]
 final AllNotesProvider = FutureProvider<List<Note>>((ref) async {
-  await ref.watch(NoteListViewModelProvider).getAllNotes();
-  return ref.watch(NoteListViewModelProvider).notes_list ?? [];
+  await ref.watch(NotesRepositoryProvider).getAllNotes();
+  return ref.watch(NotesRepositoryProvider).notes_list ?? [];
 });
 
 final PinnedNotesProvider = FutureProvider<List<Note>>((ref) async {

@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DatabaseHelper {
+class DatabaseService {
   static const String tableName = "notes_tb";
   static const String columnId = "id";
   static const String columnTitle = "title";
@@ -13,8 +13,8 @@ class DatabaseHelper {
   static const String columnDateCreated = "date_created";
   static const String columnLastUpdated = "last_updated";
 
-  DatabaseHelper._();
-  static final DatabaseHelper instance = new DatabaseHelper._();
+  DatabaseService._();
+  static final DatabaseService instance = new DatabaseService._();
   static Database _database;
 
   Future<Database> get database async {
@@ -28,7 +28,8 @@ class DatabaseHelper {
   Future<Database> initDb() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, "notes.db");
-    Database dbCreated = await openDatabase(path, version: 1, onCreate: _onCreate);
+    Database dbCreated =
+        await openDatabase(path, version: 1, onCreate: _onCreate);
     return dbCreated;
   }
 
@@ -51,26 +52,27 @@ class DatabaseHelper {
   }
 
   Future<List<Note>> getAllNotes() async {
-     var db = await database;
-     var result = await db.query("$tableName",orderBy: columnDateCreated+ ' DESC',);
-     if(result.isEmpty) return null;
-     return result.map((row) =>
-       Note.fromMap(row)
-     ).toList();
+    var db = await database;
+    var result = await db.query(
+      "$tableName",
+      orderBy: columnDateCreated + ' DESC',
+    );
+    if (result.isEmpty) return null;
+    return result.map((row) => Note.fromMap(row)).toList();
   }
-
 
   Future<Note> getNote(int noteId) async {
     var db = await database;
-    var item = await db.query("$tableName",where: "$columnId = ?",whereArgs: [noteId]);
+    var item = await db
+        .query("$tableName", where: "$columnId = ?", whereArgs: [noteId]);
     if (item.length == 0) return null;
     return new Note.fromMap(item.first);
   }
 
   Future<int> deleteNote(int noteid) async {
-   var db = await database;
-    int rowsDeleted =
-        await db.delete("$tableName", where: "$columnId = ?", whereArgs: [noteid]);
+    var db = await database;
+    int rowsDeleted = await db
+        .delete("$tableName", where: "$columnId = ?", whereArgs: [noteid]);
     return rowsDeleted;
   }
 

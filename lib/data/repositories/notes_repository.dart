@@ -1,25 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/data/data_providers/databaseHelper.dart';
+import 'package:notes/data/services/database_service.dart';
 
 enum LayoutType { List, Grid }
 
-class NoteListViewModel extends ChangeNotifier {
+class NotesRepository extends ChangeNotifier {
   List<Note> notes_list;
   LayoutType layout = LayoutType.Grid;
-  NoteListViewModel() {
+  NotesRepository() {
     this.notes_list = [];
   }
 
   Future<int> addNote(Note note) async {
-    var result = await DatabaseHelper.instance.addNote(note);
+    var result = await DatabaseService.instance.addNote(note);
     await getAllNotes();
     // notifyListeners();
     return result;
   }
 
   Future<void> getAllNotes() async {
-    notes_list = await DatabaseHelper.instance.getAllNotes();
+    notes_list = await DatabaseService.instance.getAllNotes();
     notifyListeners(); //  if(notes_list == null) return [];
   }
 
@@ -32,7 +32,7 @@ class NoteListViewModel extends ChangeNotifier {
   }
 
   Future<int> deleteNote(int noteid) async {
-    var result = await DatabaseHelper.instance.deleteNote(noteid);
+    var result = await DatabaseService.instance.deleteNote(noteid);
     //await getAllNotes();
     // notifyListeners();
     return result;
@@ -40,7 +40,7 @@ class NoteListViewModel extends ChangeNotifier {
 
   Future<void> deleteMultipleNotes(List<int> noteids) async {
     noteids.forEach((element) async {
-      await DatabaseHelper.instance.deleteNote(element);
+      await DatabaseService.instance.deleteNote(element);
     });
     await getAllNotes();
     // notifyListeners();

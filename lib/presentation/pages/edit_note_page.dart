@@ -241,15 +241,15 @@ Future<bool> _updateOrDiscard(
 
     // setPin() and unsetPin methods will update the homepage if it should be updated
     if (_shouldUpdateHomePage && isPinned == 1) {
-      context.read(NoteListViewModelProvider).setPin([newNote]);
+      context.read(NotesRepositoryProvider).setPin([newNote]);
     } else if (_shouldUpdateHomePage && isPinned == 0) {
-      context.read(NoteListViewModelProvider).unsetPin([newNote]);
+      context.read(NotesRepositoryProvider).unsetPin([newNote]);
     }
   }
   // if both title and content are note empty then discard the note
   else if (title.trim() == "" && content.trim() == "") {
     await context
-        .read(NoteListViewModelProvider)
+        .read(NotesRepositoryProvider)
         .deleteMultipleNotes([currentNote.id]);
     isDiscarded = true;
   }

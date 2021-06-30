@@ -97,7 +97,7 @@ Future<bool> _addOrDiscard(
   bool isDiscarded = false;
   // if only title or content is note empty then update the note
   if (title.trim() != "" || content.trim() != "") {
-    await context.read(NoteListViewModelProvider).addNote(Note.fromMap({
+    await context.read(NotesRepositoryProvider).addNote(Note.fromMap({
           'title': '$title',
           'content': '$content',
           'isPinned': 0,

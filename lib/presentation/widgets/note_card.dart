@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/presentation/pages/editNotePage.dart';
+import 'package:notes/presentation/pages/edit_note_page.dart';
 import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/presentation/pages/searchPage.dart';
+import 'package:notes/presentation/pages/search_page.dart';
 import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
-import 'package:notes/presentation/pages/homePage.dart';
+import 'package:notes/presentation/pages/home_page.dart';
 
 class NoteCard extends StatefulWidget {
   final int id;
@@ -30,7 +30,7 @@ class _NoteCardState extends State<NoteCard> {
       builder: (context, watch, child) {
         // print('inside note card at index ${widget.index}');
         Note note = watch(NoteProvider(widget.id));
-        final viewModel = watch(NoteListViewModelProvider);
+        final viewModel = watch(NotesRepositoryProvider);
         LayoutType layout = viewModel.layout;
 
         final selectednotes = watch(SelectedNotesProvider);

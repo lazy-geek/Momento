@@ -74,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
               builder: (context, watch, child) {
                 String txt = watch(SearchTextProvider).state;
                 if (txt.isNotEmpty) {
-                  return context.read(NoteListViewModelProvider).layout ==
+                  return context.read(NotesRepositoryProvider).layout ==
                           LayoutType.Grid
                       ? NotesGrid(
                           page: 'search',

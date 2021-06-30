@@ -60,7 +60,7 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
               return IconButton(
                 icon: Icon(Icons.push_pin_outlined),
                 onPressed: () {
-                  context.read(NoteListViewModelProvider).setPin(selectednotes);
+                  context.read(NotesRepositoryProvider).setPin(selectednotes);
                   context.read(SelectedNotesProvider).clear();
                 },
               );
@@ -69,9 +69,7 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
               return IconButton(
                 icon: Icon(Icons.push_pin),
                 onPressed: () {
-                  context
-                      .read(NoteListViewModelProvider)
-                      .unsetPin(selectednotes);
+                  context.read(NotesRepositoryProvider).unsetPin(selectednotes);
                   context.read(SelectedNotesProvider).clear();
                 },
               );
@@ -80,7 +78,7 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
               return IconButton(
                 icon: Icon(Icons.push_pin_outlined),
                 onPressed: () {
-                  context.read(NoteListViewModelProvider).setPin(selectednotes);
+                  context.read(NotesRepositoryProvider).setPin(selectednotes);
                   context.read(SelectedNotesProvider).clear();
                 },
               );
@@ -92,7 +90,7 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
         IconButton(
           icon: Icon(Icons.delete),
           onPressed: () {
-            context.read(NoteListViewModelProvider).deleteMultipleNotes(context
+            context.read(NotesRepositoryProvider).deleteMultipleNotes(context
                 .read(SelectedNotesProvider)
                 .notes_list
                 .map((e) => e.id)
