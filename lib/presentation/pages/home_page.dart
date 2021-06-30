@@ -10,8 +10,8 @@ import 'package:notes/presentation/widgets/fab.dart';
 import 'package:notes/presentation/widgets/notes_grid.dart';
 import 'package:notes/presentation/widgets/notes_list.dart';
 import 'package:notes/presentation/widgets/mainAppBar.dart';
-import 'package:notes/presentation/widgets/pinnned_lable.dart';
-import 'package:notes/presentation/widgets/unPinnned_lable.dart';
+import 'package:notes/presentation/widgets/pinnned_label.dart';
+import 'package:notes/presentation/widgets/unPinnned_label.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
