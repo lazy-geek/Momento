@@ -5,6 +5,8 @@ import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 
 class MainAppBar extends StatefulWidget {
+  VoidCallback onClick;
+  MainAppBar({this.onClick});
   @override
   _MainAppBarState createState() => _MainAppBarState();
 }
@@ -59,7 +61,9 @@ class _MainAppBarState extends State<MainAppBar> {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.menu),
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.onClick();
+                        },
                       ),
                       Expanded(
                         child: Hero(
