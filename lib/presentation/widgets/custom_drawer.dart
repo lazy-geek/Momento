@@ -41,8 +41,11 @@ class CustomDrawer extends StatelessWidget {
             // },),
             SvgPicture.asset(
               'assets/a.svg',
-              semanticsLabel: 'Acme Logo',
+              semanticsLabel: 'Illustration',
               width: 400,
+              placeholderBuilder: (BuildContext context){
+                return Container(width:400,height: 270,);
+              },
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
