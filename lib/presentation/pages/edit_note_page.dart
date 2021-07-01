@@ -30,29 +30,21 @@ class _EditNotePageState extends State<EditNotePage> {
     currentNote = context.read(NoteProvider(widget.id));
     isPinned = currentNote.isPinned;
 
-    t1 = TextEditingController();
-    t2 = TextEditingController();
-
-    // make sure to add listeners after the intial value has been set
-    // because we don't to notify listeners when the initial value is set
-
-    t1.text = currentNote.title;
+    t1 = TextEditingController(text: currentNote.title);
+    t2 = TextEditingController(text: currentNote.content);
+    isEdited= false;
     t1.addListener(() {
-      // this fixes the issue where all listeners were notified When TextField was focused
-      t1.value = TextEditingValue(
-          text: t1.text,
-          selection: TextSelection.collapsed(offset: t1.text.length));
+      if (t1.text.toLowerCase() != currentNote.title.toLowerCase()) {
+        isEdited = true;
+        a.value = true;
+      }
     });
-
-    t2.text = currentNote.content;
     t2.addListener(() {
-      // this fixes the issue where all listeners were notified When TextField was focused
-      t2.value = TextEditingValue(
-          text: t2.text,
-          selection: TextSelection.collapsed(offset: t2.text.length));
+       if (t2.text.toLowerCase() != currentNote.title.toLowerCase()) {
+        isEdited = true;
+        a.value = true;
+      }
     });
-
-    isEdited = a.value;
   }
 
   @override
@@ -154,10 +146,6 @@ class _EditNotePageState extends State<EditNotePage> {
                   Column(
                     children: [
                       TextField(
-                        onChanged: (val) {
-                          isEdited = true;
-                          a.value = true;
-                        },
                         // showCursor: true,
                         autofocus: true,
                         style: const TextStyle(
@@ -173,10 +161,6 @@ class _EditNotePageState extends State<EditNotePage> {
                             border: InputBorder.none),
                       ),
                       TextField(
-                        onChanged: (val) {
-                          isEdited = true;
-                          a.value = true;
-                        },
                         style: const TextStyle(color: Colors.white),
                         maxLines: null,
                         controller: t2,
