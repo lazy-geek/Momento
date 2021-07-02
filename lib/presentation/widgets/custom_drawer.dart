@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notes/utils/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -36,16 +35,12 @@ class CustomDrawer extends StatelessWidget {
             // SizedBox(
             //   height: 25.0,
             // ),
-            // Image.network('https://image.freepik.com/free-vector/designer-girl-concept-illustration_114360-4455.jpg',height: 300,width:double.infinity,colorBlendMode: BlendMode.color,scale: 1.0,repeat: ImageRepeat.noRepeat,errorBuilder: (context, error, stackTrace) {
-            //   print(error.toString());
-            // },),
-            SvgPicture.asset(
-              'assets/a.svg',
-              semanticsLabel: 'Illustration',
+            Image.asset(
+              'assets/light-illustration.png',
+              semanticLabel: 'Illustration',
               width: 400,
-              placeholderBuilder: (BuildContext context){
-                return Container(width:400,height: 270,);
-              },
+              scale: 1.0,
+              repeat: ImageRepeat.noRepeat,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
