@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/utils/app_colors.dart';
 import 'package:notes/presentation/widgets/last_edited_label.dart';
 import 'package:notes/presentation/widgets/note_pin.dart';
 import 'package:share_plus/share_plus.dart';
@@ -74,9 +73,11 @@ class _EditNotePageState extends State<EditNotePage> {
       //   );
       // },
       child: Scaffold(
-        backgroundColor: kBackgroundColor,
+        // backgroundColor: kBackgroundColor,
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          backgroundColor: kBackgroundColor,
+          // backgroundColor: kBackgroundColor,
+          backgroundColor: Theme.of(context).backgroundColor,
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () async {
@@ -148,9 +149,9 @@ class _EditNotePageState extends State<EditNotePage> {
                       TextField(
                         // showCursor: true,
                         autofocus: true,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 25,
-                          color: Colors.white,
+                          color: Theme.of(context).textTheme.bodyText1.color,
                         ),
                         controller: t1,
                         maxLines: null,
@@ -161,7 +162,7 @@ class _EditNotePageState extends State<EditNotePage> {
                             border: InputBorder.none),
                       ),
                       TextField(
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(color:Theme.of(context).textTheme.bodyText1.color),
                         maxLines: null,
                         controller: t2,
                         decoration: InputDecoration(
@@ -180,7 +181,8 @@ class _EditNotePageState extends State<EditNotePage> {
         bottomSheet: Container(
           height: 50.0,
           // padding: EdgeInsets.only(bottom: 8.0),
-          color: kBackgroundColor,
+          // color: kBackgroundColor,
+          color: Theme.of(context).backgroundColor,
           child: Column(
             children: [
               Center(

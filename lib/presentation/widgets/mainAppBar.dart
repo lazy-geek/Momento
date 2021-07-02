@@ -5,7 +5,7 @@ import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 
 class MainAppBar extends StatefulWidget {
-  VoidCallback onClick;
+  final VoidCallback onClick;
   MainAppBar({this.onClick});
   @override
   _MainAppBarState createState() => _MainAppBarState();
@@ -41,9 +41,10 @@ class _MainAppBarState extends State<MainAppBar> {
             ),
             child: Ink(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFF303440),
-              ),
+                  borderRadius: BorderRadius.circular(10.0),
+                  // color: Color(0xFF303440),
+                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10.0),
                 onTap: () {
@@ -60,7 +61,10 @@ class _MainAppBarState extends State<MainAppBar> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.menu),
+                        icon: Icon(
+                          Icons.menu,
+                          color: Theme.of(context).appBarTheme.iconTheme.color,
+                        ),
                         onPressed: () {
                           widget.onClick();
                         },
@@ -76,7 +80,9 @@ class _MainAppBarState extends State<MainAppBar> {
                               style: TextStyle(
                                   fontFamily: 'Open Sans',
                                   fontSize: 18.0,
-                                  color: Colors.grey.shade400),
+                                  // color: Colors.grey.shade400,
+                                  color: Theme.of(context).appBarTheme.titleTextStyle.color
+                                  ),
                             ),
                           ),
                         ),
@@ -90,7 +96,8 @@ class _MainAppBarState extends State<MainAppBar> {
                             return IconButton(
                               icon: Icon(
                                 Icons.view_agenda_outlined,
-                                color: Colors.grey.shade400,
+                                // color: Colors.grey.shade400,
+                                color: Theme.of(context).appBarTheme.actionsIconTheme.color,
                               ),
                               onPressed: () {
                                 viewModel.toggleView();
@@ -102,7 +109,8 @@ class _MainAppBarState extends State<MainAppBar> {
                               // iconSize: 30.0,
                               icon: Icon(
                                 Icons.grid_view,
-                                color: Colors.grey.shade400,
+                                // color: Colors.grey.shade400,
+                                color: Theme.of(context).appBarTheme.actionsIconTheme.color,
                               ),
                               onPressed: () {
                                 viewModel.toggleView();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/utils/app_colors.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -36,7 +35,10 @@ class _SearchBarState extends State<SearchBar> {
             String txt = watch(SearchTextProvider).state;
             if (txt.isNotEmpty) {
               return IconButton(
-                icon: const Icon(Icons.clear),
+                icon: Icon(
+                  Icons.clear,
+                  color: Theme.of(context).appBarTheme.actionsIconTheme.color,
+                ),
                 onPressed: () {
                   t1.clear();
                 },
@@ -47,7 +49,8 @@ class _SearchBarState extends State<SearchBar> {
           },
         )
       ],
-      backgroundColor: kAppBarColor,
+      // backgroundColor: kAppBarColor,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       forceElevated: true,
       title: Hero(
         tag: 'searchbar',
@@ -59,15 +62,16 @@ class _SearchBarState extends State<SearchBar> {
             controller: t1,
             toolbarOptions: ToolbarOptions(
                 copy: true, cut: true, paste: true, selectAll: true),
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1.color,
               fontSize: 18.0,
             ),
             decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 hintText: 'Search your notes',
                 hintStyle: TextStyle(
-                  color: Colors.grey.shade400,
+                  // color: Colors.grey.shade400,
+                  color: Theme.of(context).appBarTheme.titleTextStyle.color,
                   fontFamily: 'Open Sans',
                 ),
                 border: InputBorder.none),

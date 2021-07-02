@@ -8,7 +8,7 @@ Flushbar emptyNoteDiscardedFlushbar = Flushbar(
   flushbarStyle: FlushbarStyle.FLOATING,
   dismissDirection: FlushbarDismissDirection.HORIZONTAL,
   margin: EdgeInsets.only(bottom: 40.0, left: 15.0, right: 15.0),
-  backgroundColor: kSnackBarColor,
+  backgroundColor: kSnackBarColorDark,
   borderRadius: BorderRadius.circular(5.0),
   leftBarIndicatorColor: Colors.redAccent,
   duration: Duration(seconds: 2),

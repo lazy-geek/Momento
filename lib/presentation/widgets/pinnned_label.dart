@@ -32,7 +32,7 @@ class PinnedLable extends StatelessWidget {
                     'PINNED',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey.shade400,
+                      color: Theme.of(context).textTheme.overline.color,
                     ),
                   ),
                 ),

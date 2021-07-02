@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/utils/app_colors.dart';
 
 class AddNotePage extends StatefulWidget {
   @override
@@ -30,11 +29,12 @@ class _AddNotePageState extends State<AddNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('Add note'),
         centerTitle: true,
-        backgroundColor: kBackgroundColor,
+        // backgroundColor: kBackgroundColor,
+        backgroundColor: Theme.of(context).backgroundColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {
@@ -61,23 +61,25 @@ class _AddNotePageState extends State<AddNotePage> {
                 ),
                 TextField(
                   autofocus: true,
-                  style: const TextStyle(fontSize: 25, color: Colors.white),
+                  style: TextStyle(fontSize: 25, color: Theme.of(context).textTheme.bodyText1.color),
                   controller: t1,
                   maxLines: null,
                   decoration: InputDecoration(
                       focusedBorder: InputBorder.none,
                       hintText: 'Title',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
+                      // hintStyle: TextStyle(color: Colors.grey.shade400),
+                     hintStyle: TextStyle(color: Theme.of(context).textTheme.headline3.color),
                       border: InputBorder.none),
                 ),
                 TextField(
                   maxLines: null,
                   controller: t2,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
                   decoration: InputDecoration(
                       focusedBorder: InputBorder.none,
                       hintText: 'Type Something',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
+                      // hintStyle: TextStyle(color: Colors.grey.shade400),
+                       hintStyle: TextStyle(color: Theme.of(context).textTheme.headline3.color),
                       border: InputBorder.none),
                 )
               ],

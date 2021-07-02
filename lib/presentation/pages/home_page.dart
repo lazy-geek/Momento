@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/presentation/pages/add_note_page.dart';
 import 'package:notes/presentation/widgets/custom_drawer.dart';
-import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 import 'package:notes/presentation/widgets/contextual_appbar.dart';
@@ -24,7 +23,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: CustomDrawer(),
       key: homePageScaffoldkey,
-      backgroundColor: kBackgroundColor,
+      // backgroundColor: kBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: CustomScrollView(
 //          physics: BouncingScrollPhysics(),

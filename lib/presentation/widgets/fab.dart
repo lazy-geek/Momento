@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:notes/utils/app_colors.dart';
+import 'package:notes/utils/themes.dart';
 
 class Fab extends StatelessWidget {
   final VoidCallback onPressed;
@@ -12,9 +12,9 @@ class Fab extends StatelessWidget {
       tooltip: 'Add Note',
       child: Icon(
         Icons.add,
-        color: Colors.white,
+        color: Theme.of(context).iconTheme.color,
       ),
-      backgroundColor: kFabColor,
+      backgroundColor: Theme.of(context).fabBackgroundColor,
       elevation: 8.0,
     );
   }

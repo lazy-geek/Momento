@@ -4,7 +4,6 @@ import 'package:notes/data/models/note.dart';
 import 'package:notes/presentation/pages/edit_note_page.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/presentation/pages/search_page.dart';
-import 'package:notes/utils/app_colors.dart';
 import 'package:notes/utils/helper_functions.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 import 'package:notes/presentation/pages/home_page.dart';
@@ -65,14 +64,17 @@ class _NoteCardState extends State<NoteCard> {
                         // color: Color(0xFF323d4e),
 
                         // color: Color(0xFF343b4b),
-                        color: Color(0xFF3f475a),
+
+                        // color: Color(0xFF3f475a),
+                        color: Theme.of(context).cardColor,
                       ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Ink(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: kCardColor,
+                  // color: kCardColor,
+                  color: Theme.of(context).backgroundColor
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10.0),
@@ -133,7 +135,7 @@ class _NoteCardState extends State<NoteCard> {
                                     "${note.title}",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
                                         // fontFamily: 'Open Sans',
                                         // fontFamily: 'Roboto Mono',
                                         // fontWeight: FontWeight.w500,
@@ -141,7 +143,7 @@ class _NoteCardState extends State<NoteCard> {
                                         fontFamily: 'Roboto',
                                         // fontFamily: 'Noto Sans',
                                         fontSize: 18.0,
-                                        color: Colors.white),
+                                        color: Theme.of(context).textTheme.bodyText1.color),
                                   ),
                                 )
                               : Container(
@@ -160,10 +162,11 @@ class _NoteCardState extends State<NoteCard> {
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         // fontFamily: 'Open Sans',
-                                        fontFamily: 'Roboto'
+                                        fontFamily: 'Roboto',
                                         // fontFamily: 'Roboto Mono',
                                         // wordSpacing: -5,
                                         // fontFamily: 'Nato Sans'
+                                        color: Theme.of(context).textTheme.headline2.color,
                                         ),
                                   ),
                                 )

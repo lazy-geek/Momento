@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notes/utils/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -10,7 +9,8 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kBackgroundColor,
+      // color: kBackgroundColor,
+      color: Theme.of(context).backgroundColor,
       width: 340,
       height: double.infinity,
       child: SingleChildScrollView(
@@ -28,7 +28,8 @@ class CustomDrawer extends StatelessWidget {
                   fontFamily: 'Open Sans',
                   letterSpacing: 0.8,
                   fontWeight: FontWeight.bold,
-                  color: kAccentColor,
+                  // color: kAccentColor,
+                  color: Theme.of(context).accentColor
                 ),
               ),
             ),
@@ -51,7 +52,8 @@ class CustomDrawer extends StatelessWidget {
                   fontFamily: 'Open Sans',
                   fontSize: 24.0,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xEEFFFFFF),
+                  // color: Color(0xEEFFFFFF),
+                  color: Theme.of(context).textTheme.bodyText2.color
                 ),
               ),
             ),
@@ -61,13 +63,15 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Open Sans',
                   fontSize: 20.0,
-                  color: Color(0xEEFFFFFF),
+                  // color: Color(0xEEFFFFFF),
+                  color: Theme.of(context).textTheme.bodyText2.color
                 ),
               ),
               trailing: CupertinoSwitch(
                 value: true,
                 onChanged: (val) {},
-                activeColor: kAccentColor,
+                // activeColor: kAccentColor,
+                activeColor: Theme.of(context).accentColor
               ),
             ),
             // SizedBox(
@@ -123,7 +127,8 @@ class CustomDrawer extends StatelessWidget {
                   fontFamily: 'Open Sans',
                   fontSize: 24.0,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xEEFFFFFF),
+                  // color: Color(0xEEFFFFFF),
+                  color: Theme.of(context).textTheme.bodyText2.color
                 ),
               ),
             ),
@@ -133,7 +138,8 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20.0,
                   fontFamily: 'Open Sans',
-                  color: Color(0xEEFFFFFF),
+                  // color: Color(0xEEFFFFFF),
+                  color: Theme.of(context).textTheme.bodyText2.color
                 ),
               ),
               subtitle: Text(
@@ -144,7 +150,8 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               trailing: CircleAvatar(
-                backgroundColor: kAccentColor,
+                // backgroundColor: kAccentColor,
+                backgroundColor: Theme.of(context).accentColor,
               ),
             ),
           ],

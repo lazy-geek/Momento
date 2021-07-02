@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/data/models/note.dart';
-import 'package:notes/utils/app_colors.dart';
 
 class ContextualAppBar extends StatefulWidget {
   @override
@@ -15,7 +14,8 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
     return SliverAppBar(
       pinned: true,
       automaticallyImplyLeading: false,
-      backgroundColor: kAppBarColor,
+      // backgroundColor: kAppBarColor,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       leadingWidth: 100,
       leading: Row(
         children: [
