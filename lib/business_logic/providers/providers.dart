@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notes/business_logic/providers/theme_manager.dart';
 import 'package:notes/data/models/note.dart';
 import 'package:notes/business_logic/providers/search_result.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
@@ -87,3 +88,7 @@ final SingleSearchResultProvider =
 
 /// isNoteEdited
 ValueNotifier<bool> a = ValueNotifier<bool>(false);
+
+final ThemeManagerProvider = ChangeNotifierProvider<ThemeManager>((ref){
+  return ThemeManager();
+});

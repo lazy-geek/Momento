@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes/presentation/widgets/custom_cupertino_switch.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -67,12 +68,7 @@ class CustomDrawer extends StatelessWidget {
                   color: Theme.of(context).textTheme.bodyText2.color
                 ),
               ),
-              trailing: CupertinoSwitch(
-                value: true,
-                onChanged: (val) {},
-                // activeColor: kAccentColor,
-                activeColor: Theme.of(context).accentColor
-              ),
+              trailing:CustomCupertinoSwitch(),
             ),
             // SizedBox(
             //   height: 10.0,
