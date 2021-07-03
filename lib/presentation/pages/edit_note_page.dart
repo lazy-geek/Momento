@@ -39,7 +39,7 @@ class _EditNotePageState extends State<EditNotePage> {
       }
     });
     t2.addListener(() {
-       if (t2.text.toLowerCase() != currentNote.title.toLowerCase()) {
+       if (t2.text.toLowerCase() != currentNote.content.toLowerCase()) {
         isEdited = true;
         a.value = true;
       }
