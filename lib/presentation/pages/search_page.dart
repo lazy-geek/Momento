@@ -5,7 +5,7 @@ import 'package:notes/data/repositories/notes_repository.dart';
 import 'package:notes/presentation/widgets/contextual_appbar.dart';
 import 'package:notes/presentation/widgets/notes_grid.dart';
 import 'package:notes/presentation/widgets/notes_list.dart';
-import 'package:notes/presentation/widgets/searchBar.dart';
+import 'package:notes/presentation/widgets/search_bar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 final GlobalKey<ScaffoldState> searchPageScaffoldkey =

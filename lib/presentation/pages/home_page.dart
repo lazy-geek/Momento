@@ -9,7 +9,7 @@ import 'package:notes/presentation/widgets/contextual_appbar.dart';
 import 'package:notes/presentation/widgets/fab.dart';
 import 'package:notes/presentation/widgets/notes_grid.dart';
 import 'package:notes/presentation/widgets/notes_list.dart';
-import 'package:notes/presentation/widgets/mainAppBar.dart';
+import 'package:notes/presentation/widgets/main_app_bar.dart';
 import 'package:notes/presentation/widgets/pinnned_label.dart';
 import 'package:notes/presentation/widgets/unPinnned_label.dart';
 import 'package:page_transition/page_transition.dart';
@@ -139,4 +139,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
