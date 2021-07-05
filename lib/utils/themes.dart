@@ -56,3 +56,22 @@ extension FabTheme on ThemeData {
     }
   }
 }
+
+extension NoteCardTheme on ThemeData {
+  Color get regularBorderColor {
+    if (this.brightness == Brightness.dark) {
+      return Color(0xFF3f475a);
+    } else {
+      return Colors.grey.shade400.withOpacity(0.8);
+    }
+  }
+
+  Color get selectedBorderColor {
+    if (this.brightness == Brightness.dark) {
+      return Colors.white;
+    } else {
+      // return kFabColorLight;
+      return Colors.black;
+    }
+  }
+}

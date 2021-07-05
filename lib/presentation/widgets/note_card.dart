@@ -5,6 +5,7 @@ import 'package:notes/presentation/pages/edit_note_page.dart';
 import 'package:notes/business_logic/providers/providers.dart';
 import 'package:notes/presentation/pages/search_page.dart';
 import 'package:notes/utils/helper_functions.dart';
+import 'package:notes/utils/themes.dart';
 import 'package:notes/data/repositories/notes_repository.dart';
 import 'package:notes/presentation/pages/home_page.dart';
 
@@ -52,21 +53,14 @@ class _NoteCardState extends State<NoteCard> {
               // if we used simple [Decoration] properrty then when ever we select the widget and the Container's
               // border are drawn then the surrounding widgets get pushed by some pixels
               foregroundDecoration: BoxDecoration(
-                color: isSelected ? Colors.white.withOpacity(0.08) : null,
                 border: isSelected
                     ? Border.all(
                         width: 1.8,
-                        color: Colors.white,
+                        color: Theme.of(context).selectedBorderColor,
                       )
                     : Border.all(
                         width: 1.2,
-                        // color: Colors.grey.withAlpha(80),
-                        // color: Color(0xFF323d4e),
-
-                        // color: Color(0xFF343b4b),
-
-                        // color: Color(0xFF3f475a),
-                        color: Theme.of(context).cardColor,
+                        color: Theme.of(context).regularBorderColor,
                       ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
