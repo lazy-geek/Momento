@@ -27,20 +27,25 @@ class _SearchPageState extends State<SearchPage> {
       //   title: const Text('Notes'),
       //   centerTitle: true,
       // ),
-      body: SafeArea(
-        top: true,
-        child: CustomScrollView(
-          slivers: [
-            // there is a bug in flutter which causes app to crash if the first widget
-            // in [CustomScrollView] is not a sliver i.e. [Consumer] thats why here first
-            // widget is [SliverToBoxAdapter].
-            SliverToBoxAdapter(),
+      body: WillPopScope(
+        onWillPop: () async {
+          context.read(SelectedNotesProvider).clear();
+          return true;
+        },
+        child: SafeArea(
+          top: true,
+          child: CustomScrollView(
+            slivers: [
+              // there is a bug in flutter which causes app to crash if the first widget
+              // in [CustomScrollView] is not a sliver i.e. [Consumer] thats why here first
+              // widget is [SliverToBoxAdapter].
+              SliverToBoxAdapter(),
 
-            Consumer(
-              builder: (context, watch, child) {
-                final selectednotes = watch(SelectedNotesProvider);
-                // [isSelected] will be true if any notes are selected
-                bool isSelected = selectednotes.notes_list.isNotEmpty;
+              Consumer(
+                builder: (context, watch, child) {
+                  final selectednotes = watch(SelectedNotesProvider);
+                  // [isSelected] will be true if any notes are selected
+                  bool isSelected = selectednotes.notes_list.isNotEmpty;
 //                return SliverAnimatedSwitcher(
 //                  child: isSelected
 //                      ? ContextualAppBar()
@@ -53,45 +58,46 @@ class _SearchPageState extends State<SearchPage> {
 //                        ),
 //                  duration: Duration(milliseconds: 200),
 //                );
-                return SliverStack(
-                  children: [
-                    SliverOffstage(
-                      offstage: isSelected,
-                      sliver: SearchBar(),
-                    ),
-                    if (isSelected) ContextualAppBar()
-                  ],
-                );
-              },
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 15,
-              ),
-            ),
-
-            Consumer(
-              builder: (context, watch, child) {
-                String txt = watch(SearchTextProvider).state;
-                if (txt.isNotEmpty) {
-                  return context.read(NotesRepositoryProvider).layout ==
-                          LayoutType.Grid
-                      ? NotesGrid(
-                          page: 'search',
-                          type: 'all',
-                        )
-                      : NotesList(
-                          page: 'search',
-                          type: 'all',
-                        );
-                } else {
-                  return SliverToBoxAdapter(
-                    child: Container(),
+                  return SliverStack(
+                    children: [
+                      SliverOffstage(
+                        offstage: isSelected,
+                        sliver: SearchBar(),
+                      ),
+                      if (isSelected) ContextualAppBar()
+                    ],
                   );
-                }
-              },
-            ),
-          ],
+                },
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 15,
+                ),
+              ),
+
+              Consumer(
+                builder: (context, watch, child) {
+                  String txt = watch(SearchTextProvider).state;
+                  if (txt.isNotEmpty) {
+                    return context.read(NotesRepositoryProvider).layout ==
+                            LayoutType.Grid
+                        ? NotesGrid(
+                            page: 'search',
+                            type: 'all',
+                          )
+                        : NotesList(
+                            page: 'search',
+                            type: 'all',
+                          );
+                  } else {
+                    return SliverToBoxAdapter(
+                      child: Container(),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
