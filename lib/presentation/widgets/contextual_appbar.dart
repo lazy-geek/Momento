@@ -12,6 +12,8 @@ class _ContextualAppBarState extends State<ContextualAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      elevation: 3,
+      forceElevated: true,
       pinned: true,
       automaticallyImplyLeading: false,
       // backgroundColor: kAppBarColor,
