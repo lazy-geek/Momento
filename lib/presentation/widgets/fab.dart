@@ -12,7 +12,7 @@ class Fab extends StatelessWidget {
       tooltip: 'Add Note',
       child: Icon(
         Icons.add,
-        color: Theme.of(context).iconTheme.color,
+        color: Theme.of(context).fabTextColor,
       ),
       backgroundColor: Theme.of(context).fabBackgroundColor,
       elevation: 8.0,

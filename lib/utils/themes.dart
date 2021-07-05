@@ -55,6 +55,14 @@ extension FabTheme on ThemeData {
       return kFabColorLight;
     }
   }
+
+  Color get fabTextColor {
+    if (this.brightness == Brightness.dark) {
+      return Colors.white;
+    } else {
+      return Colors.white;
+    }
+  }
 }
 
 extension NoteCardTheme on ThemeData {
