@@ -32,5 +32,8 @@ String getLastEdited(String lastEdited) {
   } else if (ledited.hour < now.hour || ledited.second < now.second) {
     result = "Edited ${DateFormat().add_jm().format(ledited)}";
   }
+  else{
+    result = "Edited ${DateFormat().add_jm().format(ledited)}";
+  }
   return result;
 }
