@@ -31,7 +31,7 @@ class _EditNotePageState extends State<EditNotePage> {
 
     t1 = TextEditingController(text: currentNote.title);
     t2 = TextEditingController(text: currentNote.content);
-    isEdited= false;
+    isEdited = false;
     t1.addListener(() {
       if (t1.text.toLowerCase() != currentNote.title.toLowerCase()) {
         isEdited = true;
@@ -39,7 +39,7 @@ class _EditNotePageState extends State<EditNotePage> {
       }
     });
     t2.addListener(() {
-       if (t2.text.toLowerCase() != currentNote.content.toLowerCase()) {
+      if (t2.text.toLowerCase() != currentNote.content.toLowerCase()) {
         isEdited = true;
         a.value = true;
       }
@@ -160,7 +160,8 @@ class _EditNotePageState extends State<EditNotePage> {
                             border: InputBorder.none),
                       ),
                       TextField(
-                        style: TextStyle(color:Theme.of(context).textTheme.bodyText1.color),
+                        style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color),
                         maxLines: null,
                         controller: t2,
                         decoration: InputDecoration(
@@ -178,15 +179,16 @@ class _EditNotePageState extends State<EditNotePage> {
         ),
         bottomSheet: Container(
           height: 50.0,
-          // padding: EdgeInsets.only(bottom: 8.0),
+          padding: EdgeInsets.only(
+            top: 5.0,
+          ),
           // color: kBackgroundColor,
           color: Theme.of(context).backgroundColor,
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Center(
-                child: LastEditedLabel(
-                  last_updated: currentNote.last_updated,
-                ),
+              LastEditedLabel(
+                last_updated: currentNote.last_updated,
               )
             ],
           ),
