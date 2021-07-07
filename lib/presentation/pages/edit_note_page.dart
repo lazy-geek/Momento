@@ -147,8 +147,6 @@ class _EditNotePageState extends State<EditNotePage> {
                   Column(
                     children: [
                       TextField(
-                        // showCursor: true,
-                        autofocus: true,
                         style: TextStyle(
                           fontSize: 25,
                           color: Theme.of(context).textTheme.bodyText1.color,
