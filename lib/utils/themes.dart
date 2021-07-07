@@ -11,7 +11,6 @@ final ThemeData AppThemeDark = ThemeData(
     backgroundColor: kAppBarColorDark,
     titleTextStyle: TextStyle(color: Colors.grey.shade400),
   ),
-  cardColor: Color(0xFF3f475a),
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.white),
     bodyText2: TextStyle(color: Color(0xEEFFFFFF)),
@@ -28,13 +27,20 @@ final ThemeData AppThemeLight = ThemeData(
   brightness: Brightness.light,
   accentColor: kAccentColor,
   backgroundColor: kBackgroundColorLight,
+
+  // this is used to change the color of [TextSelectionToolBar]
+  // because it uses [TextButton] widgets under the hood.
+  textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(Colors.white),
+  )),
+
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Colors.black),
     actionsIconTheme: IconThemeData(color: Colors.black54),
     backgroundColor: kAppBarColorLight,
     titleTextStyle: TextStyle(color: Colors.grey.shade700),
   ),
-  cardColor: Colors.grey.shade400.withOpacity(0.8),
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.black),
     bodyText2: TextStyle(color: Colors.black),
