@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/utils/app_colors.dart';
+import 'package:momento/utils/app_colors.dart';
 
 final ThemeData AppThemeDark = ThemeData(
   brightness: Brightness.dark,

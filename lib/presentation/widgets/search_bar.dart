@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/business_logic/providers/providers.dart';
+import 'package:momento/business_logic/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SearchBar extends StatefulWidget {

@@ -32,13 +32,9 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.notes"
+        applicationId "com.momento"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()

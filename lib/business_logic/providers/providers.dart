@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/business_logic/providers/theme_manager.dart';
-import 'package:notes/data/models/note.dart';
-import 'package:notes/business_logic/providers/search_result.dart';
-import 'package:notes/data/repositories/notes_repository.dart';
-import 'package:notes/business_logic/providers/selected_notes.dart';
+import 'package:momento/business_logic/providers/theme_manager.dart';
+import 'package:momento/data/models/note.dart';
+import 'package:momento/business_logic/providers/search_result.dart';
+import 'package:momento/data/repositories/notes_repository.dart';
+import 'package:momento/business_logic/providers/selected_notes.dart';
 
 // The [NotesRepositoryProvider] provides an instance of [NoteListViewModel] class.
 final NotesRepositoryProvider =

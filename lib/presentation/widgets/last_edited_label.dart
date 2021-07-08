@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/utils/helper_functions.dart';
+import 'package:momento/business_logic/providers/providers.dart';
+import 'package:momento/utils/helper_functions.dart';
 
 
 class LastEditedLabel extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:notes/data/models/note.dart';
-import 'package:notes/data/services/database_service.dart';
+import 'package:momento/data/models/note.dart';
+import 'package:momento/data/services/database_service.dart';
 
 enum LayoutType { List, Grid }
 

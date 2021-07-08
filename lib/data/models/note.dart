@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:notes/data/services/database_service.dart';
+import 'package:momento/data/services/database_service.dart';
 
 class Note extends ChangeNotifier {
   int id;

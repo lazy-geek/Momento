@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/data/repositories/notes_repository.dart';
-import 'package:notes/presentation/widgets/contextual_appbar.dart';
-import 'package:notes/presentation/widgets/notes_grid.dart';
-import 'package:notes/presentation/widgets/notes_list.dart';
-import 'package:notes/presentation/widgets/search_bar.dart';
+import 'package:momento/business_logic/providers/providers.dart';
+import 'package:momento/data/repositories/notes_repository.dart';
+import 'package:momento/presentation/widgets/contextual_appbar.dart';
+import 'package:momento/presentation/widgets/notes_grid.dart';
+import 'package:momento/presentation/widgets/notes_list.dart';
+import 'package:momento/presentation/widgets/search_bar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 final GlobalKey<ScaffoldState> searchPageScaffoldkey =

@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:notes/utils/app_colors.dart';
+import 'package:momento/utils/app_colors.dart';
 
 Flushbar emptyNoteDiscardedFlushbar = Flushbar(
   messageText: Text('Empty note discarded'),

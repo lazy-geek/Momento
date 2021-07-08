@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/data/models/note.dart';
-import 'package:notes/presentation/pages/edit_note_page.dart';
-import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/presentation/pages/search_page.dart';
-import 'package:notes/utils/helper_functions.dart';
-import 'package:notes/utils/themes.dart';
-import 'package:notes/data/repositories/notes_repository.dart';
-import 'package:notes/presentation/pages/home_page.dart';
+import 'package:momento/data/models/note.dart';
+import 'package:momento/presentation/pages/edit_note_page.dart';
+import 'package:momento/business_logic/providers/providers.dart';
+import 'package:momento/presentation/pages/search_page.dart';
+import 'package:momento/utils/helper_functions.dart';
+import 'package:momento/utils/themes.dart';
+import 'package:momento/data/repositories/notes_repository.dart';
+import 'package:momento/presentation/pages/home_page.dart';
 
 class NoteCard extends StatefulWidget {
   final int id;

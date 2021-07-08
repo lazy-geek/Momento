@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/presentation/pages/search_page.dart';
-import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/data/repositories/notes_repository.dart';
+import 'package:momento/presentation/pages/search_page.dart';
+import 'package:momento/business_logic/providers/providers.dart';
+import 'package:momento/data/repositories/notes_repository.dart';
 
 class MainAppBar extends StatefulWidget {
   final VoidCallback onClick;

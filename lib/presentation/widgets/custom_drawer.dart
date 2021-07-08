@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notes/presentation/widgets/custom_cupertino_switch.dart';
+import 'package:momento/presentation/widgets/custom_cupertino_switch.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({

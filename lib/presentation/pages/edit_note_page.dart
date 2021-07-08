@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/business_logic/providers/providers.dart';
-import 'package:notes/data/models/note.dart';
-import 'package:notes/presentation/widgets/last_edited_label.dart';
-import 'package:notes/presentation/widgets/note_pin.dart';
+import 'package:momento/business_logic/providers/providers.dart';
+import 'package:momento/data/models/note.dart';
+import 'package:momento/presentation/widgets/last_edited_label.dart';
+import 'package:momento/presentation/widgets/note_pin.dart';
 import 'package:share_plus/share_plus.dart';
 
 class EditNotePage extends StatefulWidget {

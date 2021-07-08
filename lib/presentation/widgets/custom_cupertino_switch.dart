@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/business_logic/providers/providers.dart';
+import 'package:momento/business_logic/providers/providers.dart';
 
 class CustomCupertinoSwitch extends StatelessWidget {
   @override

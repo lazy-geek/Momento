@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes/data/models/note.dart';
-import 'package:notes/business_logic/providers/providers.dart';
+import 'package:momento/data/models/note.dart';
+import 'package:momento/business_logic/providers/providers.dart';
 
 class PinnedLable extends StatelessWidget {
   const PinnedLable({
