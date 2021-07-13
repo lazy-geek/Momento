@@ -73,12 +73,6 @@ final AllSearchResultProvider = FutureProvider<List<Note>>((ref) async {
   return ref.watch(SearchResultClassProvider).result_notes_list;
 });
 
-final SingleSearchResultProvider =
-    ChangeNotifierProvider.family<Note, int>((ref, id) {
-  var notelist = ref.watch(AllSearchResultProvider).data.value;
-  var note = notelist.firstWhere((element) => element.id == id);
-  return note;
-});
 //final isNoteSelected = Provider.family<bool, int>((ref, noteId) {
 //  return ref
 //      .watch(SelectedNotesProvider)
