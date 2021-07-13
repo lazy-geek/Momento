@@ -6,13 +6,13 @@ import 'package:momento/business_logic/providers/search_result.dart';
 import 'package:momento/data/repositories/notes_repository.dart';
 import 'package:momento/business_logic/providers/selected_notes.dart';
 
-// The [NotesRepositoryProvider] provides an instance of [NoteListViewModel] class.
+// The [NotesRepositoryProvider] provides an instance of [NotesRepository] class.
 final NotesRepositoryProvider =
     ChangeNotifierProvider<NotesRepository>((ref) => NotesRepository());
 
-// The [AllNotesProvider] fetches Notes List from [NoteListViewModel] class
+// The [AllNotesProvider] fetches Notes List from [NotesRepository] class
 // using the [NotesRepositoryProvider] and provides the Notes List.
-// note: we use [FutureProvider] becouse =>
+// note: we use [FutureProvider] because =>
 // 1. we need to await for getAllNotes() to be completed.
 // 2. we get benifit of using .when() with [AsyncValue] , so we don't need [FutureBuilder]
 final AllNotesProvider = FutureProvider<List<Note>>((ref) async {
