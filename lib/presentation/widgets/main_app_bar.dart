@@ -41,10 +41,10 @@ class _MainAppBarState extends State<MainAppBar> {
             ),
             child: Ink(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  // color: Color(0xFF303440),
-                  color: Theme.of(context).appBarTheme.backgroundColor,
-                  ),
+                borderRadius: BorderRadius.circular(10.0),
+                // color: Color(0xFF303440),
+                color: Theme.of(context).appBarTheme.backgroundColor,
+              ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10.0),
                 onTap: () {
@@ -61,6 +61,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
+                        splashRadius: 25.0,
                         icon: Icon(
                           Icons.menu,
                           color: Theme.of(context).appBarTheme.iconTheme.color,
@@ -81,8 +82,10 @@ class _MainAppBarState extends State<MainAppBar> {
                                   fontFamily: 'Open Sans',
                                   fontSize: 18.0,
                                   // color: Colors.grey.shade400,
-                                  color: Theme.of(context).appBarTheme.titleTextStyle.color
-                                  ),
+                                  color: Theme.of(context)
+                                      .appBarTheme
+                                      .titleTextStyle
+                                      .color),
                             ),
                           ),
                         ),
@@ -94,10 +97,14 @@ class _MainAppBarState extends State<MainAppBar> {
                           LayoutType layout = viewModel.layout;
                           if (layout == LayoutType.Grid) {
                             return IconButton(
+                              splashRadius: 25.0,
                               icon: Icon(
                                 Icons.view_agenda_outlined,
                                 // color: Colors.grey.shade400,
-                                color: Theme.of(context).appBarTheme.actionsIconTheme.color,
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .actionsIconTheme
+                                    .color,
                               ),
                               onPressed: () {
                                 viewModel.toggleView();
@@ -106,11 +113,14 @@ class _MainAppBarState extends State<MainAppBar> {
                           } else {
                             // if current layout is List then Show the Grid Icon
                             return IconButton(
-                              // iconSize: 30.0,
+                              splashRadius: 25.0,
                               icon: Icon(
                                 Icons.grid_view,
                                 // color: Colors.grey.shade400,
-                                color: Theme.of(context).appBarTheme.actionsIconTheme.color,
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .actionsIconTheme
+                                    .color,
                               ),
                               onPressed: () {
                                 viewModel.toggleView();

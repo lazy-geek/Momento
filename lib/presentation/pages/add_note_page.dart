@@ -47,6 +47,7 @@ class _AddNotePageState extends State<AddNotePage> {
           ),
         ],
         leading: IconButton(
+          splashRadius: 25.0,
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {
             bool isDiscarded = false;

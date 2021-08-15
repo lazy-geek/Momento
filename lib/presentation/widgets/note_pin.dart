@@ -13,6 +13,7 @@ class _NotePinState extends State<NotePin> {
   Widget build(BuildContext context) {
     if (widget.isPinned == 1) {
       return IconButton(
+        splashRadius: 25.0,
         icon: Icon(Icons.push_pin),
         onPressed: () {
           setState(() {
@@ -23,6 +24,7 @@ class _NotePinState extends State<NotePin> {
       );
     } else {
       return IconButton(
+        splashRadius: 25.0,
         icon: Icon(Icons.push_pin_outlined),
         onPressed: () {
           setState(() {

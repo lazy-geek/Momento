@@ -29,12 +29,19 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      leading: IconButton(
+          splashRadius: 25.0,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       actions: [
         Consumer(
           builder: (context, watch, child) {
             String txt = watch(SearchTextProvider).state;
             if (txt.isNotEmpty) {
               return IconButton(
+                splashRadius: 25.0,
                 icon: Icon(
                   Icons.clear,
                   color: Theme.of(context).appBarTheme.actionsIconTheme.color,

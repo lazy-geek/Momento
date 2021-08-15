@@ -79,6 +79,7 @@ class _EditNotePageState extends State<EditNotePage> {
           // backgroundColor: kBackgroundColor,
           backgroundColor: Theme.of(context).backgroundColor,
           leading: IconButton(
+              splashRadius: 25.0,
               icon: const Icon(Icons.arrow_back),
               onPressed: () async {
                 bool isDiscarded = false;
@@ -119,6 +120,7 @@ class _EditNotePageState extends State<EditNotePage> {
               },
             ),
             IconButton(
+                splashRadius: 25.0,
                 icon: Icon(Icons.share),
                 onPressed: () {
                   Share.share(t1.text + '\n' + t2.text, subject: t1.text);
