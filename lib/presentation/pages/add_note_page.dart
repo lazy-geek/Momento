@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:momento/business_logic/providers/providers.dart';
 import 'package:momento/data/models/note.dart';
+import 'package:momento/presentation/widgets/note_pin.dart';
 
 class AddNotePage extends StatefulWidget {
   @override
@@ -11,10 +12,12 @@ class AddNotePage extends StatefulWidget {
 class _AddNotePageState extends State<AddNotePage> {
   TextEditingController t1;
   TextEditingController t2;
+  int isPinned;
 
   @override
   void initState() {
     super.initState();
+    isPinned = 0;
     t1 = TextEditingController();
     t2 = TextEditingController();
   }
@@ -35,11 +38,20 @@ class _AddNotePageState extends State<AddNotePage> {
         centerTitle: true,
         // backgroundColor: kBackgroundColor,
         backgroundColor: Theme.of(context).backgroundColor,
+        actions: [
+          NotePin(
+            isPinned: isPinned,
+            onChanged: (val) {
+              isPinned = val;
+            },
+          ),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async {
             bool isDiscarded = false;
-            isDiscarded = await _addOrDiscard(context, t1.text, t2.text);
+            isDiscarded =
+                await _addOrDiscard(context, t1.text, t2.text, isPinned);
             Navigator.pop(context, isDiscarded);
           },
         ),
@@ -47,7 +59,8 @@ class _AddNotePageState extends State<AddNotePage> {
       body: WillPopScope(
         onWillPop: () async {
           bool isDiscarded = false;
-          isDiscarded = await _addOrDiscard(context, t1.text, t2.text);
+          isDiscarded =
+              await _addOrDiscard(context, t1.text, t2.text, isPinned);
           Navigator.pop(context, isDiscarded);
           return false;
         },
@@ -61,25 +74,30 @@ class _AddNotePageState extends State<AddNotePage> {
                 ),
                 TextField(
                   autofocus: true,
-                  style: TextStyle(fontSize: 25, color: Theme.of(context).textTheme.bodyText1.color),
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Theme.of(context).textTheme.bodyText1.color),
                   controller: t1,
                   maxLines: null,
                   decoration: InputDecoration(
                       focusedBorder: InputBorder.none,
                       hintText: 'Title',
                       // hintStyle: TextStyle(color: Colors.grey.shade400),
-                     hintStyle: TextStyle(color: Theme.of(context).textTheme.headline3.color),
+                      hintStyle: TextStyle(
+                          color: Theme.of(context).textTheme.headline3.color),
                       border: InputBorder.none),
                 ),
                 TextField(
                   maxLines: null,
                   controller: t2,
-                  style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color),
                   decoration: InputDecoration(
                       focusedBorder: InputBorder.none,
                       hintText: 'Type Something',
                       // hintStyle: TextStyle(color: Colors.grey.shade400),
-                       hintStyle: TextStyle(color: Theme.of(context).textTheme.headline3.color),
+                      hintStyle: TextStyle(
+                          color: Theme.of(context).textTheme.headline3.color),
                       border: InputBorder.none),
                 )
               ],
@@ -95,6 +113,7 @@ Future<bool> _addOrDiscard(
   BuildContext context,
   String title,
   String content,
+  int isPinned,
 ) async {
   bool isDiscarded = false;
   // if only title or content is note empty then update the note
@@ -102,7 +121,7 @@ Future<bool> _addOrDiscard(
     await context.read(NotesRepositoryProvider).addNote(Note.fromMap({
           'title': '$title',
           'content': '$content',
-          'isPinned': 0,
+          'isPinned': isPinned,
           'date_created': '${DateTime.now()}',
           'last_updated': '${DateTime.now()}'
         }));
