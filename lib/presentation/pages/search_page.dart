@@ -29,8 +29,12 @@ class _SearchPageState extends State<SearchPage> {
       // ),
       body: WillPopScope(
         onWillPop: () async {
-          context.read(SelectedNotesProvider).clear();
-          return true;
+          if (context.read(SelectedNotesProvider).notes_list.isEmpty) {
+            return true;
+          } else {
+            context.read(SelectedNotesProvider).clear();
+            return false;
+          }
         },
         child: SafeArea(
           top: true,
