@@ -1,8 +1,22 @@
+
 # Momento
 
 A Feature Rich Google Keep Like Notes App Written In Flutter With Beautiful UI.
 
 
+## Screenshots
+
+<img src="github-assets\gif\Add-note-gif.gif" alt="Add note gif" width="200"/>
+<img src="github-assets\gif\Edit-note-gif.gif" alt="Edit note gif" width="200"/>
+<img src="github-assets\gif\Delete-note-gif.gif" alt="Delete note gif" width="200"/>
+<img src="github-assets\gif\Toggle-view-gif.gif" alt="Toggle view gif" width="200"/>
+<img src="github-assets\gif\Pin-note-gif.gif" alt="Pin note gif" width="200"/>
+<br>
+<br>
+<img src="github-assets\gif\Search-note-gif.gif" alt="Search note gif" width="200"/>
+<img src="github-assets\gif\Light-mode-gif.gif" alt="Light mode gif" width="200"/>
+<img src="github-assets\gif\Share-note-gif.gif" alt="Share note gif" width="200"/>
+  
 ## Features
 
 - Animated: Fully Animated App For Smooth Experience
@@ -59,8 +73,9 @@ If you have any feedback, please reach out to us at fake@fake.com -->
 
 For support, email fake@fake.com or join our Slack channel. -->
 
-
+  
 ## License
 
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
+  
