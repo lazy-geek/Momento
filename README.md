@@ -62,11 +62,14 @@ Run The App
 If you have any feedback, please reach out to us at fake@fake.com -->
 
   
-<!-- ## Roadmap
+## Roadmap
 
-- Additional browser support
-
-- Add more integrations -->
+- Null Safety
+- List Support
+- Image Support
+- MarkDown Support
+- Add Password Protected Secret Section
+- Support Online Backup
 
   
 <!-- ## Support
