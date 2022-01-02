@@ -35,13 +35,13 @@ A Feature Rich Google Keep Like Notes App Written In Flutter With Beautiful UI.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/lazy-geek/Momento
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd Momento
 ```
 
 Install dependencies
