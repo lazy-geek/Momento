@@ -17,6 +17,7 @@ A Feature Rich Google Keep Like Notes App Written In Flutter With Beautiful UI.
 <img src="github-assets\gif\Light-mode-gif.gif" alt="Light mode gif" width="200"/>
 <img src="github-assets\gif\Share-note-gif.gif" alt="Share note gif" width="200"/>
 <div>
+
 ## Features
 
 - Animated: Fully Animated App For Smooth Experience
